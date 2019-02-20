@@ -30,6 +30,9 @@ class App extends Component {
     localStorage.removeItem('jwtToken');
     window.location.reload();
   }
+  LifeCoaching = () => {
+    this.props.history.push("/LifeCoaching");
+  }
 
   render() {
     return (
@@ -38,6 +41,7 @@ class App extends Component {
           <div class="panel-heading">
             <h3 class="panel-title">
               BOOK CATALOG &nbsp;
+              <button class="btn btn-primary" onClick={this.LifeCoaching}>LifeCoaching</button>
               {localStorage.getItem('jwtToken') &&
                 <button class="btn btn-primary" onClick={this.logout}>Logout</button>
               }
