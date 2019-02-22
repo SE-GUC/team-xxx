@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import AppointmentApp from "./AppointmentApp";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 class LifeCoaching extends Component {
     render() {
         
         return (
-          <div class="container">
-            
+            <div>
+            <MuiThemeProvider>
+              <AppointmentApp />
+            </MuiThemeProvider>
           </div>
         );
       }
