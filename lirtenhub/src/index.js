@@ -7,6 +7,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Login from './components/Login';
 import Register from './components/Register';
+import LifeCoaching from './components/LifeCoaching';
 
 ReactDOM.render(
   <Router>
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route exact path='/' component={App} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/LifeCoaching' component={LifeCoaching} />
       </div>
   </Router>,
   document.getElementById('root')
