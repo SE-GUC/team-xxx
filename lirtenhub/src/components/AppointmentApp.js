@@ -19,7 +19,7 @@ import {
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import axios from "axios";
 
-const API_BASE = "http://localhost:8083/";
+const API_BASE = "http://localhost:3000/";
 
 class AppointmentApp extends Component {
   constructor(props, context) {
@@ -119,8 +119,6 @@ class AppointmentApp extends Component {
     );
   }
 
-  
-  
   renderAppointmentConfirmation() {
     const spanStyle = { color: "#00C853" };
     return (
