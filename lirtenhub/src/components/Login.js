@@ -58,7 +58,7 @@ class Login extends Component {
             Not a member? <Link to="/register"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
           </p>
           <p>
-            Forgot Password? <Link to="/register"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Reset Password</Link>
+            Forgot Password? <Link to="/Resetpass"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Reset Password</Link>
           </p>
         </form>
       </div>
