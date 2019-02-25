@@ -1,0 +1,27 @@
+{
+  "name": "submission",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elshazlyyy/Submission.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elshazlyyy/Submission/issues"
+  },
+  "homepage": "https://github.com/Elshazlyyy/Submission#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.15",
+    "nodemon": "^1.18.10"
+  }
+}
