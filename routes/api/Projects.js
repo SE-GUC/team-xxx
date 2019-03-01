@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     description: req.body.description,
     candidates: req.body.candidates,
     effort: req.body.effort,
-    duration: req.body.duration,
+    time: req.body.time,
     commitment: req.body.commitment,
     experience: req.body.experience,
     compensation:req.body.compensation,
@@ -32,8 +32,7 @@ router.post('/', (req, res) => {
     category:req.body.category,
     state:req.body.state,
     applicants:req.body.applicants,
-    assigned:req.body.assigned,
-    extraInfo:req.body.extraInfo
+    assigned:req.body.assigned
   });
 
   newProject.save().then(Project => res.json(Project));
@@ -47,81 +46,76 @@ router.delete('/:id', (req, res) => {
     .then(Project => Project.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
+
+//@ find a specific project by ID
+router.get('/:id', function(req, res){
+  Project.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc);
+  })
+  .catch(err => next(err));
+});
+
+
+//@ find project's description by the prjoect's ID
+router.get('/:id/description', function(req, res){
+  Project.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.description);
+  })
+  .catch(err => next(err));
+});
+
+// toupdate the project attributes
 router.put('/update/:id',function(req,res){
   var id=req.params.id;
-  Project.findOne({_id: id},function(err,foundObject){
+  Project.findOne({_id: id},function(err,doc){
     if(err){
       console.log(err);
-      
+      res.status(500).send();
     }
     else{
-      if(!foundObject){
-        res.status(404).send();
-  
+      if(!doc){
+        res.status(404).send(); 
       }else{
         if(req.body.Title){
-          foundObject.Title=req.body.Title;
+          doc.Title=req.body.Title;
         }
         if(req.body.description){
-          foundObject.description=req.body.description;
-        }
-        if(req.body.candidates){
-          foundObject.candidates=req.body.candidates;
+          doc.description=req.body.description;
         }
         if(req.body.effort){
-          foundObject.effort=req.body.effort;
+          doc.effort=req.body.effort;
         }
         if(req.body.duration){
-          foundObject.duration=req.body.duration;
-        }
-        if(req.body.commitment){
-          foundObject.commitment=req.body.commitment;
+          doc.duration=req.body.duration;
         }
         if(req.body.experience){
-          foundObject.experience=req.body.experience;
+          doc.experience=req.body.experience;
         }
         if(req.body.compensation){
-          foundObject.compensation=req.body.compensation;
-        }
-        if(req.body.partner){
-          foundObject.partner=req.body.partner;
+          doc.compensation=req.body.compensation;
         }
         if(req.body.consultancy){
-          foundObject.consultancy=req.body.consultancy;
+          doc.consultancy=req.body.consultancy;
         }
         if(req.body.skills){
-          foundObject.skills=req.body.skills;
-        }
-        if(req.body.category){
-          foundObject.category=req.body.category;
-        }
-        if(req.body.state){
-          foundObject.state=req.body.state;
-        }
-        if(req.body.applicants){
-          foundObject.applicants=req.body.applicants;
-        }
-        if(req.body.assigned){
-          foundObject.assigned=req.body.assigned;
-        }
-        if(req.body.extraInfo){
-          foundObject.extraInfo=req.body.extraInfo;
-        }
-        foundObject.save(function(err,updatedObject){
+          doc.skills=req.body.skills;
+        }      
+        doc.save(function(err,updatedObject){
           if(err){
             console.log(err);
-           
+            res.status(500).send();
           }
           else{
             res.send(updatedObject);
           }
-  
-        });
-  
+        }); 
       }
     }
+  });
+  });
   
-  });
-  });
-
-module.exports = router;
+ module.exports = router;

@@ -36,6 +36,10 @@ const ProjectSchema = new Schema({
   consultancy: {
     type: String
   },
+  consultancyAcceptance: {
+    type: boolean,
+    default: false
+  },
   skills: {
     type: String
   },
@@ -50,15 +54,7 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
-  },
-  extraInfo:{
-    type: String
   }
-
-  
-
-
 });
-
 
 module.exports = Project = mongoose.model("Project", ProjectSchema);
