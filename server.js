@@ -9,6 +9,8 @@ const Members = require('./routes/api/Members');
 const Partners = require('./routes/api/Partners');
 const Projects = require('./routes/api/Projects');
 const Slots = require('./routes/api/Slots');
+const Meetings = require('./routes/api/Meetings');
+const Admins = require('./routes/api/Admins');
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
@@ -28,6 +30,8 @@ app.use('/api/Members', Members);
 app.use('/api/Partners', Partners);
 app.use('/api/Projects', Projects);
 app.use('/api/Slots', Slots);
+app.use('/api/Meetings', Meetings);
+app.use('/api/Admins', Admins);
 
 const port = process.env.PORT || 5000;
 
