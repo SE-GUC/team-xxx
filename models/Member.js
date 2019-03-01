@@ -55,10 +55,14 @@ const MemberSchema = new Schema({
   },
   Notifications: {
     type: String
-  },		
-  oldProjects:{		
-    type: String		
-   }
+  },
+  projects:{
+    type: string
+  },
+  
+  ReviewOwner:{
+    tupe: string
+  }
 });
 
 module.exports = Member = mongoose.model("Member", MemberSchema);

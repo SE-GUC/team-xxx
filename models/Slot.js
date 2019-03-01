@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const SlotSchema = new Schema({
-  lifecoachEmail: {
+  lifecoach: {
     type: String,
     required: true,
   },

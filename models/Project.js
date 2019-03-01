@@ -18,7 +18,7 @@ const ProjectSchema = new Schema({
   effort: {
     type: String
   },
-  duration: {
+  time: {
     type: String
   },
   commitment: {
@@ -36,10 +36,6 @@ const ProjectSchema = new Schema({
   consultancy: {
     type: String
   },
-  consultancyAcceptance: {
-    type: boolean,
-    default: false
-  },
   skills: {
     type: String
   },
@@ -54,9 +50,6 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
-  },		
-  extraInfo:{		
-    type: String		
   }
 });
 

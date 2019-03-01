@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
   const newSlot = new Slot({
-    lifecoachEmail: req.body.lifecoachEmail,
+    lifecoach: req.body.lifecoach,
     number: req.body.number,
     Date: req.body.Date,
     startTime: req.body.startTime,
@@ -40,30 +40,4 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-
-router.get('/state/:id', function(req, res){
-  Slot.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.status);
-  })
-  .catch(err => next(err));
-});
-
-
-
-router.get('/notified', (req, res) => {
-  Slot.find({status: 'Free'})
-    .sort({ number: 1 })
-    .then(Date => res.json(Date)),
-    (startTime => res.json(startTime)),
-    (endTime => res.json(endTime))
-    
-    ;
-});
-
-
-
-
 module.exports = router;
-
