@@ -44,6 +44,7 @@ router.delete('/:id', (req, res) => {
   Member.findById(req.params.id)
     .then(Member => Member.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
-});
+})
+console.log("really!");//to know bit5oll el 7et dih wala la2!
 
 module.exports = router;

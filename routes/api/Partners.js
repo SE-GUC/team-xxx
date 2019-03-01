@@ -30,7 +30,8 @@ router.post('/', (req, res) => {
     Contracts:req.body.Contracts,
     Email:req.body.Email,
     Password:req.body.Password,
-    Notifications:req.body.Notifications
+    Notifications:req.body.Notifications,
+    Consultant:req.body.Consultant
   });
 
   newPartner.save().then(Partner => res.json(Partner));
@@ -45,73 +46,23 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-router.put('/update/:id',function(req,res){
-  var id=req.params.id;
-  Partner.findOne({_id: id},function(err,foundObject){
-    if(err){
-      console.log(err);
+// router.post('/', (req,res) =>{
+// Partner.findOneAndUpdate ({Consultant: req.body.Consultant},newData, {new:true})
+// .then ((partner) => {
+//   if ( partner.Consultant ==true ) {
+//     res.status(200).json({
+//       msg: "Consultant Successfully Added"
+     
+//     });
+//   } else {
+//     res.status(422).json({
+//       msg: "Description of the project"
       
-    }
-    else{
-      if(!foundObject){
-        res.status(404).send();
-  
-      }else{
-        if(req.body.Email){
-          foundObject.Email=req.body.Email;
-        }
-        if(req.body.Password){
-          foundObject.Password=req.body.Password;
-        }
-        if(req.body.business){
-          foundObject.business=req.body.business;
-        }
-        if(req.body.partners){
-          foundObject.partners=req.body.partners;
-        }
-        if(req.body.boardmembers){
-          foundObject.boardmembers=req.body.boardmembers;
-        }
-        if(req.body.events){
-          foundObject.events=req.body.events;
-        }
-        if(req.body.field){
-          foundObject.field=req.body.field;
-        }
-        if(req.body.projects){
-          foundObject.projects=req.body.projects;
-        }
-        if(req.body.feedback){
-          foundObject.feedback=req.body.feedback;
-        }
-        if(req.body.Lifecoach){
-          foundObject.Lifecoach=req.body.Lifecoach;
-        }
-        if(req.body.membership){
-          foundObject.skills=req.body.membership;
-        }
-        if(req.body.Contracts){
-          foundObject.category=req.body.Contracts;
-        }
-        if(req.body. Notifications){
-          foundObject.state=req.body. Notifications;
-        }
-        
-        foundObject.save(function(err,updatedObject){
-          if(err){
-            console.log(err);
-           
-          }
-          else{
-            res.send(updatedObject);
-          }
-  
-        });
-  
-      }
-    }
-  
-  });
-  });
+//     })
+//   }
+// })
+
+// });
+
 
 module.exports = router;

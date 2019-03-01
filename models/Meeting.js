@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const MeetingSchema = new Schema({
-  MemberemailOne: {
+    MemberemailOne: {
     type: String,
     required: true,
 
@@ -21,12 +21,13 @@ const MeetingSchema = new Schema({
     required: true
   },
  
-  Status: {
-    type: String,
-    default :"Free"
+  StatusMemberOne: {
+    type: Boolean
 
+  },
+  StatusMemberTwo:{
+      type: Boolean
   }
-  
  
 });
 

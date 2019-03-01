@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
   const newSlot = new Slot({
-    lifecoachEmail: req.body.lifecoachEmail,
+    lifecoach: req.body.lifecoach,
     number: req.body.number,
     Date: req.body.Date,
     startTime: req.body.startTime,
@@ -39,7 +39,5 @@ router.delete('/:id', (req, res) => {
     .then(Slot => Slot.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
-
-
 
 module.exports = router;

@@ -44,7 +44,7 @@ const ConsultancySchema = new Schema({
   Notifications: {
     type: String
   },
-  consultantAcceptance:{
+  ConsultancyAcceptance:{
     type: Boolean
   }
 });

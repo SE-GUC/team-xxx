@@ -50,15 +50,7 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
-  },
-  extraInfo:{
-    type: String
   }
-
-  
-
-
 });
-
 
 module.exports = Project = mongoose.model("Project", ProjectSchema);
