@@ -13,6 +13,54 @@ router.get('/', (req, res) => {
     .then(Slots => res.json(Slots));
 });
 
+router.put('/update/:id',function(req,res){
+  var id=req.params.id;
+  Slot.findOne({_id: id},function(err,foundObject){
+    if(err){
+      console.log(err);
+      
+    }
+    else{
+      if(!foundObject){
+        res.status(404).send();
+  
+      }else{
+        if(req.body.lifecoachEmail){
+          foundObject.lifecoachEmail=req.body.lifecoachEmail;
+        }
+        if(req.body.number){
+          foundObject.number=req.body.number;
+        }
+        if(req.body.Date){
+          foundObject.Date=req.body.Date;
+        }if(req.body.startTime){
+          foundObject.startTime=req.body.startTime;
+        }if(req.body.endTime){
+          foundObject.endTime=req.body.endTime;
+        }if(req.body.status){
+          foundObject.status=req.body.status;
+        }if(req.body.applicant){
+          foundObject.applicant=req.body.applicant;
+        }if(req.body.Location){
+          foundObject.Location=req.body.Location;
+        }
+        foundObject.save(function(err,updatedObject){
+          if(err){
+            console.log(err);
+            
+          }
+          else{
+            res.send(updatedObject);
+          }
+  
+        });
+  
+      }
+    }
+  
+  });
+  });
+
 // @route   POST api/Slots
 // @desc    Create An Slot
 // @access  Public
@@ -40,30 +88,4 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-
-router.get('/state/:id', function(req, res){
-  Slot.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.status);
-  })
-  .catch(err => next(err));
-});
-
-
-
-router.get('/notified', (req, res) => {
-  Slot.find({status: 'Free'})
-    .sort({ number: 1 })
-    .then(Date => res.json(Date)),
-    (startTime => res.json(startTime)),
-    (endTime => res.json(endTime))
-    
-    ;
-});
-
-
-
-
 module.exports = router;
-

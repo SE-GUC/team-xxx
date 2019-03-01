@@ -45,27 +45,16 @@ const MemberSchema = new Schema({
     required: true
   },
   Lifecoach: {
-    type: Boolean
+    type: Boolean,
   },
   membership: {
-    type: Date
+    type: Date,
   },
   Contracts: {
-    type: String
+    type: String,
   },
   Notifications: {
     type: String
-  },
-
-  oldProjects: {
-    type: String
-  },
-  projects: {
-    type: string
-  },
-
-  ReviewOwner: {
-    tupe: string
   }
 });
 
