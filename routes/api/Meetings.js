@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
 
   //     }
   // });
-});
+
 router.get("/memberEmial-1/:id", function(req, res) {
   Meeting.findById(req.params.id)
     .then(doc => {
