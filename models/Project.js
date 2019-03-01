@@ -18,7 +18,7 @@ const ProjectSchema = new Schema({
   effort: {
     type: String
   },
-  time: {
+  duration: {
     type: String
   },
   commitment: {

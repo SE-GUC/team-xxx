@@ -30,7 +30,8 @@ router.post('/', (req, res) => {
     Contracts:req.body.Contracts,
     Email:req.body.Email,
     Password:req.body.Password,
-    Notifications:req.body.Notifications
+    Notifications:req.body.Notifications,
+    Consultant:req.body.Consultant
   });
 
   newPartner.save().then(Partner => res.json(Partner));
@@ -44,5 +45,24 @@ router.delete('/:id', (req, res) => {
     .then(Partner => Partner.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
+
+// router.post('/', (req,res) =>{
+// Partner.findOneAndUpdate ({Consultant: req.body.Consultant},newData, {new:true})
+// .then ((partner) => {
+//   if ( partner.Consultant ==true ) {
+//     res.status(200).json({
+//       msg: "Consultant Successfully Added"
+     
+//     });
+//   } else {
+//     res.status(422).json({
+//       msg: "Description of the project"
+      
+//     })
+//   }
+// })
+
+// });
+
 
 module.exports = router;
