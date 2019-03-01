@@ -4,15 +4,67 @@ const router = express.Router();
 // Consultancy Model
 const Consultancy = require("../../models/Consultancy");
 
+router.get("/events/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      returnres.status(200).json(doc.events);
+    })
+    .catch(err => next(err));
+});
+
+router.get("/projects/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      returnres.status(200).json(doc.projects);
+    })
+    .catch(err => next(err));
+});
+
+router.get("/Reviews/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      returnres.status(200).json(doc.Reviews);
+    })
+    .catch(err => next(err));
+});
+
+router.get("/ReviewOwner/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      returnres.status(200).json(doc.ReviewOwner);
+    })
+    .catch(err => next(err));
+});
 // @route   GET api/Consultancys
 // @desc    Get All Consultancys
 // @access  Public
+//r//outer.get('/', (req, res) => {
+//Consultancy.findById(req.params.id)
+//Consultancy.find(events)
+//Consultancy.find(Reviews)
+//Consultancy.find(ReviewOwner)
+//Consultancy.find(projects)
+
+//.sort({ name: 1 })
+//.then(Consultancys => res.json(Consultancys));
+//});
 router.get("/", (req, res) => {
   Consultancy.find()
     .sort({ name: 1 })
     .then(Consultancys => res.json(Consultancys));
 });
-
 // @route   POST api/Consultancys
 // @desc    Create An Consultancy
 // @access  Public
@@ -29,7 +81,10 @@ router.post("/", (req, res) => {
     Email: req.body.Email,
     Password: req.body.Password,
     Notifications: req.body.Notifications,
-    ConsultancyAcceptance: req.body.ConsultancyAcceptance
+    ConsultancyAcceptance: req.body.ConsultancyAcceptance,
+    Reviews: req.body.Reviews,
+    ReviewOwner: req.body.ReviewOwner,
+    projects: req.body.projects
   });
 
   newConsultancy.save().then(Consultancy => res.json(Consultancy));
@@ -48,6 +103,7 @@ router.delete("/:id", (req, res) => {
 
 router.put("/update/:id", function(req, res) {
   var id = req.params.id;
+
   Consultancy.findOne({ _id: id }, function(err, foundObject) {
     if (err) {
       console.log(err);
@@ -58,39 +114,51 @@ router.put("/update/:id", function(req, res) {
         if (req.body.Email) {
           foundObject.Email = req.body.Email;
         }
+
         if (req.body.Password) {
           foundObject.Password = req.body.Password;
         }
+
         if (req.body.business) {
           foundObject.business = req.body.business;
         }
+
         if (req.body.partners) {
           foundObject.partners = req.body.partners;
         }
+
         if (req.body.boardmembers) {
           foundObject.boardmembers = req.body.boardmembers;
         }
+
         if (req.body.events) {
           foundObject.events = req.body.events;
         }
+
         if (req.body.reports) {
           foundObject.reports = req.body.reports;
         }
+
         if (req.body.Lifecoach) {
           foundObject.Lifecoach = req.body.Lifecoach;
         }
+
         if (req.body.membership) {
           foundObject.membership = req.body.membership;
         }
+
         if (req.body.Contracts) {
           foundObject.Contracts = req.body.Contracts;
         }
+
         if (req.body.Notifications) {
           foundObject.Notifications = req.body.Notifications;
         }
+
         if (req.body.consultantAcceptance) {
           foundObject.consultantAcceptance = req.body.consultantAcceptance;
         }
+
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);
@@ -102,5 +170,5 @@ router.put("/update/:id", function(req, res) {
     }
   });
 });
-module.exports = router;
 
+module.exports = router;
