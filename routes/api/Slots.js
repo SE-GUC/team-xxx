@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
   const newSlot = new Slot({
-    lifecoach: req.body.lifecoach,
+    lifecoachEmail: req.body.lifecoachEmail,
     number: req.body.number,
     Date: req.body.Date,
     startTime: req.body.startTime,
