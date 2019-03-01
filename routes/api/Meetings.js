@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
       .then(Meetings => res.json(Meetings));
   });
   
+  
   router.post('/', (req, res) => {
     const newMeeting = new Meeting({
         MemberemailOne: req.body.MemberemailOne,
