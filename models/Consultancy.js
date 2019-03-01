@@ -44,15 +44,20 @@ const ConsultancySchema = new Schema({
   Notifications: {
     type: String
   },
-  projects:{
-    type: string
-  },Reviews:{
+
+  ConsultancyAcceptance: {
+    type: Boolean
+  },
+
+  projects: {
     type: string
   },
-  ReviewOwner:{
+  Reviews: {
+    type: string
+  },
+  ReviewOwner: {
     tupe: string
   }
-
 });
 
 module.exports = Consultancy = mongoose.model("Consultancy", ConsultancySchema);
