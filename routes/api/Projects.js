@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     description: req.body.description,
     candidates: req.body.candidates,
     effort: req.body.effort,
-    time: req.body.time,
+    duration: req.body.duration,
     commitment: req.body.commitment,
     experience: req.body.experience,
     compensation:req.body.compensation,
@@ -71,50 +71,78 @@ router.get('/:id/description', function(req, res){
 // toupdate the project attributes
 router.put('/update/:id',function(req,res){
   var id=req.params.id;
-  Project.findOne({_id: id},function(err,doc){
+  Project.findOne({_id: id},function(err,foundObject){
     if(err){
       console.log(err);
-      res.status(500).send();
+      
     }
     else{
-      if(!doc){
-        res.status(404).send(); 
+      if(!foundObject){
+        res.status(404).send();
+  
       }else{
         if(req.body.Title){
-          doc.Title=req.body.Title;
+          foundObject.Title=req.body.Title;
         }
         if(req.body.description){
-          doc.description=req.body.description;
+          foundObject.description=req.body.description;
+        }
+        if(req.body.candidates){
+          foundObject.candidates=req.body.candidates;
         }
         if(req.body.effort){
-          doc.effort=req.body.effort;
+          foundObject.effort=req.body.effort;
         }
         if(req.body.duration){
-          doc.duration=req.body.duration;
+          foundObject.duration=req.body.duration;
+        }
+        if(req.body.commitment){
+          foundObject.commitment=req.body.commitment;
         }
         if(req.body.experience){
-          doc.experience=req.body.experience;
+          foundObject.experience=req.body.experience;
         }
         if(req.body.compensation){
-          doc.compensation=req.body.compensation;
+          foundObject.compensation=req.body.compensation;
+        }
+        if(req.body.partner){
+          foundObject.partner=req.body.partner;
         }
         if(req.body.consultancy){
-          doc.consultancy=req.body.consultancy;
+          foundObject.consultancy=req.body.consultancy;
         }
         if(req.body.skills){
-          doc.skills=req.body.skills;
-        }      
-        doc.save(function(err,updatedObject){
+          foundObject.skills=req.body.skills;
+        }
+        if(req.body.category){
+          foundObject.category=req.body.category;
+        }
+        if(req.body.state){
+          foundObject.state=req.body.state;
+        }
+        if(req.body.applicants){
+          foundObject.applicants=req.body.applicants;
+        }
+        if(req.body.assigned){
+          foundObject.assigned=req.body.assigned;
+        }
+        if(req.body.extraInfo){
+          foundObject.extraInfo=req.body.extraInfo;
+        }
+        foundObject.save(function(err,updatedObject){
           if(err){
             console.log(err);
-            res.status(500).send();
+           
           }
           else{
             res.send(updatedObject);
           }
-        }); 
+  
+        });
+  
       }
     }
+  
   });
   });
   
