@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ProjectSchema = new Schema({
+
   Title: {
     type: String,
     required: true,
@@ -36,10 +37,6 @@ const ProjectSchema = new Schema({
   consultancy: {
     type: String
   },
-  consultancyAcceptance: {
-    type: boolean,
-    default: false
-  },
   skills: {
     type: String
   },
@@ -54,9 +51,6 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
-  },		
-  extraInfo:{		
-    type: String		
   }
 });
 
