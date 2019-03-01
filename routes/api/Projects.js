@@ -34,6 +34,7 @@ router.post("/", (req, res) => {
     applicants: req.body.applicants,
     assigned: req.body.assigned,
     extraInfo: req.body.extraInfo
+
   });
 
   newProject.save().then(Project => res.json(Project));
@@ -47,10 +48,34 @@ router.delete("/:id", (req, res) => {
     .then(Project => Project.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
-router.put("/update/:id", function(req, res) {
-  var id = req.params.id;
-  Project.findOne({ _id: id }, function(err, foundObject) {
-    if (err) {
+
+
+//@ find a specific project by ID
+router.get('/:id', function(req, res){
+  Project.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc);
+  })
+  .catch(err => next(err));
+});
+
+
+//@ find project's description by the prjoect's ID
+router.get('/:id/description', function(req, res){
+  Project.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.description);
+  })
+  .catch(err => next(err));
+});
+
+// toupdate the project attributes
+router.put('/update/:id',function(req,res){
+  var id=req.params.id;
+  Project.findOne({_id: id},function(err,foundObject){
+    if(err){
       console.log(err);
     } else {
       if (!foundObject) {

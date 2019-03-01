@@ -45,6 +45,7 @@ router.delete("/:id", (req, res) => {
     )
     .catch(err => res.status(404).json({ success: false }));
 });
+
 router.put("/update/:id", function(req, res) {
   var id = req.params.id;
   Consultancy.findOne({ _id: id }, function(err, foundObject) {
@@ -102,3 +103,4 @@ router.put("/update/:id", function(req, res) {
   });
 });
 module.exports = router;
+

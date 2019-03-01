@@ -1,11 +1,30 @@
 const express = require("express");
 const router = express.Router();
 
-const Meeting = require("../../models/Meeting");
-router.get("/", (req, res) => {
-  Meeting.find()
-    .sort({ name: 1 })
-    .then(Meetings => res.json(Meetings));
+
+const Meeting = require('../../models/Meeting');
+router.get('/', (req, res) => {
+    Meeting.find()
+      .sort({ name: 1 })
+      .then(Meetings => res.json(Meetings));
+  });
+  
+  
+  router.post('/', (req, res) => {
+    const newMeeting = new Meeting({
+        MemberemailOne: req.body.MemberemailOne,
+        MemberemailTwo: req.body.MemberemailTwo,
+        Location: req.body.Location,
+        time: req.body.time,
+        Status: req.body.Status
+      
+    });
+  
+    newMeeting.save().then(Meeting => res.json(Meeting));
+  });
+  
+  
+
 
   //   Meetings.findOne ({Meeting: req.Meeting.id}).then(Meetings => {
   //       if (!meeting){

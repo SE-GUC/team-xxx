@@ -36,6 +36,10 @@ const ProjectSchema = new Schema({
   consultancy: {
     type: String
   },
+  consultancyAcceptance: {
+    type: boolean,
+    default: false
+  },
   skills: {
     type: String
   },
