@@ -50,6 +50,9 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
+  },		
+  extraInfo:{		
+    type: String		
   }
 });
 

@@ -55,7 +55,10 @@ const MemberSchema = new Schema({
   },
   Notifications: {
     type: String
-  }
+  },		
+  oldProjects:{		
+    type: String		
+   }
 });
 
 module.exports = Member = mongoose.model("Member", MemberSchema);
