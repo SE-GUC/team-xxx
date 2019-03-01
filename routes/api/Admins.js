@@ -34,7 +34,40 @@ router.get('/', (req, res) => {
     })
     .catch(err => next(err));
   });
-  
+  router.put('/update/:id',function(req,res){
+    var id=req.params.id;
+    Admin.findOne({_id: id},function(err,foundObject){
+      if(err){
+        console.log(err);
+        
+      }
+      else{
+        if(!foundObject){
+          res.status(404).send();
+    
+        }else{
+          if(req.body.Email){
+            foundObject.Email=req.body.Email;
+          }
+          if(req.body.Password){
+            foundObject.Password=req.body.Password;
+          }
+          foundObject.save(function(err,updatedObject){
+            if(err){
+              console.log(err);
+              
+            }
+            else{
+              res.send(updatedObject);
+            }
+    
+          });
+    
+        }
+      }
+    
+    });
+    });
  
 
 
