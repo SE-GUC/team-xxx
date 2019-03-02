@@ -150,15 +150,12 @@ router.put("/update/:id", function(req, res) {
         if (req.body.time) {
           foundObject.time = req.body.time;
         }
-        // Testing 
-        // removed status and added statusMemberOne and status MemberTwo
         if (req.body.StatusMemberOne) {
           foundObject.StatusMemberOne = req.body.StatusMemberOne;
         }
         if (req.body.StatusMemberTwo) {
           foundObject.StatusMemberTwo = req.body.StatusMemberTwo;
         }
-
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);

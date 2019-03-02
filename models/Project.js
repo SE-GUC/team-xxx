@@ -42,12 +42,9 @@ const ProjectSchema = new Schema({
   consultancy: {
     type: String
   },
-  // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
-  // for a partner to accept/reject a random consultant if they didnt specify one
   consultantRandom: {
     type: Boolean
   },
-  // the choosen consultant accepts/rejects this project
   consultancyAcceptance: {
     type: Boolean,
     default: false
@@ -70,13 +67,9 @@ const ProjectSchema = new Schema({
   extraInfo:{		
     type: String		
   },
-  /////////////////////////////TEST//////////////////////////////////////////////////////////////
-  ///////////////////////////////////added member's work ////////////////////////
   memberWork:{		
     type: String		
   }
-  
-
 });
 
 module.exports = Project = mongoose.model("Project", ProjectSchema);

@@ -63,16 +63,11 @@ const MemberSchema = new Schema({
   projects: {
     type: String
   },
-  /////////////////////////////Test////////////////////////////////////////////////////////////////
-  //////////// type was written incorrectly 
   ReviewOwner: {
     type: String
   },
-  /////////////////////////// Test/////////////////////////////////////////////////////////////////////////////
-  /// added recommended tasks attribute that shows the recommended tasks for each member
   RecommendedTasks: {
     type: String
   }
-
 });
 module.exports = Member = mongoose.model("Member", MemberSchema);

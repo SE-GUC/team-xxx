@@ -44,9 +44,6 @@ const ConsultancySchema = new Schema({
   Notifications: {
     type: String
   },
-  ///////////////////////////////Test//////////////////////////////////////////////////////////////////////
-  // remove consultancy acceptance and added it in project
-  
   projects: {
     type: String
   },

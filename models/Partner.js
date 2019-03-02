@@ -52,9 +52,6 @@ const PartnerSchema = new Schema({
   Notifications: {
     type: String
   },
-  // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
-  // Removed the consultant boolean and added it in project
-  
   Reviews: {
     type: String
   },

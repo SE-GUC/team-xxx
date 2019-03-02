@@ -14,8 +14,7 @@ router.get("/events/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-/////////////////////////// Test/////////////////////////////////////////////////////////////////////////////
-  /// added recommended tasks attribute that shows the recommended tasks for each member
+
 router.get("/RecommendedTasks/:id", function(req, res) {
   Member.findById(req.params.id)
     .then(doc => {
@@ -103,7 +102,6 @@ router.get("/tasks/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-
 router.get("/membership/:id", function(req, res) {
   Member.findById(req.params.id)
     .then(doc => {
@@ -150,16 +148,12 @@ router.get("/skills/:id", function(req, res) {
   // @route   GET api/Members
   // @desc    Get All Members
   // @access  Public
-
-
-  ///////////////////////////////Test/////////////////////////////////////////////
-  ////////////////// this was written twice so we deleted one them///////////////////
   router.get("/", (req, res) => {
     Member.find()
       .sort({ name: 1 })
       .then(Members => res.json(Members));
   });
-  //////////////////////////////////TEST//////////////////////////////////////////////////
+
 //@ find a specific Member by ID
 router.get("/:id", function(req, res) {
   Member.findById(req.params.id)
@@ -226,11 +220,7 @@ router.get("/:id", function(req, res) {
       ReviewOwner: req.body.ReviewOwner,
       projects: req.body.projects,
       oldProjects: req.body.oldProjects,
-      /////////////////////////// Test/////////////////////////////////////////////////////////////////////////////
-  /// added recommended tasks attribute that shows the recommended tasks for each member
       RecommendedTasks: req.body.RecommendedTasks
-      
-
     });
 
     newMember.save().then(Member => res.json(Member));
@@ -287,22 +277,15 @@ router.get("/:id", function(req, res) {
           if (req.body.Notifications) {
             foundObject.Notifications = req.body.Notifications;
           }
-          /////////////////////////// Test/////////////////////////////////////////////////////////////////////////////
-  /// added recommended tasks attribute that shows the recommended tasks for each member
           if (req.body.RecommendedTasks) {
             foundObject.RecommendedTasks = req.body.RecommendedTasks;
           }
-          /////////////////////////TEST///////////////////////////////////////////////////////////////
-          ////////////// aded update oldprojects//////////////////
           if (req.body.oldProjects) {
             foundObject.oldProjects= req.body.oldProjects;
           }
-           /////////////////////////TEST///////////////////////////////////////////////////////////////
-          ////////////// aded update projects//////////////////
           if (req.body.projects) {
             foundObject.projects = req.body.projects;
           }
-          
           foundObject.save(function(err, updatedObject) {
             if (err) {
               console.log(err);

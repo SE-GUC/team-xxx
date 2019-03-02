@@ -17,8 +17,7 @@ router.get("/", (req, res) => {
 
     .then(Partners => res.json(Partners));
 });
-/////////////////////////////TEST///////////////////////////////////////////////////////////
-//@ find a specific Partner by ID
+
 router.get("/:id", function(req, res) {
   Partner.findById(req.params.id)
     .then(doc => {
@@ -192,9 +191,6 @@ router.post("/", (req, res) => {
     Notifications: req.body.Notifications,
     Reviews: req.body.Reviews,
     ReviewOwner: req.body.ReviewOwner
-    // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
-  // Removed the consultant boolean and added it in project
-    
   });
 
   newPartner.save().then(Partner => res.json(Partner));

@@ -65,7 +65,6 @@ router.get("/", (req, res) => {
     .sort({ name: 1 })
     .then(Consultancys => res.json(Consultancys));
 });
-//////////////////////////////////////TEST///////////////////////////////////////////////
 //@ find a specific Consultancy by ID
 router.get("/:id", function(req, res) {
   Consultancy.findById(req.params.id)
@@ -93,8 +92,6 @@ router.post("/", (req, res) => {
     Email: req.body.Email,
     Password: req.body.Password,
     Notifications: req.body.Notifications,
-    ///////////////////////////////Test//////////////////////////////////////////////////////////////////////
-  // remove consultancy acceptance and added it in project
     Reviews: req.body.Reviews,
     ReviewOwner: req.body.ReviewOwner,
     projects: req.body.projects,
@@ -221,8 +218,6 @@ router.put("/update/:id", function(req, res) {
         if (req.body.Notifications) {
           foundObject.Notifications = req.body.Notifications;
         }
-        ///////////////////////////////Test//////////////////////////////////////////////////////////////////////
-  // remove consultancy acceptance and added it in project
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);

@@ -34,17 +34,10 @@ router.post("/", (req, res) => {
     applicants: req.body.applicants,
     assigned: req.body.assigned,
     extraInfo: req.body.extraInfo,
-    // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
-  // moved this attribute from partner to specify if a partner want a consultant or not in this specific project
     Consultant: req.body.Consultant,
-    // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
     consultantRandom: req.body.consultantRandom,
-    // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
     consultancyAcceptance: req.body.consultancyAcceptance,
-    /////////////////////////////TEST//////////////////////////////////////////////////////////////
-  ///////////////////////////////////added member's work ////////////////////////
     memberWork: req.body.memberWork
-    
   });
 
   newProject.save().then(Project => res.json(Project));
@@ -82,8 +75,6 @@ router.get("/:id/description", function(req, res) {
     })
     .catch(err => next(err));
 });
-/////////////////////////////TEST//////////////////////////////////////////////////////////////
-  ///////////////////////////////////added member's work ////////////////////////
 router.get("/:id/memberWork", function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
@@ -94,8 +85,6 @@ router.get("/:id/memberWork", function(req, res) {
     })
     .catch(err => next(err));
 });
-/////////////////////////////TEST//////////////////////////////////////////////////////////////
-  ///////////////////////////////////added get state ////////////////////////
 
 router.get("/:id/state", function(req, res) {
   Project.findById(req.params.id)
@@ -107,7 +96,6 @@ router.get("/:id/state", function(req, res) {
     })
     .catch(err => next(err));
 });
-
 
 // toupdate the project attributes
 router.put("/update/:id", function(req, res) {
@@ -167,8 +155,6 @@ router.put("/update/:id", function(req, res) {
         if (req.body.extraInfo) {
           foundObject.extraInfo = req.body.extraInfo;
         }
-        /////////////////////////////TEST//////////////////////////////////////////////////////////////
-  ///////////////////////////////////added member's work ////////////////////////
         if (req.body.memberWork) {
           foundObject.memberWork = req.body.memberWork;
         }
