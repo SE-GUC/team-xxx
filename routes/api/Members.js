@@ -10,7 +10,7 @@ router.get("/events/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.events);
+      return res.status(200).json(doc.events);
     })
     .catch(err => next(err));
 });
@@ -21,7 +21,7 @@ router.get("/RecommendedTasks/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.RecommendedTasks);
+      return res.status(200).json(doc.RecommendedTasks);
     })
     .catch(err => next(err));
 });
@@ -32,7 +32,7 @@ router.get("/projects/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.projects);
+      return res.status(200).json(doc.projects);
     })
     .catch(err => next(err));
 });
@@ -43,7 +43,7 @@ router.get("/Reviews/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.reviews);
+      return res.status(200).json(doc.reviews);
     })
     .catch(err => next(err));
 });
@@ -54,7 +54,7 @@ router.get("/ReviewOwner/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.ReviewOwner);
+      return res.status(200).json(doc.ReviewOwner);
     })
     .catch(err => next(err));
 });
@@ -65,7 +65,7 @@ router.get("/Notifications/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.Notifications);
+      return res.status(200).json(doc.Notifications);
     })
     .catch(err => next(err));
 });
@@ -76,7 +76,7 @@ router.get("/Email/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.Email);
+      return res.status(200).json(doc.Email);
     })
     .catch(err => next(err));
 });
@@ -87,7 +87,7 @@ router.get("/interests/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.interests);
+      return res.status(200).json(doc.interests);
     })
     .catch(err => next(err));
 });
@@ -98,7 +98,7 @@ router.get("/tasks/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.tasks);
+      return res.status(200).json(doc.tasks);
     })
     .catch(err => next(err));
 });
@@ -108,7 +108,7 @@ router.get("/membership/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.membership);
+      return res.status(200).json(doc.membership);
     })
     .catch(err => next(err));
 });
@@ -119,7 +119,7 @@ router.get("/Contracts/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.Contracts);
+      return res.status(200).json(doc.Contracts);
     })
     .catch(err => next(err));
 });
@@ -130,7 +130,7 @@ router.get("/lifecoach/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.Lifecoach);
+      return res.status(200).json(doc.Lifecoach);
     })
     .catch(err => next(err));
 });
@@ -141,7 +141,7 @@ router.get("/skills/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.skills);
+      return res.status(200).json(doc.skills);
     })
     .catch(err => next(err));
 });
