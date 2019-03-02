@@ -306,5 +306,4 @@ router.get("/:id", function(req, res) {
       .then(Member => Member.remove().then(() => res.json({ success: true })))
       .catch(err => res.status(404).json({ success: false }));
   });
-});
 module.exports = router;
