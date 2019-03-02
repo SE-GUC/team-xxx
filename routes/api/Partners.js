@@ -196,31 +196,18 @@ router.delete("/:id", (req, res) => {
 });
 
 // router.post('/', (req,res) =>{
-
 // Partner.findOneAndUpdate ({Consultant: req.body.Consultant},newData, {new:true})
-
 // .then ((partner) => {
-
 //   if ( partner.Consultant ==true ) {
-
 //     res.status(200).json({
-
 //       msg: "Consultant Successfully Added"
-
 //     });
-
 //   } else {
-
 //     res.status(422).json({
-
 //       msg: "Description of the project"
-
 //     })
-
 //   }
-
 // })
-
 // });
 
 router.put("/update/:id", function(req, res) {
@@ -244,47 +231,36 @@ router.put("/update/:id", function(req, res) {
         if (req.body.business) {
           foundObject.business = req.body.business;
         }
-
         if (req.body.partners) {
           foundObject.partners = req.body.partners;
         }
-
         if (req.body.boardmembers) {
           foundObject.boardmembers = req.body.boardmembers;
         }
-
         if (req.body.events) {
           foundObject.events = req.body.events;
         }
-
         if (req.body.field) {
           foundObject.field = req.body.field;
         }
-
         if (req.body.projects) {
           foundObject.projects = req.body.projects;
         }
-
         if (req.body.feedback) {
           foundObject.feedback = req.body.feedback;
         }
-
         if (req.body.Lifecoach) {
           foundObject.Lifecoach = req.body.Lifecoach;
         }
-
         if (req.body.membership) {
           foundObject.skills = req.body.membership;
         }
-
         if (req.body.Contracts) {
           foundObject.category = req.body.Contracts;
         }
-
         if (req.body.Notifications) {
           foundObject.state = req.body.Notifications;
         }
-
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);

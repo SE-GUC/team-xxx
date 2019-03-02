@@ -37,7 +37,7 @@ const ProjectSchema = new Schema({
     type: String
   },
   consultancyAcceptance: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   skills: {

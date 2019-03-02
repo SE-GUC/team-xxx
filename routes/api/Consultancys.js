@@ -155,8 +155,8 @@ router.put("/update/:id", function(req, res) {
           foundObject.Notifications = req.body.Notifications;
         }
 
-        if (req.body.consultantAcceptance) {
-          foundObject.consultantAcceptance = req.body.consultantAcceptance;
+        if (req.body.ConsultancyAcceptance) {
+          foundObject.ConsultancyAcceptance = req.body.ConsultancyAcceptance;
         }
 
         foundObject.save(function(err, updatedObject) {
