@@ -1,54 +1,48 @@
 const express = require("express");
 const router = express.Router();
 
+const Meeting = require("../../models/Meeting");
+router.get("/", (req, res) => {
+  Meeting.find()
+    .sort({ name: 1 })
+    .then(Meetings => res.json(Meetings));
+});
 
-const Meeting = require('../../models/Meeting');
-router.get('/', (req, res) => {
-    Meeting.find()
-      .sort({ name: 1 })
-      .then(Meetings => res.json(Meetings));
+router.post("/", (req, res) => {
+  const newMeeting = new Meeting({
+    MemberemailOne: req.body.MemberemailOne,
+    MemberemailTwo: req.body.MemberemailTwo,
+    Location: req.body.Location,
+    time: req.body.time,
+    Status: req.body.Status
   });
-  
-  
-  router.post('/', (req, res) => {
-    const newMeeting = new Meeting({
-        MemberemailOne: req.body.MemberemailOne,
-        MemberemailTwo: req.body.MemberemailTwo,
-        Location: req.body.Location,
-        time: req.body.time,
-        Status: req.body.Status
-      
-    });
-  
-    newMeeting.save().then(Meeting => res.json(Meeting));
-  });
-  
-  
 
+  newMeeting.save().then(Meeting => res.json(Meeting));
+});
 
-  //   Meetings.findOne ({Meeting: req.Meeting.id}).then(Meetings => {
-  //       if (!meeting){
-  //           errors.nomeeting = 'there is no such meeting';
-  //           return res.status(404).json(errors);
-  //       }
-  //       res.json (meeting);
-  //     })
-  //     .catch(err => res.status(404).json(err));
-  // Meetings.findOne ({Meeting: req.params.id}).then(meetings => {
-  //     if (meetings){
-  //         //update
-  //         Meetings.findOneAndUpdate(
-  //             {meeting: req.params.id},
-  //             {$set: newMeeting},
-  //             {new: true}
-  //         ).then(meetings=> res.json(meetings));
+//   Meetings.findOne ({Meeting: req.Meeting.id}).then(Meetings => {
+//       if (!meeting){
+//           errors.nomeeting = 'there is no such meeting';
+//           return res.status(404).json(errors);
+//       }
+//       res.json (meeting);
+//     })
+//     .catch(err => res.status(404).json(err));
+// Meetings.findOne ({Meeting: req.params.id}).then(meetings => {
+//     if (meetings){
+//         //update
+//         Meetings.findOneAndUpdate(
+//             {meeting: req.params.id},
+//             {$set: newMeeting},
+//             {new: true}
+//         ).then(meetings=> res.json(meetings));
 
-  //     }
-  //     if (meetings){
-  //         res.json (meeting);
+//     }
+//     if (meetings){
+//         res.json (meeting);
 
-  //     }
-  // });
+//     }
+// });
 
 router.get("/memberEmial-1/:id", function(req, res) {
   Meeting.findById(req.params.id)

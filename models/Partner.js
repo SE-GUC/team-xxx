@@ -52,15 +52,14 @@ const PartnerSchema = new Schema({
   Notifications: {
     type: String
   },
-
   Consultant: {
-    type: boolean
+    type: Boolean
   },
   Reviews: {
-    type: string
+    type: String
   },
   ReviewOwner: {
-    tupe: string
+    tupe: String
   }
 });
 

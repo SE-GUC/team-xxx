@@ -3,10 +3,9 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const MeetingSchema = new Schema({
-    MemberemailOne: {
+  MemberemailOne: {
     type: String,
-    required: true,
-
+    required: true
   },
   MemberemailTwo: {
     type: String,
@@ -20,15 +19,11 @@ const MeetingSchema = new Schema({
     type: Date,
     required: true
   },
- 
   StatusMemberOne: {
     type: Boolean
-
   },
-  StatusMemberTwo:{
-      type: Boolean
+  StatusMemberTwo: {
+    type: Boolean
   }
- 
 });
-
 module.exports = Meeting = mongoose.model("Meeting", MeetingSchema);
