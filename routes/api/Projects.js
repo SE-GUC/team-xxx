@@ -33,7 +33,11 @@ router.post("/", (req, res) => {
     state: req.body.state,
     applicants: req.body.applicants,
     assigned: req.body.assigned,
-    extraInfo: req.body.extraInfo
+    extraInfo: req.body.extraInfo,
+    Consultant: req.body.Consultant,
+    consultantRandom: req.body.consultantRandom,
+    consultancyAcceptance: req.body.consultancyAcceptance,
+    memberWork: req.body.memberWork
   });
 
   newProject.save().then(Project => res.json(Project));
@@ -68,6 +72,27 @@ router.get("/:id/description", function(req, res) {
         return res.status(404).end();
       }
       return res.status(200).json(doc.description);
+    })
+    .catch(err => next(err));
+});
+router.get("/:id/memberWork", function(req, res) {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.memberWork);
+    })
+    .catch(err => next(err));
+});
+
+router.get("/:id/state", function(req, res) {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.state);
     })
     .catch(err => next(err));
 });
@@ -129,6 +154,9 @@ router.put("/update/:id", function(req, res) {
         }
         if (req.body.extraInfo) {
           foundObject.extraInfo = req.body.extraInfo;
+        }
+        if (req.body.memberWork) {
+          foundObject.memberWork = req.body.memberWork;
         }
         foundObject.save(function(err, updatedObject) {
           if (err) {

@@ -52,9 +52,6 @@ const PartnerSchema = new Schema({
   Notifications: {
     type: String
   },
-  Consultant: {
-    type: Boolean
-  },
   Reviews: {
     type: String
   },

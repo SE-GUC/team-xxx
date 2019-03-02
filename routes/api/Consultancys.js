@@ -65,6 +65,17 @@ router.get("/", (req, res) => {
     .sort({ name: 1 })
     .then(Consultancys => res.json(Consultancys));
 });
+//@ find a specific Consultancy by ID
+router.get("/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc);
+    })
+    .catch(err => next(err));
+});
 // @route   POST api/Consultancys
 // @desc    Create An Consultancy
 // @access  Public
@@ -81,7 +92,6 @@ router.post("/", (req, res) => {
     Email: req.body.Email,
     Password: req.body.Password,
     Notifications: req.body.Notifications,
-    ConsultancyAcceptance: req.body.ConsultancyAcceptance,
     Reviews: req.body.Reviews,
     ReviewOwner: req.body.ReviewOwner,
     projects: req.body.projects,
@@ -207,9 +217,6 @@ router.put("/update/:id", function(req, res) {
         }
         if (req.body.Notifications) {
           foundObject.Notifications = req.body.Notifications;
-        }
-        if (req.body.ConsultancyAcceptance) {
-          foundObject.ConsultancyAcceptance = req.body.ConsultancyAcceptance;
         }
         foundObject.save(function(err, updatedObject) {
           if (err) {

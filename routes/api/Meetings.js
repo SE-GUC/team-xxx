@@ -150,8 +150,11 @@ router.put("/update/:id", function(req, res) {
         if (req.body.time) {
           foundObject.time = req.body.time;
         }
-        if (req.body.Status) {
-          foundObject.Status = req.body.Status;
+        if (req.body.StatusMemberOne) {
+          foundObject.StatusMemberOne = req.body.StatusMemberOne;
+        }
+        if (req.body.StatusMemberTwo) {
+          foundObject.StatusMemberTwo = req.body.StatusMemberTwo;
         }
         foundObject.save(function(err, updatedObject) {
           if (err) {

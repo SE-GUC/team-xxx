@@ -17,6 +17,17 @@ router.get("/", (req, res) => {
 
     .then(Partners => res.json(Partners));
 });
+
+router.get("/:id", function(req, res) {
+  Partner.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc);
+    })
+    .catch(err => next(err));
+});
 router.get("/lifecoach/:id", function(req, res) {
   Partner.findById(req.params.id)
     .then(doc => {
@@ -179,8 +190,7 @@ router.post("/", (req, res) => {
     Password: req.body.Password,
     Notifications: req.body.Notifications,
     Reviews: req.body.Reviews,
-    ReviewOwner: req.body.ReviewOwner,
-    Consultant: req.body.Consultant
+    ReviewOwner: req.body.ReviewOwner
   });
 
   newPartner.save().then(Partner => res.json(Partner));

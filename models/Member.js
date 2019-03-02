@@ -64,7 +64,10 @@ const MemberSchema = new Schema({
     type: String
   },
   ReviewOwner: {
-    tupe: String
+    type: String
+  },
+  RecommendedTasks: {
+    type: String
   }
 });
 module.exports = Member = mongoose.model("Member", MemberSchema);

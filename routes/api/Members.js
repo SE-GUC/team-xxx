@@ -15,6 +15,17 @@ router.get("/events/:id", function(req, res) {
     .catch(err => next(err));
 });
 
+router.get("/RecommendedTasks/:id", function(req, res) {
+  Member.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      returnres.status(200).json(doc.RecommendedTasks);
+    })
+    .catch(err => next(err));
+});
+
 router.get("/projects/:id", function(req, res) {
   Member.findById(req.params.id)
     .then(doc => {
@@ -91,7 +102,6 @@ router.get("/tasks/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-
 router.get("/membership/:id", function(req, res) {
   Member.findById(req.params.id)
     .then(doc => {
@@ -138,19 +148,24 @@ router.get("/skills/:id", function(req, res) {
   // @route   GET api/Members
   // @desc    Get All Members
   // @access  Public
-
   router.get("/", (req, res) => {
     Member.find()
       .sort({ name: 1 })
       .then(Members => res.json(Members));
   });
-  router.get("/", (req, res) => {
-    Member.find()
 
-      .sort({ name: 1 })
+//@ find a specific Member by ID
+router.get("/:id", function(req, res) {
+  Member.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc);
+    })
+    .catch(err => next(err));
+});
 
-      .then(Members => res.json(Members));
-  });
   // @route   DELETE api/Members/:id
   // @desc    Delete A Member
   // @access  Public
@@ -203,7 +218,9 @@ router.get("/skills/:id", function(req, res) {
       Password: req.body.Password,
       Notifications: req.body.Notifications,
       ReviewOwner: req.body.ReviewOwner,
-      projects: req.body.projects
+      projects: req.body.projects,
+      oldProjects: req.body.oldProjects,
+      RecommendedTasks: req.body.RecommendedTasks
     });
 
     newMember.save().then(Member => res.json(Member));
@@ -259,6 +276,15 @@ router.get("/skills/:id", function(req, res) {
           }
           if (req.body.Notifications) {
             foundObject.Notifications = req.body.Notifications;
+          }
+          if (req.body.RecommendedTasks) {
+            foundObject.RecommendedTasks = req.body.RecommendedTasks;
+          }
+          if (req.body.oldProjects) {
+            foundObject.oldProjects= req.body.oldProjects;
+          }
+          if (req.body.projects) {
+            foundObject.projects = req.body.projects;
           }
           foundObject.save(function(err, updatedObject) {
             if (err) {
