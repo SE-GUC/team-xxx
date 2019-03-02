@@ -44,9 +44,20 @@ const ConsultancySchema = new Schema({
   Notifications: {
     type: String
   },
-  consultantAcceptance:{
-    type: Boolean
+  ///////////////////////////////Test//////////////////////////////////////////////////////////////////////
+  // remove consultancy acceptance and added it in project
+  
+  projects: {
+    type: String
+  },
+  Reviews: {
+    type: String
+  },
+  ReviewOwner: {
+    type: String
+  },
+  Submission: {
+    type: String
   }
 });
-
 module.exports = Consultancy = mongoose.model("Consultancy", ConsultancySchema);

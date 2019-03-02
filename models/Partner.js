@@ -41,16 +41,25 @@ const PartnerSchema = new Schema({
     required: true
   },
   Lifecoach: {
-    type: Boolean,
+    type: Boolean
   },
   membership: {
-    type: Date,
+    type: Date
   },
   Contracts: {
-    type: String,
+    type: String
   },
   Notifications: {
     type: String
+  },
+  // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
+  // Removed the consultant boolean and added it in project
+  
+  Reviews: {
+    type: String
+  },
+  ReviewOwner: {
+    tupe: String
   }
 });
 

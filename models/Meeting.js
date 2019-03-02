@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const MeetingSchema = new Schema({
   MemberemailOne: {
     type: String,
-    required: true,
-
+    required: true
   },
   MemberemailTwo: {
     type: String,
@@ -20,14 +19,11 @@ const MeetingSchema = new Schema({
     type: Date,
     required: true
   },
- 
-  Status: {
-    type: String,
-    default :"Free"
-
+  StatusMemberOne: {
+    type: Boolean
+  },
+  StatusMemberTwo: {
+    type: Boolean
   }
-  
- 
 });
-
 module.exports = Meeting = mongoose.model("Meeting", MeetingSchema);
