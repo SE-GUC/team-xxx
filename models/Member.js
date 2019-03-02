@@ -56,7 +56,6 @@ const MemberSchema = new Schema({
   Notifications: {
     type: String
   },
-
   oldProjects: {
     type: String
   },
