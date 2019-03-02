@@ -263,13 +263,13 @@ router.put("/update/:id", function(req, res) {
           foundObject.Lifecoach = req.body.Lifecoach;
         }
         if (req.body.membership) {
-          foundObject.skills = req.body.membership;
+          foundObject.membership = req.body.membership;
         }
         if (req.body.Contracts) {
-          foundObject.category = req.body.Contracts;
+          foundObject.Contracts = req.body.Contracts;
         }
         if (req.body.Notifications) {
-          foundObject.state = req.body.Notifications;
+          foundObject.Notifications = req.body.Notifications;
         }
         foundObject.save(function(err, updatedObject) {
           if (err) {
