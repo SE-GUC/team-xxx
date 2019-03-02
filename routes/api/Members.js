@@ -153,7 +153,7 @@ router.get("/skills/:id", function(req, res) {
       .sort({ name: 1 })
       .then(Members => res.json(Members));
   });
-
+});
 //@ find a specific Member by ID
 router.get("/:id", function(req, res) {
   Member.findById(req.params.id)
