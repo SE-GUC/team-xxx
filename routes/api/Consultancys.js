@@ -10,7 +10,7 @@ router.get("/events/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.events);
+      return res.status(200).json(doc.events);
     })
     .catch(err => next(err));
 });
@@ -21,7 +21,7 @@ router.get("/projects/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.projects);
+      return res.status(200).json(doc.projects);
     })
     .catch(err => next(err));
 });
@@ -32,7 +32,7 @@ router.get("/Reviews/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.Reviews);
+      return res.status(200).json(doc.Reviews);
     })
     .catch(err => next(err));
 });
@@ -43,7 +43,7 @@ router.get("/ReviewOwner/:id", function(req, res) {
       if (!doc) {
         return res.status(404).end();
       }
-      returnres.status(200).json(doc.ReviewOwner);
+      return res.status(200).json(doc.ReviewOwner);
     })
     .catch(err => next(err));
 });
