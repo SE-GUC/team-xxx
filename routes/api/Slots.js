@@ -23,12 +23,15 @@ router.get("/state/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.get("/notified", (req, res) => {
-  Slot.find({ status: "Free" })
-    .sort({ number: 1 })
-    .then(Date => res.json(Date)),
-    startTime => res.json(startTime),
-    endTime => res.json(endTime);
+router.get("/:id", function(req, res) {
+  Slot.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc);
+    })
+    .catch(err => next(err));
 });
 
 router.put("/update/:id", function(req, res) {
@@ -102,5 +105,4 @@ router.delete("/:id", (req, res) => {
     .then(Slot => Slot.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
-
 module.exports = router;
