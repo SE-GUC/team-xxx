@@ -84,7 +84,8 @@ router.post("/", (req, res) => {
     ConsultancyAcceptance: req.body.ConsultancyAcceptance,
     Reviews: req.body.Reviews,
     ReviewOwner: req.body.ReviewOwner,
-    projects: req.body.projects
+    projects: req.body.projects,
+    Submission : req.body.Submission
   });
 
   newConsultancy.save().then(Consultancy => res.json(Consultancy));
