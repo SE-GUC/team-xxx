@@ -174,28 +174,15 @@ router.delete("/:id", (req, res) => {
     .then(Member => Member.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false })); //console.log("")
 });
-router.get("/masterclasses", (req, res) => {
-  /*Member.findOne ({Members: req.body.masterclasses}).then(Members => {
-    if (!masterclasses){
-        errors.nozeft = 'there is no nila';
-        return res.status(404).json(errors);
-	    {name: true, masterclasses: true}
-	    res.json (masterclasses);
-	  })
-	  .catch(err => res.status(404).json(err));
-	*/
-  /*Member.findOne ({Member: req.params.id}).then(masterclasses => {
-	  if (masterclasses){*/
-  //update
-
-  Member.findOne(
-    { nila: req.params.masterclasses },
-
-    { nila: true }
-  ).catch(err => res.status(404).json(err));
-  /*if (!masterclasses){
-	      res.json (masterclasses);
-	  }*/
+router.get("/masterclasses/:id", (req, res) => {
+  Member.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.masterclasses);
+    })
+    .catch(err => next(err));
 });
 
 // @route   POST api/Members
