@@ -14,7 +14,8 @@ router.post("/", (req, res) => {
     MemberemailTwo: req.body.MemberemailTwo,
     Location: req.body.Location,
     time: req.body.time,
-    Status: req.body.Status
+    StatusMemberOne: req.body.StatusMemberOne,
+    StatusMemberTwo: req.body.StatusMemberTwo
   });
 
   newMeeting.save().then(Meeting => res.json(Meeting));
