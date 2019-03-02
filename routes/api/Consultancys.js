@@ -90,7 +90,70 @@ router.post("/", (req, res) => {
 
   newConsultancy.save().then(Consultancy => res.json(Consultancy));
 });
-
+router.get('/Notifications/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.Notifications);
+  })
+  .catch(err => next(err));
+});
+router.get('/Email/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.Email);
+  })
+  .catch(err => next(err));
+});
+router.get('/membership/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.membership);
+  })
+  .catch(err => next(err));
+});
+router.get('/Contracts/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.Contracts);
+  })
+  .catch(err => next(err));
+});
+router.get('/Information/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.Information);
+  })
+  .catch(err => next(err));
+});
+router.get('/events/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.events);
+  })
+  .catch(err => next(err));
+});
+router.get('/boardmembers/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.boardmembers);
+  })
+  .catch(err => next(err));
+});
+router.get('/partners/:id', function(req, res){
+  Consultancy.findById(req.params.id) 
+  .then(doc => {
+    if(!doc) { return res.status(404).end();}
+    return res.status(200).json(doc.partners);
+  })
+  .catch(err => next(err));
+});
 // @route   DELETE api/Consultancys/:id
 // @desc    Delete A Consultancy
 // @access  Public
@@ -115,51 +178,39 @@ router.put("/update/:id", function(req, res) {
         if (req.body.Email) {
           foundObject.Email = req.body.Email;
         }
-
         if (req.body.Password) {
           foundObject.Password = req.body.Password;
         }
-
         if (req.body.business) {
           foundObject.business = req.body.business;
         }
-
         if (req.body.partners) {
           foundObject.partners = req.body.partners;
         }
-
         if (req.body.boardmembers) {
           foundObject.boardmembers = req.body.boardmembers;
         }
-
         if (req.body.events) {
           foundObject.events = req.body.events;
         }
-
         if (req.body.reports) {
           foundObject.reports = req.body.reports;
         }
-
         if (req.body.Lifecoach) {
           foundObject.Lifecoach = req.body.Lifecoach;
         }
-
         if (req.body.membership) {
           foundObject.membership = req.body.membership;
         }
-
         if (req.body.Contracts) {
           foundObject.Contracts = req.body.Contracts;
         }
-
         if (req.body.Notifications) {
           foundObject.Notifications = req.body.Notifications;
         }
-
         if (req.body.ConsultancyAcceptance) {
           foundObject.ConsultancyAcceptance = req.body.ConsultancyAcceptance;
         }
-
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);
