@@ -218,6 +218,20 @@ router.put("/update/:id", function(req, res) {
         if (req.body.Notifications) {
           foundObject.Notifications = req.body.Notifications;
         }
+        /////////
+        if (req.body.projects) {
+          foundObject.projects = req.body.projects;
+        }
+        if (req.body.Reviews) {
+          foundObject.Reviews = req.body.Reviews;
+        }
+        if (req.body.ReviewOwner) {
+          foundObject.ReviewOwner = req.body.ReviewOwner;
+        }
+        if (req.body.Submission) {
+          foundObject.Submission = req.body.Submission;
+        }
+        ////////
         foundObject.save(function(err, updatedObject) {
           if (err) {
             console.log(err);
