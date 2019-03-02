@@ -42,29 +42,29 @@ const MemberSchema = new Schema({
   },
   masterclasses: {
     type: String,
-    required: true
+    required: tru2e
   },
   Lifecoach: {
-    type: Boolean
+    type: Boolean,
   },
   membership: {
-    type: Date
+    type: Date,
   },
   Contracts: {
-    type: String
+    type: String,
   },
   Notifications: {
+    type: String,
+  },
+  Submission:{
     type: String
   },
-
-  oldProjects: {
+  Contracts:{
     type: String
   },
-  projects: {
-    type: String
-  },
-  ReviewOwner: {
-    tupe: String
+  membership:{
+    type: Date
   }
 });
+
 module.exports = Member = mongoose.model("Member", MemberSchema);

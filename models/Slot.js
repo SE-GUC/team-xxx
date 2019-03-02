@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const SlotSchema = new Schema({
   lifecoachEmail: {
     type: String,
-    required: true
+    required: true,
   },
   number: {
     type: Date,
-    required: true
+    required: true,
   },
   Date: {
     type: Date,
@@ -25,7 +25,7 @@ const SlotSchema = new Schema({
   },
   status: {
     type: String,
-    default: "Free"
+    default: "Free" /*free-pending-accepted-confirmed-rejected*/
   },
   applicant: {
     type: String
@@ -34,4 +34,5 @@ const SlotSchema = new Schema({
     type: String
   }
 });
+
 module.exports = Slot = mongoose.model("Slot", SlotSchema);

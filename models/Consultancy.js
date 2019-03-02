@@ -43,18 +43,6 @@ const ConsultancySchema = new Schema({
   },
   Notifications: {
     type: String
-  },
-  ConsultancyAcceptance: {
-    type: Boolean
-  },
-  projects: {
-    type: String
-  },
-  Reviews: {
-    type: String
-  },
-  ReviewOwner: {
-    tupe: String
   }
 });
 
