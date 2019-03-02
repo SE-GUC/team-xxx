@@ -56,8 +56,7 @@ const PartnerSchema = new Schema({
     type: String
   },
   ReviewOwner: {
-    tupe: String
+    type: String
   }
 });
-
 module.exports = Partner = mongoose.model("Partner", PartnerSchema);
