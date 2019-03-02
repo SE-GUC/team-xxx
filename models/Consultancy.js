@@ -54,8 +54,10 @@ const ConsultancySchema = new Schema({
     type: String
   },
   ReviewOwner: {
-    tupe: String
+    type: String
+  },
+  Submission: {
+    type: String
   }
 });
-
 module.exports = Consultancy = mongoose.model("Consultancy", ConsultancySchema);
