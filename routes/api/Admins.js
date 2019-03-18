@@ -53,10 +53,21 @@ router.get("/AdminEmail/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.put('/:id', function(req, res, next) {
-  Admin.findByIdAndUpdate(req.params.id, req.body, function (err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.params.id);
+    if (!admin) return res.status(404).send({ error: "Admin does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Admin.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Admin updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 module.exports = router;

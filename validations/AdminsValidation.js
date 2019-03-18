@@ -12,5 +12,15 @@ module.exports = {
         .required()
     };
     return Joi.validate(request, createSchema);
+  },
+
+  updateValidation: request => {
+    const updateSchema = {
+      Email: Joi.string().email(),
+      Password: Joi.string()
+        .min(3)
+        .max(15)
+    };
+    return Joi.validate(request, updateSchema);
   }
 };
