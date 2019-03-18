@@ -209,7 +209,6 @@ router.post("/", (req, res) => {
     oldProjects: req.body.oldProjects,
     RecommendedTasks: req.body.RecommendedTasks
   });
-
   newMember.save().then(Member => res.json(Member));
 });
 
