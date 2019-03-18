@@ -50,7 +50,7 @@ router.get("/ReviewOwner/:id", function(req, res) {
 // @route   GET api/Consultancys
 // @desc    Get All Consultancys
 // @access  Public
-//r//outer.get('/', (req, res) => {
+//router.get('/', (req, res) => {
 //Consultancy.findById(req.params.id)
 //Consultancy.find(events)
 //Consultancy.find(Reviews)
@@ -95,74 +95,89 @@ router.post("/", (req, res) => {
     Reviews: req.body.Reviews,
     ReviewOwner: req.body.ReviewOwner,
     projects: req.body.projects,
-    Submission : req.body.Submission
+    Submission: req.body.Submission
   });
-
   newConsultancy.save().then(Consultancy => res.json(Consultancy));
 });
-router.get('/Notifications/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.Notifications);
-  })
-  .catch(err => next(err));
+router.get("/Notifications/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.Notifications);
+    })
+    .catch(err => next(err));
 });
-router.get('/Email/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.Email);
-  })
-  .catch(err => next(err));
+router.get("/Email/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.Email);
+    })
+    .catch(err => next(err));
 });
-router.get('/membership/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.membership);
-  })
-  .catch(err => next(err));
+router.get("/membership/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.membership);
+    })
+    .catch(err => next(err));
 });
-router.get('/Contracts/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.Contracts);
-  })
-  .catch(err => next(err));
+router.get("/Contracts/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.Contracts);
+    })
+    .catch(err => next(err));
 });
-router.get('/Information/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.Information);
-  })
-  .catch(err => next(err));
+router.get("/Information/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.Information);
+    })
+    .catch(err => next(err));
 });
-router.get('/events/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.events);
-  })
-  .catch(err => next(err));
+router.get("/events/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.events);
+    })
+    .catch(err => next(err));
 });
-router.get('/boardmembers/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.boardmembers);
-  })
-  .catch(err => next(err));
+router.get("/boardmembers/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.boardmembers);
+    })
+    .catch(err => next(err));
 });
-router.get('/partners/:id', function(req, res){
-  Consultancy.findById(req.params.id) 
-  .then(doc => {
-    if(!doc) { return res.status(404).end();}
-    return res.status(200).json(doc.partners);
-  })
-  .catch(err => next(err));
+router.get("/partners/:id", function(req, res) {
+  Consultancy.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.partners);
+    })
+    .catch(err => next(err));
 });
 // @route   DELETE api/Consultancys/:id
 // @desc    Delete A Consultancy

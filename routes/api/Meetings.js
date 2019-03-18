@@ -17,7 +17,6 @@ router.post("/", (req, res) => {
     StatusMemberOne: req.body.StatusMemberOne,
     StatusMemberTwo: req.body.StatusMemberTwo
   });
-
   newMeeting.save().then(Meeting => res.json(Meeting));
 });
 
@@ -37,11 +36,9 @@ router.post("/", (req, res) => {
 //             {$set: newMeeting},
 //             {new: true}
 //         ).then(meetings=> res.json(meetings));
-
 //     }
 //     if (meetings){
 //         res.json (meeting);
-
 //     }
 // });
 
@@ -111,17 +108,16 @@ router.get("/StatusForPartner/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.post("/", (req, res) => {
-  const newMeeting = new Meeting({
-    MemberemailOne: req.body.MemberemailOne,
-    MemberemailTwo: req.body.MemberemailTwo,
-    Location: req.body.Location,
-    time: req.body.time,
-    StatusMemberOne: req.body.StatusMemberOne,
-    StatusMemberTwo: req.body.StatusMemberTwo
-  });
-
-  newMeeting.save().then(Meeting => res.json(Meeting));
+//@ find a specific Meeting by ID
+router.get("/:id", function(req, res) {
+  Meeting.findById(req.params.id)
+    .then(Meeting => {
+      if (!Meeting) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(Meeting);
+    })
+    .catch(err => next(err));
 });
 
 router.delete("/:id", (req, res) => {

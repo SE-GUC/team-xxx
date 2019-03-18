@@ -24,6 +24,18 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
+//@ find a specific Admin by ID
+router.get("/:id", function(req, res) {
+  Admin.findById(req.params.id)
+    .then(Admin => {
+      if (!Admin) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(Admin);
+    })
+    .catch(err => next(err));
+});
+
 router.get("/AdminEmail/:id", function(req, res) {
   Admin.findById(req.params.id)
     .then(doc => {
