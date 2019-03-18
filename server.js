@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const mongoose = require("mongoose").set('debug', true);
 const bodyParser = require("body-parser");
 const joi = require("joi");
 
@@ -25,6 +25,7 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 mongoose.set("useCreateIndex", true);
+mongoose.set('useFindAndModify', false);
 
 // Use Routes
 app.use("/api/Consultancys", Consultancys);
