@@ -98,7 +98,7 @@ router.get("/:id/state", function(req, res) {
 });
 
 // toupdate the project attributes
-router.put("/update/:id", function(req, res) {
+router.put("/:id", function(req, res) {
   var id = req.params.id;
   Project.findOne({ _id: id }, function(err, foundObject) {
     if (err) {
