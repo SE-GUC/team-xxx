@@ -54,8 +54,17 @@ router.get("/AdminEmail/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-router.put("/update/:id", function(req, res) {
+
+router.put("/:id", function(req, res) {
   var id = req.params.id;
+  const Email = req.body.Email
+	const Password = req.body.Password
+	const schema = {
+		Email: Joi.string().email().required(),
+		Password: Joi.string().min(3).max(15).required(),
+	}
+	const result = Joi.validate(req.body, schema);
+	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
   Admin.findOne({ _id: id }, function(err, foundObject) {
     if (err) {
       console.log(err);
@@ -63,11 +72,11 @@ router.put("/update/:id", function(req, res) {
       if (!foundObject) {
         res.status(404).send();
       } else {
-        if (req.body.Email) {
-          foundObject.Email = req.body.Email;
+        if (Email) {
+          foundObject.Email = Email;
         }
-        if (req.body.Password) {
-          foundObject.Password = req.body.Password;
+        if (Password) {
+          foundObject.Password = Password;
         }
         foundObject.save(function(err, updatedObject) {
           if (err) {

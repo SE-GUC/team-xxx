@@ -212,7 +212,7 @@ router.post("/", (req, res) => {
   newMember.save().then(Member => res.json(Member));
 });
 
-router.put("/update/:id", function(req, res) {
+router.put("/:id", function(req, res) {
   var id = req.params.id;
   Member.findOne({ _id: id }, function(err, foundObject) {
     if (err) {

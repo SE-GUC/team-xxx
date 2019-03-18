@@ -34,7 +34,7 @@ router.get("/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.put("/update/:id", function(req, res) {
+router.put("/:id", function(req, res) {
   var id = req.params.id;
   Slot.findOne({ _id: id }, function(err, foundObject) {
     if (err) {

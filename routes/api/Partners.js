@@ -220,7 +220,7 @@ router.delete("/:id", (req, res) => {
 // })
 // });
 
-router.put("/update/:id", function(req, res) {
+router.put("/:id", function(req, res) {
   var id = req.params.id;
 
   Partner.findOne({ _id: id }, function(err, foundObject) {
