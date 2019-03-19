@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-
+const validator = require("../../validations/ProjectValidation");
 
 // Project Model
 const Project = require("../../models/Project");
@@ -18,30 +18,18 @@ router.get("/", (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", (req, res) => {
-  const newProject = new Project({
-    Title: req.body.Title,
-    description: req.body.description,
-    candidates: req.body.candidates,
-    effort: req.body.effort,
-    duration: req.body.duration,
-    commitment: req.body.commitment,
-    experience: req.body.experience,
-    compensation: req.body.compensation,
-    partner: req.body.partner,
-    skills: req.body.skills,
-    consultancy: req.body.consultancy,
-    category: req.body.category,
-    state: req.body.state,
-    applicants: req.body.applicants,
-    assigned: req.body.assigned,
-    extraInfo: req.body.extraInfo,
-    Consultant: req.body.Consultant,
-    consultantRandom: req.body.consultantRandom,
-    consultancyAcceptance: req.body.consultancyAcceptance,
-    memberWork: req.body.memberWork
-  });
-  newProject.save().then(Project => res.json(Project));
+router.post("/", async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newProject = await Project.create(req.body);
+    res.json({ msg: "Project was created successfully", data: newProject });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // @route   DELETE api/Projects/:id
@@ -99,11 +87,23 @@ router.get("/:id/state", function(req, res) {
 });
 
 // toupdate the project attributes
-router.put("/:id", function(req, res, next) {
-  Project.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project)
+      return res.status(404).send({ error: "project does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Project.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Project updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
