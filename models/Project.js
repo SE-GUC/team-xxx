@@ -63,12 +63,15 @@ const ProjectSchema = new Schema({
   },
   assigned: {
     type: String
-  },		
-  extraInfo:{		
-    type: String		
   },
-  memberWork:{		
-    type: String		
+  extraInfo: {
+    type: String
+  },
+  memberWork: {
+    type: String
+  },
+  OrientaionForTheTask: {
+    type: String
   }
 });
 

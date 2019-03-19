@@ -1,15 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-
+const validator = require("../../validations/PartnersValidation");
 
 // Partner Model
 const Partner = require("../../models/Partner");
 
 // @route   GET api/Partners
-
 // @desc    Get All Partners
-
 // @access  Public
 
 router.get("/", (req, res) => {
