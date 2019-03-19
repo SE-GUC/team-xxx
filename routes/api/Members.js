@@ -212,75 +212,10 @@ router.post("/", (req, res) => {
   newMember.save().then(Member => res.json(Member));
 });
 
-router.put("/:id", function(req, res) {
-  var id = req.params.id;
-  Member.findOne({ _id: id }, function(err, foundObject) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!foundObject) {
-        res.status(404).send();
-      } else {
-        if (req.body.Email) {
-          foundObject.Email = req.body.Email;
-        }
-        if (req.body.Password) {
-          foundObject.Password = req.body.Password;
-        }
-        if (req.body.name) {
-          foundObject.name = req.body.name;
-        }
-        if (req.body.age) {
-          foundObject.age = req.body.age;
-        }
-        if (req.body.skills) {
-          foundObject.skills = req.body.skills;
-        }
-        if (req.body.interests) {
-          foundObject.interests = req.body.interests;
-        }
-        if (req.body.events) {
-          foundObject.events = req.body.events;
-        }
-        if (req.body.tasks) {
-          foundObject.tasks = req.body.tasks;
-        }
-        if (req.body.reviews) {
-          foundObject.reviews = req.body.reviews;
-        }
-        if (req.body.masterclasses) {
-          foundObject.masterclasses = req.body.masterclasses;
-        }
-        if (req.body.Lifecoach) {
-          foundObject.Lifecoach = req.body.Lifecoach;
-        }
-        if (req.body.membership) {
-          foundObject.membership = req.body.membership;
-        }
-        if (req.body.Contracts) {
-          foundObject.Contracts = req.body.Contracts;
-        }
-        if (req.body.Notifications) {
-          foundObject.Notifications = req.body.Notifications;
-        }
-        if (req.body.RecommendedTasks) {
-          foundObject.RecommendedTasks = req.body.RecommendedTasks;
-        }
-        if (req.body.oldProjects) {
-          foundObject.oldProjects = req.body.oldProjects;
-        }
-        if (req.body.projects) {
-          foundObject.projects = req.body.projects;
-        }
-        foundObject.save(function(err, updatedObject) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send(updatedObject);
-          }
-        });
-      }
-    }
+router.put("/:id", function(req, res, next) {
+  Member.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    if (err) return next(err);
+    res.json({ msg: "Admin updated successfully" });
   });
 });
 module.exports = router;

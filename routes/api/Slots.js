@@ -34,48 +34,10 @@ router.get("/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.put("/:id", function(req, res) {
-  var id = req.params.id;
-  Slot.findOne({ _id: id }, function(err, foundObject) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!foundObject) {
-        res.status(404).send();
-      } else {
-        if (req.body.lifecoachEmail) {
-          foundObject.lifecoachEmail = req.body.lifecoachEmail;
-        }
-        if (req.body.number) {
-          foundObject.number = req.body.number;
-        }
-        if (req.body.Date) {
-          foundObject.Date = req.body.Date;
-        }
-        if (req.body.startTime) {
-          foundObject.startTime = req.body.startTime;
-        }
-        if (req.body.endTime) {
-          foundObject.endTime = req.body.endTime;
-        }
-        if (req.body.status) {
-          foundObject.status = req.body.status;
-        }
-        if (req.body.applicant) {
-          foundObject.applicant = req.body.applicant;
-        }
-        if (req.body.Location) {
-          foundObject.Location = req.body.Location;
-        }
-        foundObject.save(function(err, updatedObject) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send(updatedObject);
-          }
-        });
-      }
-    }
+router.put("/:id", function(req, res, next) {
+  Slot.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    if (err) return next(err);
+    res.json({ msg: "Admin updated successfully" });
   });
 });
 

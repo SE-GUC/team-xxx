@@ -125,45 +125,10 @@ router.delete("/:id", (req, res) => {
     .then(Meeting => Meeting.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
-
-router.put("/:id", function(req, res) {
-  var id = req.params.id;
-  Meeting.findOne({ _id: id }, function(err, foundObject) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!foundObject) {
-        res.status(404).send();
-      } else {
-        if (req.body.MemberemailOne) {
-          foundObject.MemberemailOne = req.body.MemberemailOne;
-        }
-        if (req.body.MemberemailTwo) {
-          foundObject.MemberemailTwo = req.body.MemberemailTwo;
-        }
-        if (req.body.Location) {
-          foundObject.Location = req.body.Location;
-        }
-        if (req.body.time) {
-          foundObject.time = req.body.time;
-        }
-        if (req.body.StatusMemberOne) {
-          foundObject.StatusMemberOne = req.body.StatusMemberOne;
-        }
-        if (req.body.StatusMemberTwo) {
-          foundObject.StatusMemberTwo = req.body.StatusMemberTwo;
-        }
-        foundObject.save(function(err, updatedObject) {
-          if (err) {
-            console.log(err);
-            res.status(500).send();
-          } else {
-            res.send(updatedObject);
-          }
-        });
-      }
-    }
+router.put("/:id", function(req, res, next) {
+  Meeting.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    if (err) return next(err);
+    res.json({ msg: "Admin updated successfully" });
   });
 });
-
 module.exports = router;
