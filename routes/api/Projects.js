@@ -105,5 +105,36 @@ router.put("/:id", async (req, res) => {
     console.log(error);
   }
 });
+router.get("/:id/OrientaionForTheTask", function(req, res) {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.OrientaionForTheTask);
+    })
+    .catch(err => next(err));
+});
+router.get("/:id/category", function(req, res) {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.category);
+    })
+    .catch(err => next(err));
+});
+
+router.get("/:id/skill", function(req, res) {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.skills);
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router;

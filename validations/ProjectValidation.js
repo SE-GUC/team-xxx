@@ -22,7 +22,8 @@ module.exports = {
       applicants: Joi.string(),
       assigned: Joi.string(),
       extraInfo: Joi.string(),
-      memberWork: Joi.string()
+      memberWork: Joi.string(),
+      OrientaionForTheTask: Joi.string()
     };
     return Joi.validate(request, createSchema);
   },
@@ -48,7 +49,8 @@ module.exports = {
       applicants: Joi.string(),
       assigned: Joi.string(),
       extraInfo: Joi.string(),
-      memberWork: Joi.string()
+      memberWork: Joi.string(),
+      OrientaionForTheTask: Joi.string()
     };
     return Joi.validate(request, updateSchema);
   }
