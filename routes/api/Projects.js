@@ -4,8 +4,8 @@ const router = express.Router();
 // Project Model
 const Project = require("../../models/Project");
 
-// @route   GET api/Partners
-// @desc    Get All Partners
+// @route   GET api/Projects
+// @desc    Get All Projects
 // @access  Public
 router.get("/", (req, res) => {
   Project.find()
@@ -39,7 +39,6 @@ router.post("/", (req, res) => {
     consultancyAcceptance: req.body.consultancyAcceptance,
     memberWork: req.body.memberWork
   });
-
   newProject.save().then(Project => res.json(Project));
 });
 
@@ -104,4 +103,5 @@ router.put("/:id", function(req, res, next) {
     res.json({ msg: "Admin updated successfully" });
   });
 });
+
 module.exports = router;
