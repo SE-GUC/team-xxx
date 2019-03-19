@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const validator = require("../../Validations/AdminsValidation");
+const validator = require("../../validations/AdminsValidation");
 
 const Admin = require("../../models/Admin");
 router.post("/", async (req, res) => {
