@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 // Partner Model
 const Partner = require("../../models/Partner");
 
@@ -219,67 +221,10 @@ router.delete("/:id", (req, res) => {
 //   }
 // })
 // });
-
-router.put("/:id", function(req, res) {
-  var id = req.params.id;
-
-  Partner.findOne({ _id: id }, function(err, foundObject) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!foundObject) {
-        res.status(404).send();
-      } else {
-        if (req.body.Email) {
-          foundObject.Email = req.body.Email;
-        }
-
-        if (req.body.Password) {
-          foundObject.Password = req.body.Password;
-        }
-
-        if (req.body.business) {
-          foundObject.business = req.body.business;
-        }
-        if (req.body.partners) {
-          foundObject.partners = req.body.partners;
-        }
-        if (req.body.boardmembers) {
-          foundObject.boardmembers = req.body.boardmembers;
-        }
-        if (req.body.events) {
-          foundObject.events = req.body.events;
-        }
-        if (req.body.field) {
-          foundObject.field = req.body.field;
-        }
-        if (req.body.projects) {
-          foundObject.projects = req.body.projects;
-        }
-        if (req.body.feedback) {
-          foundObject.feedback = req.body.feedback;
-        }
-        if (req.body.Lifecoach) {
-          foundObject.Lifecoach = req.body.Lifecoach;
-        }
-        if (req.body.membership) {
-          foundObject.membership = req.body.membership;
-        }
-        if (req.body.Contracts) {
-          foundObject.Contracts = req.body.Contracts;
-        }
-        if (req.body.Notifications) {
-          foundObject.Notifications = req.body.Notifications;
-        }
-        foundObject.save(function(err, updatedObject) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send(updatedObject);
-          }
-        });
-      }
-    }
+router.put("/:id", function(req, res, next) {
+  Partner.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    if (err) return next(err);
+    res.json({ msg: "Admin updated successfully" });
   });
 });
 module.exports = router;
