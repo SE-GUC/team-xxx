@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-
+const validator = require("../../validations/SlotsValidation");
 
 // Slot Model
 const Slot = require("../../models/Slot");
@@ -36,29 +36,40 @@ router.get("/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.put("/:id", function(req, res, next) {
-  Slot.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const slot = await Slot.findById(req.params.id);
+    if (!slot)
+      return res.status(404).send({ error: "Slot does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Slot.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Slot updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // @route   POST api/Slots
 // @desc    Create An Slot
 // @access  Public
-router.post("/", (req, res) => {
-  const newSlot = new Slot({
-    lifecoachEmail: req.body.lifecoachEmail,
-    number: req.body.number,
-    Date: req.body.Date,
-    startTime: req.body.startTime,
-    endTime: req.body.endTime,
-    status: req.body.status,
-    applicant: req.body.applicant,
-    Location: req.body.Location
-  });
-
-  newSlot.save().then(Slot => res.json(Slot));
+router.post("/", async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newSlot = await Slot.create(req.body);
+    res.json({ msg: "Admin was created successfully", data: newSlot });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // @route   DELETE api/Slots/:id

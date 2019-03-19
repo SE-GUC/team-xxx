@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-
+const validator = require("../../validations/ConsultancysValidation");
 
 // Consultancy Model
 const Consultancy = require("../../models/Consultancy");
@@ -78,28 +78,22 @@ router.get("/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-// @route   POST api/Consultancys
-// @desc    Create An Consultancy
-// @access  Public
-router.post("/", (req, res) => {
-  const newConsultancy = new Consultancy({
-    business: req.body.business,
-    partners: req.body.partners,
-    boardmembers: req.body.boardmembers,
-    events: req.body.events,
-    reports: req.body.reports,
-    Lifecoach: req.body.Lifecoach,
-    membership: req.body.membership,
-    Contracts: req.body.Contracts,
-    Email: req.body.Email,
-    Password: req.body.Password,
-    Notifications: req.body.Notifications,
-    Reviews: req.body.Reviews,
-    ReviewOwner: req.body.ReviewOwner,
-    projects: req.body.projects,
-    Submission: req.body.Submission
-  });
-  newConsultancy.save().then(Consultancy => res.json(Consultancy));
+
+router.post("/", async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newConsultancy = await Consultancy.create(req.body);
+    res.json({
+      msg: "Consultancy was created successfully",
+      data: newConsultancy
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 router.get("/Notifications/:id", function(req, res) {
   Consultancy.findById(req.params.id)
@@ -192,11 +186,23 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-router.put("/:id", function(req, res, next) {
-  Consultancy.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const consultancy = await Consultancy.findById(req.params.id);
+    if (!consultancy)
+      return res.status(404).send({ error: "Consultancy does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Consultancy.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Consultancy updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
