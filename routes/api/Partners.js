@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const validator = require("../../Validations/PartnersValidation");
+
 
 // Partner Model
 const Partner = require("../../models/Partner");

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const validator = require("../../Validations/SlotsValidation");
+
 
 // Slot Model
 const Slot = require("../../models/Slot");

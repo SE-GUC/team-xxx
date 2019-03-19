@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const validator = require("../../Validations/MeetingsValidation");
+
 
 const Meeting = require("../../models/Meeting");
 router.get("/", (req, res) => {
