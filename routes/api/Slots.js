@@ -39,8 +39,7 @@ router.get("/:id", function(req, res) {
 router.put("/:id", async (req, res) => {
   try {
     const slot = await Slot.findById(req.params.id);
-    if (!slot)
-      return res.status(404).send({ error: "Slot does not exist" });
+    if (!slot) return res.status(404).send({ error: "Slot does not exist" });
     const isValidated = validator.updateValidation(req.body);
     if (isValidated.error)
       return res
