@@ -4,8 +4,12 @@ const router = express.Router();
 const validator = require("../../validations/AdminsValidation");
 
 const Admin = require("../../models/Admin");
+
 router.post("/", async (req, res) => {
   try {
+    User.findOne({ email }).then(user => {
+      if (user) return res.status(400).json({ msg: "User already exists" });
+    });
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
