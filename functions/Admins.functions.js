@@ -1,0 +1,12 @@
+const axios = require("axios");
+axios.defaults.adapter = require("axios/lib/adapters/http");
+const functions = {
+  getAdmins: async () => {
+    const Admins = await axios
+      .get("http://localhost:5000/api/Admins/5c7a985bc7cac00498980354")
+      .catch(err => "error");
+    return Admins;
+  }
+};
+
+module.exports = functions;
