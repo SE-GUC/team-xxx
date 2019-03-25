@@ -79,4 +79,10 @@ router.delete("/:id", (req, res) => {
     .then(Slot => Slot.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
+
+//get free slots
+router.get("/status//", (req, res) => {
+  Slot.find({ status: "Free" }).then(Slots => res.json(Slots));
+});
+
 module.exports = router;
