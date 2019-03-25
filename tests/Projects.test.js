@@ -1,12 +1,14 @@
 const functions = require("../functions/Projects.functions");
 
 test("1.2 : As an admin I should be able to access the description posted by the partner", async () => {
-  expect.assertions(1);
+  expect.assertions(2);
   const response = await functions.getDescriptionForAdmin();
   expect(response.data).toEqual("asd");
+  expect(Array.isArray(response.data)).toBe(false);
 });
+
 test("4.1 : As a candidate I should be  able to view and search all posted tasks and view recommended tasks", async () => {
-  expect.assertions(1);
+  expect.assertions(2);
   const response = await functions.getprojects();
   const schema = {
     consultancyAcceptance: false,
@@ -33,9 +35,11 @@ test("4.1 : As a candidate I should be  able to view and search all posted tasks
     __v: 0
   };
   expect(response.data[1]).toEqual(schema);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("4.1 : As a candidate I should be  able to view and search all posted tasks and view recommended tasks", async () => {
-  expect.assertions(1);
+  expect.assertions(2);
   const response = await functions.searchprojects();
   expect(response.data.commitment).toEqual("commitment2");
+  expect(Array.isArray(response.data)).toBe(false);
 });
