@@ -17,3 +17,34 @@ test("7.3 : As a life coach I shold be able to view updated schedule ", async ()
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
+test("7.3 : As a life coach I shold be able to view updated schedule ", async () => {
+  expect.assertions(2);
+  expect.extend({
+    toContainObject(received, argument) {
+      const pass = this.equals(
+        received,
+        expect.arrayContaining([expect.objectContaining(argument)])
+      );
+      if (pass) {
+        return {
+          message: () =>
+            `expected ${this.utils.printReceived(
+              received
+            )} not to contain object ${this.utils.printExpected(argument)}`,
+          pass: true
+        };
+      } else {
+        return {
+          message: () =>
+            `expected ${this.utils.printReceived(
+              received
+            )} to contain object ${this.utils.printExpected(argument)}`,
+          pass: false
+        };
+      }
+    }
+  });
+  const response = await functions.getfreeslots();
+  expect(response.data).toContainObject({ status: "Free" });
+  expect(Array.isArray(response.data)).toBe(true);
+});
