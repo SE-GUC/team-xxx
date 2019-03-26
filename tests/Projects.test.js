@@ -3,7 +3,7 @@ const functions = require("../functions/Projects.functions");
 test("1.2 : As an admin I should be able to access the description posted by the partner", async () => {
   expect.assertions(2);
   const response = await functions.getDescriptionForAdmin();
-  expect(response.data).toEqual("asd");
+  expect(response.data).toEqual(null);
   expect(Array.isArray(response.data)).toBe(false);
 });
 
@@ -41,6 +41,45 @@ test("4.1 : As a candidate I should be  able to view and search all posted tasks
   expect.assertions(2);
   const response = await functions.searchprojects();
   expect(response.data.commitment).toEqual("commitment2");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+
+test("6.11 : As a user I should be able to to show my completed projects and reviews received and by whom ", async () => {
+  expect.assertions(2);
+  expect.extend({
+    toContainObject(received, argument) {
+      const pass = this.equals(
+        received,
+        expect.arrayContaining([expect.objectContaining(argument)])
+      );
+      if (pass) {
+        return {
+          message: () =>
+            `expected ${this.utils.printReceived(
+              received
+            )} not to contain object ${this.utils.printExpected(argument)}`,
+          pass: true
+        };
+      } else {
+        return {
+          message: () =>
+            `expected ${this.utils.printReceived(
+              received
+            )} to contain object ${this.utils.printExpected(argument)}`,
+          pass: false
+        };
+      }
+    }
+  });
+  const response = await functions.getprojectsforuser();
+  expect(response.data).toContainObject({ assigned: "assigned2" });
+  expect(Array.isArray(response.data)).toBe(true);
+});
+
+test("4.3 : As an admin I should be able to choose the freelancer that would be assigned ", async () => {
+  expect.assertions(2);
+  const response = await functions.assignmember();
+  expect(response.data.assigned).toEqual("don5");
   expect(Array.isArray(response.data)).toBe(false);
 });
 

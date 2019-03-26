@@ -54,8 +54,7 @@ module.exports = {
     };
     return Joi.validate(request, updateSchema);
   },
-
-  categoryInfoValidation : request => {
+  categoryInfoValidation: request => {
     const bookSchema = {
       category: Joi.string().required(),
       extraInfo: Joi.string().required()
