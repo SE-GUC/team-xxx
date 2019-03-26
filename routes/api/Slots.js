@@ -85,4 +85,50 @@ router.get("/status//", (req, res) => {
   Slot.find({ status: "Free" }).then(Slots => res.json(Slots));
 });
 
+//bookslots
+/*router.put("/book/:id", async function(req, res, next) {
+  try {
+    const slot = await Slot.findById(req.params.id);
+    if (!slot) return res.status(404).send({ error: "Slot does not exist" });
+    const isValidated = validator.bookValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const updateSchema = {
+      status: "Booked",
+      Location: req.body.Location,
+      applicant: req.body.applicant
+    };
+    Slot.findByIdAndUpdate(req.params.id, updateSchema, function(err) {
+
+    })
+      .then(Slot => Slot.then(() => res.json({ success: true })))
+      .catch(err => res.status(404).json({ success: false }));
+  } catch (error) {
+    console.log(error);
+  }
+});*/
+router.put("/book/:id", async function(req, res, next) {
+  try {
+    const slot = await Slot.findById(req.params.id);
+    if (!slot) return res.status(404).send({ error: "Slot does not exist" });
+    const isValidated = validator.bookValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const updateSchema = {
+      status: "Booked",
+      Location: req.body.Location,
+      applicant: req.body.applicant
+    };
+    Slot.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
