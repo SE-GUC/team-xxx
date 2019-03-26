@@ -140,4 +140,20 @@ router.get("/:id/skill", function(req, res) {
 router.get("/projects//", (req, res) => {
   Project.find({ assigned: "assigned2" }).then(Projects => res.json(Projects));
 });
+
+router.put("/assign/:id",  function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description:Project.findById(req.params.id).description,
+      assigned: req.body.assigned
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

@@ -26,6 +26,16 @@ const functions = {
       .get("http://localhost:5000/api/projects/projects//")
       .catch(err => "error");
     return projects;
+  },
+  assignmember: async () => {
+    const updateSchema = {
+      assigned: "don5"
+    };
+    const member = axios.put(
+      "http://localhost:5000/api/projects/assign/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return member;
   }
 };
 
