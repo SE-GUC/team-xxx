@@ -33,12 +33,9 @@ const ProjectSchema = new Schema({
   partner: {
     type: String
   },
-  // ////////////////////////////////////////Test ////////////////////////////////////////////////////////
-  // moved this attribute from partner to specify if a partner want a consultant or not in this specific project
   Consultant: {
     type: Boolean
   },
-  // to specify a consultant name
   consultancy: {
     type: String
   },
