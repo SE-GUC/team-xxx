@@ -17,7 +17,7 @@ test("7.3 : As a life coach I shold be able to view updated schedule ", async ()
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
-test("7.3 : As a life coach I shold be able to view updated schedule ", async () => {
+test("7.2 : As a member I should be able to view life coach available slots ", async () => {
   expect.assertions(2);
   expect.extend({
     toContainObject(received, argument) {
