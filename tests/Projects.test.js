@@ -99,7 +99,7 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     compensation: "compensation2",
     partner: "partner2",
     skills: "skills2",
-    consultancy: "consultancy2",
+    consultancy: "testtest",
     category: "combutar",
     state: "state2",
     applicants: "applicants2",
@@ -107,7 +107,7 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     extraInfo: "msh combutar awi",
     Consultant: false,
     consultantRandom: false,
-    memberWork: "memberWork2",
+    memberWork: "memberWork122",
     __v: 0
   };
   expect(response.data).toEqual(schema);
