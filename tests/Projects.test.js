@@ -3,7 +3,7 @@ const functions = require("../functions/Projects.functions");
 test("1.2 : As an admin I should be able to access the description posted by the partner", async () => {
   expect.assertions(2);
   const response = await functions.getDescriptionForAdmin();
-  expect(response.data).toEqual("asd");
+  expect(response.data).toEqual(null);
   expect(Array.isArray(response.data)).toBe(false);
 });
 
@@ -74,4 +74,11 @@ test("6.11 : As a user I should be able to to show my completed projects and rev
   const response = await functions.getprojectsforuser();
   expect(response.data).toContainObject({ assigned: "assigned2" });
   expect(Array.isArray(response.data)).toBe(true);
+});
+
+test("4.3 : As an admin I should be able to choose the freelancer that would be assigned ", async () => {
+  expect.assertions(2);
+  const response = await functions.assignmember();
+  expect(response.data.assigned).toEqual("don5");
+  expect(Array.isArray(response.data)).toBe(false);
 });
