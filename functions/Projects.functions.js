@@ -36,6 +36,17 @@ const functions = {
       updateSchema
     );
     return member;
+  },
+  updateCategoryAndInfo: async () => {
+    const updateSchema = {
+      category: "combutar",
+      extraInfo: "msh combutar awi"
+    };
+    const updatedCategoryAndInfo = axios.put(
+      "http://localhost:5000/api/Projects/updateCatAndInfo/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return updatedCategoryAndInfo;
   }
 };
 
