@@ -136,17 +136,21 @@ router.get("/:id/skill", function(req, res) {
     })
     .catch(err => next(err));
 });
-//get projects of the logged in member
-router.get("/projects//", (req, res) => {
-  Project.find({ assigned: "assigned2" }).then(Projects => res.json(Projects));
-});
 
-router.put("/assign/:id",  function(req, res, next) {
+router.put("/updateCatAndInfo/:id", async function(req, res, next) {
   try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).send({ error: "Project does not exist" });
+    const isValidated = validator.categoryInfoValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
     const updateSchema = {
-      Title: Project.findById(req.params.id).Title,
+      Title:Project.findById(req.params.id).Title,
       description:Project.findById(req.params.id).description,
-      assigned: req.body.assigned
+      category: req.body.category,
+      extraInfo: req.body.extraInfo
     };
     Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
       if (err) return next(err);
@@ -156,4 +160,5 @@ router.put("/assign/:id",  function(req, res, next) {
     console.log(error);
   }
 });
+
 module.exports = router;
