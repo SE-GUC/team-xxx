@@ -60,5 +60,11 @@ module.exports = {
       extraInfo: Joi.string().required()
     };
     return Joi.validate(request, bookSchema);
+  },
+  chooseConsultantValidation: request => {
+    const consultancySchema = {
+      consultancy: Joi.string().required()
+    };
+    return Joi.validate(request, consultancySchema);
   }
 };

@@ -113,3 +113,15 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
+test("3.3 : As a partner I should be  able to accept schdeule negotitation meeting /decline consultant's plan ", async () => {
+  expect.assertions(2);
+  const response = await functions.getresponse();
+  expect(response.data.consultancyAcceptance).toEqual(false);
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("3.2 : As a partner I should be able to choose a specific consultant", async () => {
+  expect.assertions(2);
+  const response = await functions.chooseConsultant();
+  expect(response.data.consultancy).toEqual("testtest");
+  expect(Array.isArray(response.data)).toBe(false);
+});
