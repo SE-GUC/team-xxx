@@ -47,6 +47,26 @@ const functions = {
       updateSchema
     );
     return updatedCategoryAndInfo;
+  },
+  getresponse: async () => {
+    const updateSchema = {
+      consultancyAcceptance: false
+    };
+    const assigned = axios.put(
+      "http://localhost:5000/api/projects/getresponse/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return assigned;
+  },
+  chooseConsultant: async () => {
+    const updateSchema = {
+      consultancy: "testtest"
+    };
+    const chooseConsultant = axios.put(
+      "http://localhost:5000/api/Projects/chooseConsultant/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return chooseConsultant;
   }
 };
 
