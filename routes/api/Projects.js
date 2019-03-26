@@ -136,5 +136,8 @@ router.get("/:id/skill", function(req, res) {
     })
     .catch(err => next(err));
 });
-
+//get projects of the logged in member
+router.get("/projects//", (req, res) => {
+  Project.find({ assigned: "assigned2" }).then(Projects => res.json(Projects));
+});
 module.exports = router;

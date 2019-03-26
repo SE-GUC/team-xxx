@@ -20,6 +20,12 @@ const functions = {
       .get("http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b")
       .catch(err => "error");
     return Projects;
+  },
+  getprojectsforuser: async () => {
+    const projects = await axios
+      .get("http://localhost:5000/api/projects/projects//")
+      .catch(err => "error");
+    return projects;
   }
 };
 
