@@ -99,15 +99,16 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     compensation: "compensation2",
     partner: "partner2",
     skills: "skills2",
-    consultancy: "consultancy2",
+    consultancy: "testtest",
     category: "combutar",
-    state: "state2",
+    state: "declined",
     applicants: "applicants2",
     assigned: "don5",
     extraInfo: "msh combutar awi",
     Consultant: false,
     consultantRandom: false,
-    memberWork: "memberWork2",
+    memberWork: "memberWork1222",
+    detaileddescription: "moresdetails",  
     __v: 0
   };
   expect(response.data).toEqual(schema);
@@ -123,5 +124,19 @@ test("3.2 : As a partner I should be able to choose a specific consultant", asyn
   expect.assertions(2);
   const response = await functions.chooseConsultant();
   expect(response.data.consultancy).toEqual("testtest");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("2.2 : As a partner I should be able to accept to arrange a meeting / cancel project", async () => {
+  expect.assertions(2);
+  const response = await functions.decproject();
+  expect(response.data.state).toEqual("declined");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("1.1 : As a partner I should be able to submit description of project/task", async () => {
+  expect.assertions(4);
+  const response = await functions.submitdesc();
+  expect(response.status).toEqual(200);
+  expect(response.data.Title).toEqual("mmmmmm");
+  expect(response.data.description).toEqual("mmmmmm");
   expect(Array.isArray(response.data)).toBe(false);
 });
