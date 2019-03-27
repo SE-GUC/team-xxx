@@ -88,6 +88,12 @@ const functions = {
       updateSchema
     );
     return descfirst;
+  },
+  getstate: async () => {
+    const State = await axios
+      .get("http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b/state")
+      .catch(err => "error");
+    return State;
   }
 };
 
