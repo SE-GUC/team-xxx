@@ -125,3 +125,17 @@ test("3.2 : As a partner I should be able to choose a specific consultant", asyn
   expect(response.data.consultancy).toEqual("testtest");
   expect(Array.isArray(response.data)).toBe(false);
 });
+test("2.2 : As a partner I should be able to accept to arrange a meeting / cancel project", async () => {
+  expect.assertions(2);
+  const response = await functions.decproject();
+  expect(response.data.state).toEqual("declined");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("1.1 : As a partner I should be able to submit description of project/task", async () => {
+  expect.assertions(4);
+  const response = await functions.submitdesc();
+  expect(response.status).toEqual(200);
+  expect(response.data.Title).toEqual("aaaaaa");
+  expect(response.data.description).toEqual("aaaaaa");
+  expect(Array.isArray(response.data)).toBe(false);
+});

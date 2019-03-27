@@ -67,6 +67,27 @@ const functions = {
       updateSchema
     );
     return chooseConsultant;
+  },
+  decproject: async () => {
+    const updateSchema = {
+      state: "declined"
+    };
+    const providedesc = axios.put(
+      "http://localhost:5000/api/Projects/declineproject/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return providedesc;
+  },
+  submitdesc: async () => {
+    const updateSchema = {
+      Title: "aaaaaa",
+      description: "aaaaaa"
+    };
+    const descfirst = axios.post(
+      "http://localhost:5000/api/projects/",
+      updateSchema
+    );
+    return descfirst;
   }
 };
 

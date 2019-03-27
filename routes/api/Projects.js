@@ -18,20 +18,12 @@ router.get("/", (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", async (req, res) => {
-  try {
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const newProject = await Project.create(req.body);
-    res.json({ msg: "Project was created successfully", data: newProject });
-  } catch (error) {
-    console.log(error);
-  }
+router.post("/", function(req, res, next) {
+  Project.create(req.body, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
 });
-
 // @route   DELETE api/Projects/:id
 // @desc    Delete A Project
 // @access  Public
@@ -209,6 +201,21 @@ router.put("/chooseConsultant/:id", async function(req, res, next) {
       Title: Project.findById(req.params.id).Title,
       description: Project.findById(req.params.id).description,
       consultancy: req.body.consultancy
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.put("/declineproject/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      state: req.body.state
     };
     Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
       if (err) return next(err);
