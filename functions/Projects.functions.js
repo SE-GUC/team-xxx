@@ -80,8 +80,8 @@ const functions = {
   },
   submitdesc: async () => {
     const updateSchema = {
-      Title: "aaaaaa",
-      description: "aaaaaa"
+      Title: "mmmmmm",
+      description: "mmmmmm"
     };
     const descfirst = axios.post(
       "http://localhost:5000/api/projects/",
