@@ -52,16 +52,6 @@ router.get("/ReviewOwner/:id", function(req, res) {
 // @route   GET api/Consultancys
 // @desc    Get All Consultancys
 // @access  Public
-//router.get('/', (req, res) => {
-//Consultancy.findById(req.params.id)
-//Consultancy.find(events)
-//Consultancy.find(Reviews)
-//Consultancy.find(ReviewOwner)
-//Consultancy.find(projects)
-
-//.sort({ name: 1 })
-//.then(Consultancys => res.json(Consultancys));
-//});
 router.get("/", (req, res) => {
   Consultancy.find()
     .sort({ name: 1 })

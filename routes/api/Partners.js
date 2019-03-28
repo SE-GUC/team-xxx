@@ -1,20 +1,14 @@
 const express = require("express");
 const router = express.Router();
-
 const validator = require("../../validations/PartnersValidation");
-
-// Partner Model
 const Partner = require("../../models/Partner");
 
 // @route   GET api/Partners
 // @desc    Get All Partners
 // @access  Public
-
 router.get("/", (req, res) => {
   Partner.find()
-
     .sort({ name: 1 })
-
     .then(Partners => res.json(Partners));
 });
 
@@ -174,26 +168,11 @@ router.get("/Contracts/:id", function(req, res) {
 // @route   POST api/Partners
 // @desc    Create An Partner
 // @access  Public
-router.post("/", (req, res) => {
-  const newPartner = new Partner({
-    business: req.body.business,
-    partners: req.body.partners,
-    boardmembers: req.body.boardmembers,
-    events: req.body.events,
-    field: req.body.field,
-    projects: req.body.projects,
-    feedback: req.body.feedback,
-    Lifecoach: req.body.Lifecoach,
-    membership: req.body.membership,
-    Contracts: req.body.Contracts,
-    Email: req.body.Email,
-    Password: req.body.Password,
-    Notifications: req.body.Notifications,
-    Reviews: req.body.Reviews,
-    ReviewOwner: req.body.ReviewOwner
+router.post("/", function(req, res, next) {
+  Partner.create(req.body, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
   });
-
-  newPartner.save().then(Partner => res.json(Partner));
 });
 
 // @route   DELETE api/Partners/:id
@@ -205,20 +184,6 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-// router.post('/', (req,res) =>{
-// Partner.findOneAndUpdate ({Consultant: req.body.Consultant},newData, {new:true})
-// .then ((partner) => {
-//   if ( partner.Consultant ==true ) {
-//     res.status(200).json({
-//       msg: "Consultant Successfully Added"
-//     });
-//   } else {
-//     res.status(422).json({
-//       msg: "Description of the project"
-//     })
-//   }
-// })
-// });
 router.put("/:id", function(req, res, next) {
   Partner.findByIdAndUpdate(req.params.id, req.body, function(err) {
     if (err) return next(err);

@@ -13,6 +13,31 @@ const functions = {
       .catch(err => "error");
     return free;
   },
+  bookslot: async () => {
+    const updateSchema = {
+      Location: "don5",
+      applicant: "don5"
+    };
+    const booked = axios.put(
+      "http://localhost:5000/api/Slots/book/5c90e2c08c0a13264778bedc",
+      updateSchema
+    );
+    return booked;
+  },
+  postschedule: async () => {
+    const updateSchema = {
+      lifecoachEmail: "don5@email.com",
+      number: "2 / 2 / 2000",
+      Date: " 2 / 2 / 2000",
+      startTime: "2 / 2 / 2000",
+      endTime: "2 / 2 / 2000",
+      status: "don5",
+      applicant: "don5",
+      Location: "don5"
+    };
+    const posted = axios.post("http://localhost:5000/api/Slots/", updateSchema);
+    return posted;
+  },,
   getdate: async () => {
     const Date = await axios
       .get("http://localhost:5000/api/Slots/Date/5c90e2c08c0a13264778bedc")
@@ -25,6 +50,7 @@ const functions = {
       .catch(err => "error");
     return Location;
   }
-  };
+
+};
 
 module.exports = functions;

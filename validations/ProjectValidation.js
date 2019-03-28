@@ -53,5 +53,18 @@ module.exports = {
       OrientaionForTheTask: Joi.string()
     };
     return Joi.validate(request, updateSchema);
+  },
+  categoryInfoValidation: request => {
+    const bookSchema = {
+      category: Joi.string().required(),
+      extraInfo: Joi.string().required()
+    };
+    return Joi.validate(request, bookSchema);
+  },
+  chooseConsultantValidation: request => {
+    const consultancySchema = {
+      consultancy: Joi.string().required()
+    };
+    return Joi.validate(request, consultancySchema);
   }
 };
