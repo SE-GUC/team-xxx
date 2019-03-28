@@ -16,6 +16,7 @@ module.exports = {
     };
     return Joi.validate(request, createSchema);
   },
+
   updateValidation: request => {
     const updateSchema = {
       lifecoachEmail: Joi.string()
@@ -30,12 +31,5 @@ module.exports = {
       Location: Joi.string()
     };
     return Joi.validate(request, updateSchema);
-  },
-  bookValidation: request => {
-    const bookSchema = {
-      applicant: Joi.string().required(),
-      Location: Joi.string().required()
-    };
-    return Joi.validate(request, bookSchema);
   }
 };

@@ -188,11 +188,28 @@ router.get("/masterclasses/:id", (req, res) => {
 // @route   POST api/Members
 // @desc    Create An Member
 // @access  Public
-router.post("/", function(req, res, next) {
-  Member.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
+router.post("/", (req, res) => {
+  const newMember = new Member({
+    name: req.body.name,
+    age: req.body.age,
+    skills: req.body.skills,
+    interests: req.body.interests,
+    events: req.body.events,
+    tasks: req.body.tasks,
+    reviews: req.body.reviews,
+    masterclasses: req.body.masterclasses,
+    Lifecoach: req.body.Lifecoach,
+    membership: req.body.membership,
+    Contracts: req.body.Contracts,
+    Email: req.body.Email,
+    Password: req.body.Password,
+    Notifications: req.body.Notifications,
+    ReviewOwner: req.body.ReviewOwner,
+    projects: req.body.projects,
+    oldProjects: req.body.oldProjects,
+    RecommendedTasks: req.body.RecommendedTasks
   });
+  newMember.save().then(Member => res.json(Member));
 });
 
 router.put("/:id", function(req, res, next) {
