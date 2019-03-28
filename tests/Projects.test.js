@@ -146,3 +146,10 @@ test("5.2 : As a contributor I should be able to view the project progress bar 
   expect(response.data).toEqual("declined");
   expect(Array.isArray(response.data)).toBe(false);
 });
+//2.4 : As a partner I should be able to choose to have a consultant or not 
+test("2.3 : As a partner I should be able to define project required skills with a set of attributes (Time, skills, etc…..) ", async () => {
+  expect.assertions(2);
+  const response = await functions.getstate();
+  expect(response.data.extraInfo).toEqual("extraInfonewnew");
+  expect(Array.isArray(response.data)).toBe(false);
+});

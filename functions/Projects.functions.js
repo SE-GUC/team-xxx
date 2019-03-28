@@ -94,6 +94,16 @@ const functions = {
       .get("http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b/state")
       .catch(err => "error");
     return State;
+  },
+  decproject: async () => {
+    const updateSchema = {
+      extraInfo: "extraInfonewnew"
+    };
+    const providedesc = axios.put(
+      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return providedesc;
   }
 };
 
