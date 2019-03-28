@@ -95,15 +95,15 @@ const functions = {
       .catch(err => "error");
     return State;
   },
-  decproject: async () => {
+  proposeMemWork: async () => {
     const updateSchema = {
-      extraInfo: "extraInfonewnew"
+      memberWork: "memberWork1222"
     };
-    const providedesc = axios.put(
-      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+    const memberWorkk = axios.put(
+      "http://localhost:5000/api/Projects/MemberWork/5c7aa93aa8f0f42afbe8fa3b",
       updateSchema
     );
-    return providedesc;
+    return memberWorkk;
   }
 };
 
