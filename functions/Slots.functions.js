@@ -23,34 +23,7 @@ const functions = {
       updateSchema
     );
     return booked;
-  },
-  postschedule: async () => {
-    const updateSchema = {
-      lifecoachEmail: "don5@email.com",
-      number: "2 / 2 / 2000",
-      Date: " 2 / 2 / 2000",
-      startTime: "2 / 2 / 2000",
-      endTime: "2 / 2 / 2000",
-      status: "don5",
-      applicant: "don5",
-      Location: "don5"
-    };
-    const posted = axios.post("http://localhost:5000/api/Slots/", updateSchema);
-    return posted;
-  },,
-  getdate: async () => {
-    const Date = await axios
-      .get("http://localhost:5000/api/Slots/Date/5c90e2c08c0a13264778bedc")
-      .catch(err => "error");
-    return Date;
-  },
-  getlocation: async () => {
-    const Date = await axios
-      .get("http://localhost:5000/api/Slots/Location/5c90e2c08c0a13264778bedc")
-      .catch(err => "error");
-    return Location;
   }
-
 };
 
 module.exports = functions;

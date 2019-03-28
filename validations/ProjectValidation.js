@@ -3,8 +3,8 @@ const Joi = require("joi");
 module.exports = {
   createValidation: request => {
     const createSchema = {
-      Title: Joi.string().required(),
-      description: Joi.string().required(),
+      Title: Joi.string(),
+      description: Joi.string(),
       candidates: Joi.string(),
       effort: Joi.string(),
       duration: Joi.string(),
@@ -23,15 +23,17 @@ module.exports = {
       assigned: Joi.string(),
       extraInfo: Joi.string(),
       memberWork: Joi.string(),
-      OrientaionForTheTask: Joi.string()
+      OrientaionForTheTask: Joi.string(),
+      AdminAcceptance: Joi.boolean()
+
     };
     return Joi.validate(request, createSchema);
   },
 
   updateValidation: request => {
     const updateSchema = {
-      Title: Joi.string().required(),
-      description: Joi.string().required(),
+      Title: Joi.string(),
+      description: Joi.string(),
       candidates: Joi.string(),
       effort: Joi.string(),
       duration: Joi.string(),
@@ -50,7 +52,8 @@ module.exports = {
       assigned: Joi.string(),
       extraInfo: Joi.string(),
       memberWork: Joi.string(),
-      OrientaionForTheTask: Joi.string()
+      OrientaionForTheTask: Joi.string(),
+      AdminAcceptance: Joi.boolean(),
     };
     return Joi.validate(request, updateSchema);
   },

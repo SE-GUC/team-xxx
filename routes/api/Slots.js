@@ -108,24 +108,4 @@ router.put("/book/:id", async function(req, res, next) {
     console.log(error);
   }
 });
-router.get("/Date/:id", function(req, res) {
-  Slot.findById(req.params.id)
-    .then(doc => {
-      if (!doc) {
-        return res.status(404).end();
-      }
-      return res.status(200).json(doc.Date);
-    })
-    .catch(err => next(err));
-});
-router.get("/Location/:id", function(req, res) {
-  Slot.findById(req.params.id)
-    .then(doc => {
-      if (!doc) {
-        return res.status(404).end();
-      }
-      return res.status(200).json(doc.Location);
-    })
-    .catch(err => next(err));
-});
 module.exports = router;

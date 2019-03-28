@@ -32,6 +32,7 @@ test("4.1 : As a candidate I should be  able to view and search all posted tasks
     Consultant: false,
     consultantRandom: false,
     memberWork: "memberWork2",
+    AdminAcceptance: false,
     __v: 0
   };
   expect(response.data[1]).toEqual(schema);
@@ -109,6 +110,7 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     consultantRandom: false,
     memberWork: "memberWork1222",
     detaileddescription: "moresdetails",  
+    AdminAcceptance: false,
     __v: 0
   };
   expect(response.data).toEqual(schema);
@@ -144,5 +146,38 @@ test("5.2 : As a contributor I should be able to view the project progress bar 
   expect.assertions(2);
   const response = await functions.getstate();
   expect(response.data).toEqual("declined");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+// 2.3 and 2.4 are made together..Claudia
+test("2.3 : As a partner I should be able to define project required skills with a set of attributes (Time, skills, etc…..) ", async () => {
+  expect.assertions(2);
+  const response = await functions.getresponse();
+  const schema = {
+    consultancyAcceptance: false,
+    _id: "5c7aa93aa8f0f42afbe8fa3b",
+    Title: null,
+    description: null,
+    candidates: "2",
+    effort: "effort2",
+    duration: "duration2",
+    commitment: "commitment2",
+    experience: "experience2",
+    compensation: "compensation2",
+    partner: "partner2",
+    skills: "skills2",
+    consultancy: "testtest",
+    category: "combutar",
+    state: "declined",
+    applicants: "applicants2",
+    assigned: "don5",
+    extraInfo: "msh combutar awi",
+    Consultant: false,
+    consultantRandom: false,
+    memberWork: "memberWork1222",
+    detaileddescription: "moresdetails", 
+    AdminAcceptance: false, 
+    __v: 0
+  };
+  expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });

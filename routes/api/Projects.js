@@ -78,7 +78,8 @@ router.get("/:id/state", function(req, res) {
     .catch(err => next(err));
 });
 
-// toupdate the project attributes
+// to update the project attributes
+// Claudia
 router.put("/:id", async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);

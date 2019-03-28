@@ -103,7 +103,12 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", function(req, res, next) {
   Meeting.findByIdAndUpdate(req.params.id, req.body, function(err) {
     if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
+    res.json({ msg: "Meeting updated successfully" });
   });
 });
+
+
+
 module.exports = router;
+
+

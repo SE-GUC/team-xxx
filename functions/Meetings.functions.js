@@ -15,16 +15,6 @@ const functions = {
       updateSchema
     );
     return assigned;
-  },
-  suggestloc: async () => {
-    const updateSchema = {
-      Location: "testvalid"
-    };
-    const booked = axios.put(
-      "http://localhost:5000/api/meetings/5c9b8209f3e4a41c7cb8e3e7",
-      updateSchema
-    );
-    return booked;
   }
 };
 

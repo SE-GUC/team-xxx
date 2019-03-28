@@ -69,7 +69,11 @@ const ProjectSchema = new Schema({
   },
   OrientaionForTheTask: {
     type: String
+  },
+  AdminAcceptance: {
+    type: Boolean
   }
+  
 });
 
 module.exports = Project = mongoose.model("Project", ProjectSchema);
