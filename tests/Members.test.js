@@ -58,3 +58,10 @@ test("6.1 : As a user i should be able to show my attended events", async () => 
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
+
+test("6.4	As a user I should be able to show my notifcations", async () => {
+  expect.assertions(2);
+  const response = await functions.getnotificatons();
+  expect(response.data).toEqual("gggg");
+  expect(Array.isArray(response.data)).toBe(false);
+});

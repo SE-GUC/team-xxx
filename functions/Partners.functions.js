@@ -37,7 +37,13 @@ getfeedback: async () => {
     .get("http://localhost:5000/api/Partners/feedback/5c9a1d887b4be2377870eda4")
     .catch(err => "error");
   return feedback;
-}
+},    
+getpartnernotificatons: async () => {
+   const noti = await axios
+     .get("http://localhost:5000/api/Partners/Notifications/5c9b6f32143955268030fec1")
+     .catch(err => "error");
+   return noti;
+ }
 };
 
 module.exports = functions;

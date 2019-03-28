@@ -24,7 +24,13 @@ const functions = {
       .get("http://localhost:5000/api/Consultancys/events/5c90ddcd59730823fc8512a8")
       .catch(err => "error");
     return events;
-  }
+  },    
+  getConsnotificatons: async () => {
+     const noti = await axios
+       .get("http://localhost:5000/api/Consultancys/Notifications/5c7a9cb7c7cac00498980355")
+       .catch(err => "error");
+     return noti;
+   }
   };
 
 module.exports = functions;

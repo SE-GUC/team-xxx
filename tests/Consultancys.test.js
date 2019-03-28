@@ -54,3 +54,9 @@ test("6.5,6.7", async () => {
     expect(Array.isArray(response.data)).toBe(false);
   
   });
+  test("6.4 As a user(Consultant) I should be able to show my notifcations", async () => {
+    expect.assertions(2);
+    const response = await functions.getConsnotificatons();
+    expect(response.data).toEqual("nnnj");
+    expect(Array.isArray(response.data)).toBe(false);
+  });
