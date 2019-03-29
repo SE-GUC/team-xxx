@@ -146,3 +146,41 @@ test("5.2 : As a contributor I should be able to view the project progress bar 
   expect(response.data).toEqual("declined");
   expect(Array.isArray(response.data)).toBe(false);
 });
+//2.4 : As a partner I should be able to choose to have a consultant or not 
+test("2.3 : As a partner I should be able to define project required skills with a set of attributes (Time, skills, etc…..) ", async () => {
+  expect.assertions(2);
+  const response = await functions.getstate();
+  expect(response.data.extraInfo).toEqual("extraInfonewnew");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+
+test("5.1/5.3	As a consulant/partner I should be  able to  propose edits for the freelancer's work ", async () => {
+  expect.assertions(2);
+  const response = await functions.proposeMemWork();
+  const schema = {
+       Title: null,
+        description: null,
+        candidates: "2",
+        effort: "effort2",
+        duration: "duration2",
+        commitment: "commitment2",
+        experience: "experience2",
+        compensation: "compensation2",
+        partner: "partner2",
+        skills: "skills2",
+        consultancy: "testtest",
+        category: "combutar",
+        state: "state2",
+        applicants: "applicants2",
+        assigned: "don5",
+        extraInfo: "msh combutar awi",
+        Consultant: false,
+        consultantRandom: false,
+        memberWork: "memberWork1222",
+        consultancyAcceptance: false,
+        _id: "5c7aa93aa8f0f42afbe8fa3b",
+        __v: 0
+  };
+  expect(response.data).toEqual(schema);
+  expect(Array.isArray(response.data)).toBe(false);
+});

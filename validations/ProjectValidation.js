@@ -30,8 +30,8 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-      Title: Joi.string().required(),
-      description: Joi.string().required(),
+      Title: Joi.string(),
+      description: Joi.string(),
       candidates: Joi.string(),
       effort: Joi.string(),
       duration: Joi.string(),
