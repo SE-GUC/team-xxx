@@ -124,6 +124,12 @@ const functions = {
       updateSchema
     );
     return memberWorkk;
+  },
+  getOrientationOfTasks: async () => {
+    const OrientationOfTasks = await axios
+      .get("http://localhost:5000/api/Projects/5c9b3cce012cbe2332a45482/OrientaionForTheTask")
+      .catch(err => "error");
+    return OrientationOfTasks;
   }
 };
 

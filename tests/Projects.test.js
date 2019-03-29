@@ -160,3 +160,9 @@ test("5.1/5.3	As a consulant/partner I should be  able to  propose edits for th
   expect(response.data.msg).toEqual("Project updated successfully");
   expect(Array.isArray(response.data)).toBe(false);
 });
+test("4.4 : As an accepted candidate I should be able to get a notification and an orientation for the task", async () => {
+  expect.assertions(2);
+  const response = await functions.getOrientationOfTasks();
+  expect(response.data).toEqual("orientation");
+  expect(Array.isArray(response.data)).toBe(false);
+});
