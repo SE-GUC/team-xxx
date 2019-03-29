@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "es6": "0.0.7",
     "express": "^4.16.4",
     "jest": "^24.5.0",
     "joi": "^14.3.1",

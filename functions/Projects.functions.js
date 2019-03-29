@@ -80,8 +80,8 @@ const functions = {
   },
   submitdesc: async () => {
     const updateSchema = {
-      Title: "mmmmmm",
-      description: "mmmmmm"
+      Title: "mmmm1mm",
+      description: "mmmm1mm"
     };
     const descfirst = axios.post(
       "http://localhost:5000/api/projects/",
@@ -104,12 +104,23 @@ const functions = {
       updateSchema
     );
     return providedesc;
-  },proposeMemWork: async () => {
+  },
+  proposeMemWork: async () => {
     const updateSchema = {
       memberWork: "memberWork1222"
     };
     const memberWorkk = axios.put(
-      "http://localhost:5000/api/Projects/MemberWork/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return memberWorkk;
+  },
+  defineatt: async () => {
+    const updateSchema = {
+      compensation: "compensation"
+    };
+    const memberWorkk = axios.put(
+      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
       updateSchema
     );
     return memberWorkk;
