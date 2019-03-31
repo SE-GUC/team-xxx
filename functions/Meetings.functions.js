@@ -25,6 +25,16 @@ const functions = {
       updateSchema
     );
     return booked;
+  },
+  member_status: async () => {
+    const updateSchema = {
+      StatusMemberOne: true
+    };
+    const status_memberone = axios.put(
+      "http://localhost:5000/api/meetings/5c90385ca742e7167437acde",
+      updateSchema
+    );
+    return status_memberone;
   }
 };
 

@@ -96,7 +96,7 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     duration: "duration2",
     commitment: "commitment2",
     experience: "experience2",
-    compensation: "compensation2",
+    compensation: "compensation",
     partner: "partner2",
     skills: "skills2",
     consultancy: "testtest",
@@ -104,11 +104,11 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
     state: "declined",
     applicants: "applicants2",
     assigned: "don5",
-    extraInfo: "msh combutar awi",
+    extraInfo: "extraInfonewnew",
     Consultant: false,
     consultantRandom: false,
     memberWork: "memberWork1222",
-    detaileddescription: "moresdetails",  
+    detaileddescription: "moresdetails",
     __v: 0
   };
   expect(response.data).toEqual(schema);
@@ -129,15 +129,15 @@ test("3.2 : As a partner I should be able to choose a specific consultant", asyn
 test("2.2 : As a partner I should be able to accept to arrange a meeting / cancel project", async () => {
   expect.assertions(2);
   const response = await functions.decproject();
-  expect(response.data.state).toEqual("declined");
+  expect(response.data.msg).toEqual("Project updated successfully");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("1.1 : As a partner I should be able to submit description of project/task", async () => {
   expect.assertions(4);
   const response = await functions.submitdesc();
   expect(response.status).toEqual(200);
-  expect(response.data.Title).toEqual("mmmmmm");
-  expect(response.data.description).toEqual("mmmmmm");
+  expect(response.data.Title).toEqual("mmmm1mm");
+  expect(response.data.description).toEqual("mmmm1mm");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("5.2 : As a contributor I should be able to view the project progress bar ", async () => {
@@ -146,41 +146,23 @@ test("5.2 : As a contributor I should be able to view the project progress bar 
   expect(response.data).toEqual("declined");
   expect(Array.isArray(response.data)).toBe(false);
 });
-//2.4 : As a partner I should be able to choose to have a consultant or not 
+//2.4 : As a partner I should be able to choose to have a consultant or not
 test("2.3 : As a partner I should be able to define project required skills with a set of attributes (Time, skills, etc…..) ", async () => {
   expect.assertions(2);
-  const response = await functions.getstate();
-  expect(response.data.extraInfo).toEqual("extraInfonewnew");
+  const response = await functions.defineatt();
+  expect(response.data.msg).toEqual("Project updated successfully");
   expect(Array.isArray(response.data)).toBe(false);
 });
 
 test("5.1/5.3	As a consulant/partner I should be  able to  propose edits for the freelancer's work ", async () => {
   expect.assertions(2);
   const response = await functions.proposeMemWork();
-  const schema = {
-       Title: null,
-        description: null,
-        candidates: "2",
-        effort: "effort2",
-        duration: "duration2",
-        commitment: "commitment2",
-        experience: "experience2",
-        compensation: "compensation2",
-        partner: "partner2",
-        skills: "skills2",
-        consultancy: "testtest",
-        category: "combutar",
-        state: "state2",
-        applicants: "applicants2",
-        assigned: "don5",
-        extraInfo: "msh combutar awi",
-        Consultant: false,
-        consultantRandom: false,
-        memberWork: "memberWork1222",
-        consultancyAcceptance: false,
-        _id: "5c7aa93aa8f0f42afbe8fa3b",
-        __v: 0
-  };
-  expect(response.data).toEqual(schema);
+  expect(response.data.msg).toEqual("Project updated successfully");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("4.4 : As an accepted candidate I should be able to get a notification and an orientation for the task", async () => {
+  expect.assertions(2);
+  const response = await functions.getOrientationOfTasks();
+  expect(response.data).toEqual("orientation");
   expect(Array.isArray(response.data)).toBe(false);
 });
