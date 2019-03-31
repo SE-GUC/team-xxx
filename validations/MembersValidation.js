@@ -40,7 +40,6 @@ module.exports = {
         .min(3)
         .max(15),
       name: Joi.string()
-        .required()
         .min(2)
         .max(20),
       age: Joi.number(),

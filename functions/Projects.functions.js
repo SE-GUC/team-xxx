@@ -53,7 +53,7 @@ const functions = {
       consultancyAcceptance: false
     };
     const assigned = axios.put(
-      "http://localhost:5000/api/projects/getresponse/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/projects/5c7aa93aa8f0f42afbe8fa3b",
       updateSchema
     );
     return assigned;
@@ -80,7 +80,7 @@ const functions = {
   },
   submitdesc: async () => {
     const updateSchema = {
-      Title: "mmmm1mm",
+      Title: "testingg",
       description: "mmmm1mm"
     };
     const descfirst = axios.post(
@@ -127,7 +127,9 @@ const functions = {
   },
   getOrientationOfTasks: async () => {
     const OrientationOfTasks = await axios
-      .get("http://localhost:5000/api/Projects/5c9b3cce012cbe2332a45482/OrientaionForTheTask")
+      .get(
+        "http://localhost:5000/api/Projects/5c9b3cce012cbe2332a45482/OrientaionForTheTask"
+      )
       .catch(err => "error");
     return OrientationOfTasks;
   },

@@ -179,21 +179,7 @@ router.put("/updateCatAndInfo/:id", async function(req, res, next) {
     console.log(error);
   }
 });
-router.put("/getresponse/:id", function(req, res, next) {
-  try {
-    const updateSchema = {
-      Title: Project.findById(req.params.id).Title,
-      description: Project.findById(req.params.id).description,
-      consultancyAcceptance: req.body.consultancyAcceptance
-    };
-    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
-      if (err) return next(err);
-      res.json(post);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
+
 router.put("/chooseConsultant/:id", async function(req, res, next) {
   try {
     const project = await Project.findById(req.params.id);
