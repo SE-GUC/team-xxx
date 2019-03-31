@@ -166,3 +166,15 @@ test("4.4 : As an accepted candidate I should be able to get a notification and 
   expect(response.data).toEqual("orientation");
   expect(Array.isArray(response.data)).toBe(false);
 });
+test("2.5 : As a partner I should be able to provide detailed description in case of no consulatancy", async () => {
+  expect.assertions(2);
+  const response = await functions.detaileddescriptions();
+  expect(response.data.detaileddescription).toEqual("moresdetails");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("3.1 : As a choosen consultant I should be able to accept the project by submitting a detailed plan or reject", async () => {
+  expect.assertions(2);
+  const response = await functions.detailedplan();
+  expect(response.data.detaileddescription).toEqual("moresdetails");
+  expect(Array.isArray(response.data)).toBe(false);
+});

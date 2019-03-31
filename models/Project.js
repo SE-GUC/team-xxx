@@ -69,6 +69,12 @@ const ProjectSchema = new Schema({
   },
   OrientaionForTheTask: {
     type: String
+  },
+  detaileddescription: {
+    type: String
+  },
+  detailedplan: {
+    type: String
   }
 });
 

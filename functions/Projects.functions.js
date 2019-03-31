@@ -130,6 +130,26 @@ const functions = {
       .get("http://localhost:5000/api/Projects/5c9b3cce012cbe2332a45482/OrientaionForTheTask")
       .catch(err => "error");
     return OrientationOfTasks;
+  },
+  detaileddescriptions: async () => {
+    const updateSchema = {
+      detaileddescription: "moresdetails"
+    };
+    const providedesc = axios.put(
+      "http://localhost:5000/api/Projects/descc/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return providedesc;
+  },
+  detailedplan: async () => {
+    const updateSchema = {
+      detailedplan: "moresdetails"
+    };
+    const providedesc = axios.put(
+      "http://localhost:5000/api/Projects/plandet/5c7aa93aa8f0f42afbe8fa3b",
+      updateSchema
+    );
+    return providedesc;
   }
 };
 

@@ -232,5 +232,67 @@ router.put("/declineproject/:id", function(req, res, next) {
     console.log(error);
   }
 });
-
+//provide detailed description
+router.put("/descc/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detaileddescription: req.body.detaileddescription
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+//provide detailed Plan
+router.put("/plandet/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detailedplan: req.body.detailedplan
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}); //provide detailed description
+router.put("/descc/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detaileddescription: req.body.detaileddescription
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+//provide detailed Plan
+router.put("/plandet/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detailedplan: req.body.detailedplan
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
