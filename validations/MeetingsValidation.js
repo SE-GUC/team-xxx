@@ -10,7 +10,7 @@ module.exports = {
         .email()
         .required(),
       Location: Joi.string().required(),
-      Time: Joi.date().required(),
+      time: Joi.date().required(),
       StatusMemberOne: Joi.boolean(),
       StatusMemberTwo: Joi.boolean()
     };
@@ -20,11 +20,11 @@ module.exports = {
   updateValidation: request => {
     const updateSchema = {
       MemberemailOne: Joi.string()
-        .email()
-        .required(),
+        .email(),
+        
       MemberemailTwo: Joi.string()
-        .email()
-        .required(),
+        .email(),
+        
       Location: Joi.string(),
       Time: Joi.date(),
       StatusMemberOne: Joi.boolean(),

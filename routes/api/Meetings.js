@@ -12,7 +12,6 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
@@ -111,7 +110,8 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const meeting = await Meeting.findById(req.params.id);
-    if (!meeting) return res.status(404).send({ error: "Meeting does not exist" });
+    if (!meeting)
+      return res.status(404).send({ error: "Meeting does not exist" });
     const isValidated = validator.updateValidation(req.body);
     if (isValidated.error)
       return res

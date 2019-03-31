@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
         .status(400)
         .send({ error: isValidated.error.details[0].message });
     const newSlot = await Slot.create(req.body);
-    res.json({ msg: "Admin was created successfully", data: newSlot });
+    res.json({ msg: "Slot was created successfully", data: newSlot });
   } catch (error) {
     console.log(error);
   }

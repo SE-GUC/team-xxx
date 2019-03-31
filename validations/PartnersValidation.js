@@ -29,13 +29,10 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-      Email: Joi.string()
-        .email(),
-        
+      Email: Joi.string().email(),
       Password: Joi.string()
         .min(3)
         .max(15),
-        
       business: Joi.string(),
       partners: Joi.string(),
       boardmembers: Joi.string(),

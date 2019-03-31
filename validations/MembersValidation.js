@@ -35,13 +35,10 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-      Email: Joi.string()
-        .email(),
-        
+      Email: Joi.string().email(),
       Password: Joi.string()
         .min(3)
         .max(15),
-        
       name: Joi.string()
         .required()
         .min(2)

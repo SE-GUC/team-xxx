@@ -197,7 +197,8 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const partner = await Partner.findById(req.params.id);
-    if (!partner) return res.status(404).send({ error: "Partner does not exist" });
+    if (!partner)
+      return res.status(404).send({ error: "Partner does not exist" });
     const isValidated = validator.updateValidation(req.body);
     if (isValidated.error)
       return res

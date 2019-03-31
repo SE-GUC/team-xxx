@@ -208,7 +208,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const member = await Member.findById(req.params.id);
-    if (!member) return res.status(404).send({ error: "Member does not exist" });
+    if (!member)
+      return res.status(404).send({ error: "Member does not exist" });
     const isValidated = validator.updateValidation(req.body);
     if (isValidated.error)
       return res

@@ -18,9 +18,7 @@ module.exports = {
   },
   updateValidation: request => {
     const updateSchema = {
-      lifecoachEmail: Joi.string()
-        .email(),
-        
+      lifecoachEmail: Joi.string().email(),
       number: Joi.date(),
       Date: Joi.date(),
       startTime: Joi.date(),
