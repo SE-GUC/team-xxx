@@ -18,11 +18,18 @@ router.get("/", (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", function(req, res, next) {
-  Project.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post("/", async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newProject = await Project.create(req.body);
+    res.json({ msg: "Project was created successfully", data: newProject });
+  } catch (error) {
+    console.log(error);
+  }
 });
 // @route   DELETE api/Projects/:id
 // @desc    Delete A Project
