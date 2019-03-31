@@ -1,6 +1,6 @@
 # team-xxx
 
-Deployment link : https://team-xxx.herokuapp.com
+Domain : https://team-xxx.herokuapp.com
 
 ```bash
 # Install dependencies for server
