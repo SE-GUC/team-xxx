@@ -104,7 +104,7 @@ test("7.7 : As a life coach I should be able to post my weekly schedule", async 
     Date: "2000-02-01T22:00:00.000Z",
     Location: "don5",
     __v: 0,
-    _id: "5c9e0c05c1d001514d73dc6a",
+    _id: "5c9b76b1524f373916a3a2da",
     applicant: "don5",
     endTime: "2000-02-01T22:00:00.000Z",
     lifecoachEmail: "don5@email.com",
@@ -118,12 +118,16 @@ test("7.7 : As a life coach I should be able to post my weekly schedule", async 
 test("6.3 : As a user I should be notified by location and time to sign contract", async () => {
   expect.assertions(2);
   const response = await functions.getdate();
-  expect(response.data).toEqual("2000-02-01T22:00:00.000Z");
+  const schema = "2000-02-01T22:00:00.000Z";
+
+  expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("6.3 : As a user I should be notified by location and time to sign contract", async () => {
   expect.assertions(2);
   const response = await functions.getlocation();
-  expect(response.data).toEqual("don5");
+  const schema = "don5";
+
+  expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });

@@ -25,8 +25,8 @@ module.exports = {
       MemberemailTwo: Joi.string()
         .email()
         .required(),
-      Location: Joi.string().required(),
-      Time: Joi.date().required(),
+      Location: Joi.string(),
+      Time: Joi.date(),
       StatusMemberOne: Joi.boolean(),
       StatusMemberTwo: Joi.boolean()
     };

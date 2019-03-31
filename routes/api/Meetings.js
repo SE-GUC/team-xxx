@@ -10,11 +10,19 @@ router.get("/", (req, res) => {
     .then(Meetings => res.json(Meetings));
 });
 
-router.post("/", function(req, res, next) {
-  Meeting.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post("/", async (req, res) => {
+  try {
+    
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newMeeting = await Meeting.create(req.body);
+    res.json({ msg: "Meeting was created successfully", data: newMeeting });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/memberEmial-1/:id", function(req, res) {
@@ -100,10 +108,21 @@ router.delete("/:id", (req, res) => {
     .then(Meeting => Meeting.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
-router.put("/:id", function(req, res, next) {
-  Meeting.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const meeting = await Meeting.findById(req.params.id);
+    if (!meeting) return res.status(404).send({ error: "Meeting does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Meeting.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Meeting updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 module.exports = router;

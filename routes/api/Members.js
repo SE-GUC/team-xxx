@@ -188,17 +188,38 @@ router.get("/masterclasses/:id", (req, res) => {
 // @route   POST api/Members
 // @desc    Create An Member
 // @access  Public
-router.post("/", function(req, res, next) {
-  Member.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post("/", async (req, res) => {
+  try {
+    Member.findOne({ Email }).then(user => {
+      if (user) return res.status(400).json({ msg: "User already exists" });
+    });
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newMember = await Member.create(req.body);
+    res.json({ msg: "Member was created successfully", data: newMember });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-router.put("/:id", function(req, res, next) {
-  Member.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const member = await Member.findById(req.params.id);
+    if (!member) return res.status(404).send({ error: "Member does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Member.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Member updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 module.exports = router;

@@ -168,11 +168,21 @@ router.get("/Contracts/:id", function(req, res) {
 // @route   POST api/Partners
 // @desc    Create An Partner
 // @access  Public
-router.post("/", function(req, res, next) {
-  Partner.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post("/", async (req, res) => {
+  try {
+    Partner.findOne({ Email }).then(user => {
+      if (user) return res.status(400).json({ msg: "User already exists" });
+    });
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newPartner = await Partner.create(req.body);
+    res.json({ msg: "Partner was created successfully", data: newPartner });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // @route   DELETE api/Partners/:id
@@ -184,10 +194,21 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-router.put("/:id", function(req, res, next) {
-  Partner.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    if (err) return next(err);
-    res.json({ msg: "Admin updated successfully" });
-  });
+router.put("/:id", async (req, res) => {
+  try {
+    const partner = await Partner.findById(req.params.id);
+    if (!partner) return res.status(404).send({ error: "Partner does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    Partner.findByIdAndUpdate(req.params.id, req.body, function(err) {
+      if (err) return next(err);
+      res.json({ msg: "Partner updated successfully" });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 module.exports = router;

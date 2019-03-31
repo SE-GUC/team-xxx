@@ -11,7 +11,7 @@ module.exports = {
         .max(15)
         .required(),
       business: Joi.string().required(),
-      partners: Joi.string().required(),
+      partners: Joi.array().required(),
       boardmembers: Joi.string().required(),
       events: Joi.string().required(),
       reports: Joi.string().required(),
@@ -30,17 +30,16 @@ module.exports = {
   updateValidation: request => {
     const updateSchema = {
       Email: Joi.string()
-      .email()
-      .required(),
+      .email(),
     Password: Joi.string()
       .min(3)
-      .max(15)
-      .required(),
-    business: Joi.string().required(),
-    partners: Joi.string().required(),
-    boardmembers: Joi.string().required(),
-    events: Joi.string().required(),
-    reports: Joi.string().required(),
+      .max(15),
+      
+    business: Joi.string(),
+    partners: Joi.string(),
+    boardmembers: Joi.string(),
+    events: Joi.string(),
+    reports: Joi.string(),
     Lifecoach: Joi.boolean(),
     membership: Joi.date(),
     Contracts: Joi.string(),

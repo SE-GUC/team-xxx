@@ -28,9 +28,9 @@ test("6.5 : As a user I should be able to to show my profile", async () => {
     masterclasses: "photograph",
     Email: "claudia@gmail.com",
     Password: "masra7masr123",
-    __v: 0,
-    Weekly_Schedule: "jjjjz"
+    __v: 0
   };
+
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
