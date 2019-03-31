@@ -56,7 +56,6 @@ test("6.9 : As a partner I should be able to view past projects/suggest feedback
   expect.assertions(2);
   const response = await functions.getfeedback();
   const schema = "yes";
-
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });

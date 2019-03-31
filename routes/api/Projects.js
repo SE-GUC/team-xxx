@@ -18,11 +18,18 @@ router.get("/", (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", function(req, res, next) {
-  Project.create(req.body, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post("/", async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const newProject = await Project.create(req.body);
+    res.json({ msg: "Project was created successfully", data: newProject });
+  } catch (error) {
+    console.log(error);
+  }
 });
 // @route   DELETE api/Projects/:id
 // @desc    Delete A Project
@@ -172,21 +179,7 @@ router.put("/updateCatAndInfo/:id", async function(req, res, next) {
     console.log(error);
   }
 });
-router.put("/getresponse/:id", function(req, res, next) {
-  try {
-    const updateSchema = {
-      Title: Project.findById(req.params.id).Title,
-      description: Project.findById(req.params.id).description,
-      consultancyAcceptance: req.body.consultancyAcceptance
-    };
-    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
-      if (err) return next(err);
-      res.json(post);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
+
 router.put("/chooseConsultant/:id", async function(req, res, next) {
   try {
     const project = await Project.findById(req.params.id);
@@ -225,5 +218,67 @@ router.put("/declineproject/:id", function(req, res, next) {
     console.log(error);
   }
 });
-
+//provide detailed description
+router.put("/descc/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detaileddescription: req.body.detaileddescription
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+//provide detailed Plan
+router.put("/plandet/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detailedplan: req.body.detailedplan
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}); //provide detailed description
+router.put("/descc/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detaileddescription: req.body.detaileddescription
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+//provide detailed Plan
+router.put("/plandet/:id", function(req, res, next) {
+  try {
+    const updateSchema = {
+      Title: Project.findById(req.params.id).Title,
+      description: Project.findById(req.params.id).description,
+      detailedplan: req.body.detailedplan
+    };
+    Project.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

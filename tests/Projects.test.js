@@ -87,29 +87,30 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
   expect.assertions(2);
   const response = await functions.updateCategoryAndInfo();
   const schema = {
-    consultancyAcceptance: false,
-    _id: "5c7aa93aa8f0f42afbe8fa3b",
+    Consultant: false,
     Title: null,
-    description: null,
-    candidates: "2",
-    effort: "effort2",
-    duration: "duration2",
-    commitment: "commitment2",
-    experience: "experience2",
-    compensation: "compensation",
-    partner: "partner2",
-    skills: "skills2",
-    consultancy: "testtest",
-    category: "combutar",
-    state: "declined",
+    __v: 0,
+    _id: "5c7aa93aa8f0f42afbe8fa3b",
     applicants: "applicants2",
     assigned: "don5",
-    extraInfo: "extraInfonewnew",
-    Consultant: false,
+    candidates: "2",
+    category: "combutar",
+    commitment: "commitment2",
+    compensation: "compensation",
+    consultancy: "testtest",
+    consultancyAcceptance: false,
     consultantRandom: false,
-    memberWork: "memberWork1222",
+    description: null,
     detaileddescription: "moresdetails",
-    __v: 0
+    detailedplan: "moresdetails",
+    duration: "duration2",
+    effort: "effort2",
+    experience: "experience2",
+    extraInfo: "extraInfonewnew",
+    memberWork: "memberWork1222",
+    partner: "partner2",
+    skills: "skills2",
+    state: "declined"
   };
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
@@ -117,7 +118,7 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
 test("3.3 : As a partner I should be  able to accept schdeule negotitation meeting /decline consultant's plan ", async () => {
   expect.assertions(2);
   const response = await functions.getresponse();
-  expect(response.data.consultancyAcceptance).toEqual(false);
+  expect(response.data.msg).toEqual("Project updated successfully");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("3.2 : As a partner I should be able to choose a specific consultant", async () => {
@@ -164,5 +165,17 @@ test("4.4 : As an accepted candidate I should be able to get a notification and 
   expect.assertions(2);
   const response = await functions.getOrientationOfTasks();
   expect(response.data).toEqual("orientation");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("2.5 : As a partner I should be able to provide detailed description in case of no consulatancy", async () => {
+  expect.assertions(2);
+  const response = await functions.detaileddescriptions();
+  expect(response.data.detaileddescription).toEqual("moresdetails");
+  expect(Array.isArray(response.data)).toBe(false);
+});
+test("3.1 : As a choosen consultant I should be able to accept the project by submitting a detailed plan or reject", async () => {
+  expect.assertions(2);
+  const response = await functions.detailedplan();
+  expect(response.data.detaileddescription).toEqual("moresdetails");
   expect(Array.isArray(response.data)).toBe(false);
 });
