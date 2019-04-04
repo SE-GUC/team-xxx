@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const Joi = require("joi");
 const validator = require("../../validations/ProjectValidation");
 
 // Project Model
@@ -281,4 +281,59 @@ router.put("/plandet/:id", function(req, res, next) {
     console.log(error);
   }
 });
+
+router.post("/candidates/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      candidates: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.candidates
+    Project.findByIdAndUpdate(req.params.id, { $push: {candidates: bus } }).exec()
+    return res.json({msg: "candidates added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add candidates` })    
+  }
+});
+
+router.post("/skills/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      skills: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.skills
+    Project.findByIdAndUpdate(req.params.id, { $push: {skills: bus } }).exec()
+    return res.json({msg: "skills added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add skills` })    
+  }
+});
+
+router.post("/applicants/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      applicants: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.applicants
+    Project.findByIdAndUpdate(req.params.id, { $push: {applicants: bus } }).exec()
+    return res.json({msg: "applicants added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add applicants` })    
+  }
+});
+
 module.exports = router;

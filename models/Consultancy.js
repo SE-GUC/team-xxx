@@ -13,23 +13,23 @@ const ConsultancySchema = new Schema({
     required: true
   },
   business: {
-    type: String,
+    type: [String],
     required: true
   },
   partners: {
-    type: String,
+    type: [String],
     required: true
   },
   boardmembers: {
-    type: String,
+    type: [String],
     required: true
   },
   events: {
-    type: String,
+    type: [String],
     required: true
   },
   reports: {
-    type: String,
+    type: [String],
     required: true
   },
   Lifecoach: {
@@ -39,22 +39,22 @@ const ConsultancySchema = new Schema({
     type: Date
   },
   Contracts: {
-    type: String
+    type: [String]
   },
   Notifications: {
-    type: String
+    type: [String]
   },
   projects: {
-    type: String
+    type: [String]
   },
   Reviews: {
-    type: String
+    type: [String]
   },
   ReviewOwner: {
     type: String
   },
   Submission: {
-    type: String
+    type: [String]
   }
 });
 module.exports = Consultancy = mongoose.model("Consultancy", ConsultancySchema);
