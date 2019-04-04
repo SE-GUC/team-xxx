@@ -15,20 +15,20 @@ module.exports = {
         .min(2)
         .max(20),
       age: Joi.number().required(),
-      skills: Joi.string().required(),
-      interests: Joi.string().required(),
-      events: Joi.string().required(),
-      tasks: Joi.string().required(),
-      reviews: Joi.string().required(),
-      masterclasses: Joi.string().required(),
+      skills: Joi.array().required(),
+      interests: Joi.array().required(),
+      events: Joi.array().required(),
+      tasks: Joi.array().required(),
+      reviews: Joi.array().required(),
+      masterclasses: Joi.array().required(),
       Lifecoach: Joi.boolean(),
       membership: Joi.date(),
-      Contracts: Joi.string(),
-      Notifications: Joi.string(),
-      oldProjects: Joi.string(),
-      projects: Joi.string(),
+      Contracts: Joi.array(),
+      Notifications: Joi.array(),
+      oldProjects: Joi.array(),
+      projects: Joi.array(),
       ReviewOwner: Joi.string(),
-      RecommendedTasks: Joi.string()
+      RecommendedTasks: Joi.array()
     };
     return Joi.validate(request, createSchema);
   },
@@ -43,20 +43,20 @@ module.exports = {
         .min(2)
         .max(20),
       age: Joi.number(),
-      skills: Joi.string(),
-      interests: Joi.string(),
-      events: Joi.string(),
-      tasks: Joi.string(),
-      reviews: Joi.string(),
-      masterclasses: Joi.string(),
+      skills: Joi.array(),
+      interests: Joi.array(),
+      events: Joi.array(),
+      tasks: Joi.array(),
+      reviews: Joi.array(),
+      masterclasses: Joi.array(),
       Lifecoach: Joi.boolean(),
       membership: Joi.date(),
-      Contracts: Joi.string(),
-      Notifications: Joi.string(),
-      oldProjects: Joi.string(),
-      projects: Joi.string(),
+      Contracts: Joi.array(),
+      Notifications: Joi.array(),
+      oldProjects: Joi.array(),
+      projects: Joi.array(),
       ReviewOwner: Joi.string(),
-      RecommendedTasks: Joi.string()
+      RecommendedTasks: Joi.array()
     };
     return Joi.validate(request, updateSchema);
   }

@@ -13,7 +13,7 @@ const ProjectSchema = new Schema({
     required: true
   },
   candidates: {
-    type: String
+    type: [String]
   },
   effort: {
     type: String
@@ -47,7 +47,7 @@ const ProjectSchema = new Schema({
     default: false
   },
   skills: {
-    type: String
+    type: [String]
   },
   category: {
     type: String
@@ -56,7 +56,7 @@ const ProjectSchema = new Schema({
     type: String
   },
   applicants: {
-    type: String
+    type: [String]
   },
   assigned: {
     type: String
