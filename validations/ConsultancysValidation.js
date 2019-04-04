@@ -10,19 +10,19 @@ module.exports = {
         .min(3)
         .max(15)
         .required(),
-      business: Joi.string().required(),
-      partners: Joi.string().required(),
-      boardmembers: Joi.string().required(),
-      events: Joi.string().required(),
-      reports: Joi.string().required(),
+      business: Joi.array().required(),
+      partners: Joi.array().required(),
+      boardmembers: Joi.array().required(),
+      events: Joi.array().required(),
+      reports: Joi.array().required(),
       Lifecoach: Joi.boolean(),
       membership: Joi.date(),
-      Contracts: Joi.string(),
-      Notifications: Joi.string(),
-      projects: Joi.string(),
-      Reviews: Joi.string(),
+      Contracts: Joi.array(),
+      Notifications: Joi.array(),
+      projects: Joi.array(),
+      Reviews: Joi.array(),
       ReviewOwner: Joi.string(),
-      Submission: Joi.string()
+      Submission: Joi.array()
     };
     return Joi.validate(request, createSchema);
   },
@@ -33,19 +33,19 @@ module.exports = {
       Password: Joi.string()
         .min(3)
         .max(15),
-      business: Joi.string(),
-      partners: Joi.string(),
-      boardmembers: Joi.string(),
-      events: Joi.string(),
-      reports: Joi.string(),
+      business: Joi.array(),
+      partners: Joi.array(),
+      boardmembers: Joi.array(),
+      events: Joi.array(),
+      reports: Joi.array(),
       Lifecoach: Joi.boolean(),
       membership: Joi.date(),
-      Contracts: Joi.string(),
-      Notifications: Joi.string(),
-      projects: Joi.string(),
-      Reviews: Joi.string(),
+      Contracts: Joi.array(),
+      Notifications: Joi.array(),
+      projects: Joi.array(),
+      Reviews: Joi.array(),
       ReviewOwner: Joi.string(),
-      Submission: Joi.string()
+      Submission: Joi.array()
     };
     return Joi.validate(request, updateSchema);
   }

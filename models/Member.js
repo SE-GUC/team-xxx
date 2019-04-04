@@ -21,27 +21,27 @@ const MemberSchema = new Schema({
     required: true
   },
   skills: {
-    type: String,
+    type: [String],
     required: true
   },
   interests: {
-    type: String,
+    type: [String],
     required: true
   },
   events: {
-    type: String,
+    type: [String],
     required: true
   },
   tasks: {
-    type: String,
+    type: [String],
     required: true
   },
   reviews: {
-    type: String,
+    type: [String],
     required: true
   },
   masterclasses: {
-    type: String,
+    type: [String],
     required: true
   },
   Lifecoach: {
@@ -51,22 +51,22 @@ const MemberSchema = new Schema({
     type: Date
   },
   Contracts: {
-    type: String
+    type: [String]
   },
   Notifications: {
-    type: String
+    type: [String]
   },
   oldProjects: {
-    type: String
+    type: [String]
   },
   projects: {
-    type: String
+    type: [String]
   },
   ReviewOwner: {
     type: String
   },
   RecommendedTasks: {
-    type: String
+    type: [String]
   }
 });
 module.exports = Member = mongoose.model("Member", MemberSchema);

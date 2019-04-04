@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const Joi = require("joi");
 const validator = require("../../validations/ConsultancysValidation");
 
 // Consultancy Model
@@ -194,5 +194,190 @@ router.put("/:id", async (req, res) => {
     console.log(error);
   }
 });
+
+router.post("/business/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      business: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.business
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { business: bus } }).exec()
+    return res.json({msg: "business added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add business` })    
+  }
+})
+
+router.post("/partners/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      partners: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.partners
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: {partners: bus } }).exec()
+    return res.json({msg: "partner added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add partner` })    
+  }
+})
+router.post("/boardmembers/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      boardmembers: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.boardmembers
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { boardmembers: bus } }).exec()
+    return res.json({msg: "boardmembers added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add boardmembers` })    
+  }
+})
+
+router.post("/events/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      events: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.events
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { events: bus } }).exec()
+    return res.json({msg: "events added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add events` })    
+  }
+})
+
+router.post("/reports/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      reports: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.reports
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { reports: bus } }).exec()
+    return res.json({msg: "reports added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add reports` })    
+  }
+})
+
+router.post("/Contracts/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      Contracts: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.Contracts
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { Contracts: bus } }).exec()
+    return res.json({msg: "Contracts added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add Contracts` })    
+  }
+})
+
+router.post("/Notifications/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      Notifications: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.Notifications
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { Notifications: bus } }).exec()
+    return res.json({msg: "Notifications added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add Notifications` })    
+  }
+})
+
+router.post("/projects/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      projects: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.projects
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { projects: bus } }).exec()
+    return res.json({msg: "projects added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add projects` })    
+  }
+})
+
+router.post("/Reviews/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      Reviews: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.Reviews
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { Reviews: bus } }).exec()
+    return res.json({msg: "Reviews added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add Reviews` })    
+  }
+})
+
+router.post("/Submission/:id",async (req, res) => {
+  try {
+    const status = Joi.validate(req.body, {
+     
+      Submission: Joi.string().required()
+    })
+    if (status.error) {
+      return res.json({ error: status.error.details[0].message })
+    }
+      const bus= req.body.Submission
+    Consultancy.findByIdAndUpdate(req.params.id, { $push: { Submission: bus } }).exec()
+    return res.json({msg: "Submission added" })
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: `Error,cant add Submission` })    
+  }
+})
+
+
+
+
+
+
 
 module.exports = router;
