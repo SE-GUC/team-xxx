@@ -17,15 +17,15 @@ const PartnerSchema = new Schema({
     required: true
   },
   partners: {
-    type: String,
+    type: [String],
     required: true
   },
   boardmembers: {
-    type: String,
+    type: [String],
     required: true
   },
   events: {
-    type: String,
+    type: [String],
     required: true
   },
   field: {
@@ -33,7 +33,7 @@ const PartnerSchema = new Schema({
     required: true
   },
   projects: {
-    type: String,
+    type: [String],
     required: true
   },
   feedback: {
@@ -47,13 +47,13 @@ const PartnerSchema = new Schema({
     type: Date
   },
   Contracts: {
-    type: String
+    type: [String]
   },
   Notifications: {
-    type: String
+    type: [String]
   },
   Reviews: {
-    type: String
+    type: [String]
   },
   ReviewOwner: {
     type: String
