@@ -1,11 +1,19 @@
-import React, { Component } from "react";
-import { Card, Container, Row, Col, Button } from "reactstrap";
-import PropTypes from "prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { CardTitle, CardText } from "reactstrap";
-import { connect } from "react-redux";
 import { getProjects } from "../actions/ProjectActions";
-import { Badge } from "reactstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import {
+  Card,
+  Container,
+  Row,
+  Col,
+  Button,
+  Badge,
+  CardTitle,
+  CardText
+} from "reactstrap";
+
 class Projects extends Component {
   static propTypes = {
     getProjects: PropTypes.func.isRequired,

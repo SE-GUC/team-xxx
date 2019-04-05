@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import AppNavbar from "./components/AppNavbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
-import Projects from "./components/Projects";
-import Lifecoach from "./components/Lifecoach";
 import Notifications from "./components/Notifications";
-import home from "./components/home";
+import AppNavbar from "./components/AppNavbar";
+import Lifecoach from "./components/Lifecoach";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Projects from "./components/Projects";
+import React, { Component } from "react";
 import About from "./components/About";
+import home from "./components/home";
+import "./App.css";
 
 import { Provider } from "react-redux";
 import store from "./store";
