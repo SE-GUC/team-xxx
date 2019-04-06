@@ -7,7 +7,9 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  Progress
+  Progress,
+  Row,
+  Col
 } from "reactstrap";
 import { Container } from "react-bootstrap";
 
@@ -15,6 +17,13 @@ const Example = props => {
   return (
     <Container>
       <div>
+        <Row>
+          <Col sm={{ size: 6, order: 2, offset: 10 }}>
+            {" "}
+            <Button color="primary">Edit Project</Button>{" "}
+          </Col>
+        </Row>
+        <br />
         <Card>
           <CardHeader tag="h3">Featured</CardHeader>
           <CardBody>
@@ -24,23 +33,26 @@ const Example = props => {
               content.
             </CardText>
             <CardText>
-              <div className="text-center">Various (40) of 55</div>
+              <div className="text-center">Project State</div>
+              <br />
               <Progress multi>
-                <Progress bar value="5" max={55}>
-                  5
+                <Progress bar value="20" max={55}>
+                  Pending
                 </Progress>
-                <Progress bar color="success" value="15" max={55}>
-                  15
+                <Progress bar color="success" value="20" max={55}>
+                  Posted
                 </Progress>
-                <Progress bar color="warning" value="10" max={55}>
-                  10
+                <Progress bar color="warning" value="20" max={55}>
+                  Under Review
                 </Progress>
-                <Progress bar color="danger" value="10" max={55}>
-                  10
+                <Progress bar color="danger" value="20" max={55}>
+                  WIP
+                </Progress>
+                <Progress bar color="info" value="20" max={55}>
+                  Finished
                 </Progress>
               </Progress>
             </CardText>
-            <Button>Go somewhere</Button>
           </CardBody>
           <CardFooter className="text-muted">Footer</CardFooter>
         </Card>
