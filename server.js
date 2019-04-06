@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose").set('debug', true);
 const bodyParser = require("body-parser");
@@ -17,11 +18,11 @@ const Admins = require("./routes/api/Admins");
 app.use(bodyParser.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+//const db = require("./config/keys").mongoURI;
 
 // Connect to Mongo
 mongoose
-  .connect(db, { useNewUrlParser: true }) // Adding new mongo url parser
+  .connect(process.env.mongoURI, { useNewUrlParser: true }) // Adding new mongo url parser
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 mongoose.set("useCreateIndex", true);
