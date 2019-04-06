@@ -7,6 +7,8 @@ import Projects from "./components/Projects";
 import React, { Component } from "react";
 import About from "./components/About";
 import home from "./components/home";
+import AddProject from "./components/AddProject";
+import Project from "./components/Project";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -23,6 +25,8 @@ class App extends Component {
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
             <Route path="/Notifications" component={Notifications} />
+            <Route path="/AddProject" component={AddProject} />
+            <Route path="/Project" component={Project} />
           </div>
         </Provider>
       </Router>
