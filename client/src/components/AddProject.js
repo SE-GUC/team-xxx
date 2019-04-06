@@ -1,120 +1,93 @@
-import React from "react";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from "reactstrap";
+import { Col, Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { addProject } from "../actions/ProjectActions";
 import { Container } from "react-bootstrap";
+import { connect } from "react-redux";
+import React from "react";
 
-export default class Example extends React.Component {
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+  onDismiss() {
+    this.setState({ visible: false });
+  }
+  onshow() {
+    this.setState({ visible: true });
+  }
+  state = {
+    visible: false,
+    Title: "",
+    description: "",
+    effort: ""
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    const newProject = {
+      Title: this.state.Title,
+      description: this.state.description,
+      effort: this.state.effort
+    };
+    // Add Project via addProject action
+    this.props.addProject(newProject);
+    this.onshow();
+  };
   render() {
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
+          <Alert
+            color="info"
+            isOpen={this.state.visible}
+            toggle={this.onDismiss}
+          >
+            Your project is created successfully
+          </Alert>
           <FormGroup row>
-            <Label for="exampleEmail" sm={2}>
-              Email
+            <Label for="Title" sm={2}>
+              Project Title
             </Label>
             <Col sm={10}>
               <Input
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="with a placeholder"
+                type="text"
+                name="Title"
+                id="Title"
+                placeholder="Enter The Project Title"
+                onChange={this.onChange}
               />
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="examplePassword" sm={2}>
-              Password
+            <Label for="description" sm={2}>
+              Project Description
             </Label>
             <Col sm={10}>
               <Input
-                type="password"
-                name="password"
-                id="examplePassword"
-                placeholder="password placeholder"
+                type="text"
+                name="description"
+                id="description"
+                placeholder="Enter The Project Description"
+                onChange={this.onChange}
               />
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="exampleSelect" sm={2}>
-              Select
-            </Label>
-            <Col sm={10}>
-              <Input type="select" name="select" id="exampleSelect" />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="exampleSelectMulti" sm={2}>
-              Select Multiple
+            <Label for="effort" sm={2}>
+              Estimated Effort
             </Label>
             <Col sm={10}>
               <Input
-                type="select"
-                name="selectMulti"
-                id="exampleSelectMulti"
-                multiple
+                type="text"
+                name="effort"
+                id="effort"
+                placeholder="Enter The Project Estimated Effort"
+                onChange={this.onChange}
               />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="exampleText" sm={2}>
-              Text Area
-            </Label>
-            <Col sm={10}>
-              <Input type="textarea" name="text" id="exampleText" />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="exampleFile" sm={2}>
-              File
-            </Label>
-            <Col sm={10}>
-              <Input type="file" name="file" id="exampleFile" />
-              <FormText color="muted">
-                This is some placeholder block-level help text for the above
-                input. It's a bit lighter and easily wraps to a new line.
-              </FormText>
-            </Col>
-          </FormGroup>
-          <FormGroup tag="fieldset" row>
-            <legend className="col-form-label col-sm-2">Radio Buttons</legend>
-            <Col sm={10}>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Option one is this and
-                  that—be sure to include why it's great
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Option two can be
-                  something else and selecting it will deselect option one
-                </Label>
-              </FormGroup>
-              <FormGroup check disabled>
-                <Label check>
-                  <Input type="radio" name="radio2" disabled /> Option three is
-                  disabled
-                </Label>
-              </FormGroup>
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="checkbox2" sm={2}>
-              Checkbox
-            </Label>
-            <Col sm={{ size: 10 }}>
-              <FormGroup check>
-                <Label check>
-                  <Input type="checkbox" id="checkbox2" /> Check me out
-                </Label>
-              </FormGroup>
             </Col>
           </FormGroup>
           <FormGroup check row>
@@ -127,3 +100,10 @@ export default class Example extends React.Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  Project: state.Project
+});
+export default connect(
+  mapStateToProps,
+  { addProject }
+)(Example);
