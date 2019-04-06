@@ -1,6 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProjects } from "../actions/ProjectActions";
-import { getProject } from "../actions/ProjectActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -30,9 +29,6 @@ class Projects extends Component {
   infoproject = () => {
     this.props.history.push("/Project");
   };
-  getProject = id => {
-    this.props.getProject(id);
-  };
   render() {
     const { Projects } = this.props.Project;
     return (
@@ -61,7 +57,6 @@ class Projects extends Component {
                       <CardText>({description})</CardText>
                       <Button color="info" onClick={this.infoproject}>
                         Project Details
-                        {this.getProject.bind(this, _id)}
                       </Button>
                     </Card>
                   </Col>

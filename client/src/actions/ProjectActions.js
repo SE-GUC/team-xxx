@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PROJECTS, PROJECTS_LOADING, GET_PROJECT } from "./types";
+import { GET_PROJECTS, PROJECTS_LOADING } from "./types";
 
 export const getProjects = () => dispatch => {
   dispatch(setProjectsLoading());
@@ -16,15 +16,3 @@ export const setProjectsLoading = () => {
     type: PROJECTS_LOADING
   };
 };
-
-export const getProject = id => (dispatch, getState) => {
-  axios
-    .get(`/api/projects/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_PROJECT,
-        payload: id
-      })
-    )
-};
-
