@@ -41,16 +41,15 @@ test("6.1 : As a user i should be able to show my attended events", async () => 
   expect.assertions(2);
   const response = await functions.getevents();
   const schema =  "flag";
-
-  expect(response.data.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain(schema);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.9 : As a partner I should be able to view past projects/suggest feedback", async () => {
   expect.assertions(2);
   const response = await functions.getprojects();
   const schema = "xxx";
-  expect(response.data.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain(schema);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.9 : As a partner I should be able to view past projects/suggest feedback", async () => {
   expect.assertions(2);
