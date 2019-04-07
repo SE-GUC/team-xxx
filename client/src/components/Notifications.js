@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NotificationsCard from "./NotificationsCard";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 export default class home extends Component {
   constructor() {
     super();
