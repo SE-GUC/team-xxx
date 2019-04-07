@@ -9,13 +9,13 @@ import About from "./components/About";
 import home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
-import AddSlot from "./components/AddSlot";
 import AllSlots from "./components/AllSlots";
-import FreeSlots from "./components/FreeSlots";
+
 import "./App.css";
 
 import { Provider } from "react-redux";
 import store from "./store";
+import FreeSlots from "./components/FreeSlots";
 class App extends Component {
   render() {
     return (
@@ -30,7 +30,6 @@ class App extends Component {
             <Route path="/Notifications" component={Notifications} />
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project" component={Project} />
-            <Route path="/AddSlot" component={AddSlot} />
             <Route path="/AllSlots" component={AllSlots} />
             <Route path="/FreeSlots" component={FreeSlots} />
           </div>

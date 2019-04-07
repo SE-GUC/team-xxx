@@ -43,6 +43,7 @@ class AppNavbar extends Component {
                 <NavItem>
                   <NavLink href="/about">About Us</NavLink>
                 </NavItem>
+                
                 <NavItem>
                   <NavLink href="https://github.com/SE-GUC/team-xxx">
                     Github

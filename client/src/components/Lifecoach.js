@@ -1,28 +1,36 @@
-import React, { Component } from "react";
-import { Container, Col, Button, Row } from "react-bootstrap";
 
-export default class Lifecoach extends Component {
-  NewSlot = () => {
-    this.props.history.push("/AddSlot");
+import React, { Component } from "react";
+import { getSlots } from "../actions/SlotActions";
+import { Container, Col, Image, Button } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+
+ class Lifecoach extends Component {
+
+  static propTypes = {
+    getSlots: PropTypes.func.isRequired,
+    Slot: PropTypes.object.isRequired
   };
 
-  Slots = () => {
+  componentDidMount() {
+    this.props.getSlots();
+  }
+
+  Slots = ()=> {
     this.props.history.push("/AllSlots");
   };
-  FreeSlots = () => {
+  FreeSlots = ()=> {
     this.props.history.push("/FreeSlots");
   };
 
   render() {
     return (
       <div>
+        <Image src="assets/dog-people.jpg" className="header-image" />
         <Container>
-          <Row>
-            <Col sm={{ size: 6, order: 2, offset: 10 }}>
+        <Col sm={{ size: 6, order: 2, offset: 10 }}>
               {" "}
-              <Button color="primary" onClick={this.NewSlot}>
-                Add Slot
-              </Button>{" "}
               <Button color="primary" onClick={this.Slots}>
                 Show Slots
               </Button>{" "}
@@ -30,13 +38,27 @@ export default class Lifecoach extends Component {
             <Col sm={{ size: 6, order: 2, offset: 10 }}>
               {" "}
               <Button color="primary" onClick={this.FreeSlots}>
-                Free Slots
+                 Free Slots
               </Button>{" "}
             </Col>
-          </Row>
-          <br />
+          <Col xs={12} sm={8} smOffset={2}>
+            <Image
+              src="assets/person-1.jpg"
+              className="about-profile-pic"
+              rounded
+            />
+            <h3>Frank The Tank</h3>
+          </Col>
         </Container>
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  Slot: state.Slot
+});
+
+export default connect(
+  mapStateToProps,
+  { getSlots }
+)(Lifecoach);
