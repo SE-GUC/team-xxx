@@ -12,6 +12,9 @@ import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
 import AllSlots from "./components/AllSlots";
 import FreeSlots from "./components/FreeSlots";
+import Consultancys from"./components/Consultancys";
+import Partners from"./components/Partners";
+import Profile from "./components/Profile";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -24,6 +27,7 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route path="/home" component={home} />
+            <Route path="/Profile" component={Profile} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
@@ -33,6 +37,8 @@ class App extends Component {
             <Route path="/AddSlot" component={AddSlot} />
             <Route path="/AllSlots" component={AllSlots} />
             <Route path="/FreeSlots" component={FreeSlots} />
+            <Route path="/Consultancys" component={Consultancys} />
+            <Route path="/Partners" component={Partners} />
           </div>
         </Provider>
       </Router>
