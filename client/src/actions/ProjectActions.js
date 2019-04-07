@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_PROJECTS,DELETE_ITEM, PROJECTS_LOADING, ADD_PROJECT } from "./types";
+import {
+  GET_PROJECTS,
+  DELETE_PROJECT,
+  PROJECTS_LOADING,
+  ADD_PROJECT
+} from "./types";
 
 export const getProjects = () => dispatch => {
   dispatch(setProjectsLoading());
@@ -19,16 +24,12 @@ export const addProject = Project => (dispatch, getState) => {
   );
 };
 export const deleteproject = id => (dispatch, getState) => {
-  axios
-    
-    .delete(`/api/Projects/${id}`)
-    .then(res =>
-      dispatch({
-        type: DELETE_ITEM,
-        payload: id
-      })
-    );
-    
+  axios.delete(`/api/Projects/${id}`).then(res =>
+    dispatch({
+      type: DELETE_PROJECT,
+      payload: id
+    })
+  );
 };
 export const setProjectsLoading = () => {
   return {
