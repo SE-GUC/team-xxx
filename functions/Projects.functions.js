@@ -128,7 +128,7 @@ const functions = {
   getOrientationOfTasks: async () => {
     const OrientationOfTasks = await axios
       .get(
-        "http://localhost:5000/api/Projects/5c9b3cce012cbe2332a45482/OrientaionForTheTask"
+        "http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a/OrientaionForTheTask"
       )
       .catch(err => "error");
     return OrientationOfTasks;

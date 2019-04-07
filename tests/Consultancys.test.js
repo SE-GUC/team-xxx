@@ -37,18 +37,18 @@ test("6.6 : As a user i should see the signed contracnt and the validity of the 
   const response = await functions.getcontract();
   const schema = ["new"];
   expect(response.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.1 : As a user i should be able to show my attended events", async () => {
   expect.assertions(2);
   const response = await functions.getevents();
   const schema = ["ahmed"];
   expect(response.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.4 As a user(Consultant) I should be able to show my notifcations", async () => {
   expect.assertions(2);
   const response = await functions.getConsnotificatons();
   expect(response.data).toEqual(["nnnj"]);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(Array.isArray(response.data)).toBe(true);
 });

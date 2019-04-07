@@ -3,15 +3,15 @@ const functions = require("../functions/Members.functions");
 test("6.12 : As a user I should be able to to show my certficates and masterclasses", async () => {
   expect.assertions(2);
   const response = await functions.getmasterclasses();
-  expect(response.data[1].masterclasses).toEqual("photographee");
+  expect(response.data[1].masterclasses).toContain("photographee");
   expect(Array.isArray(response.data)).toBe(true);
 });
 
 test("6.1 : As a user I should be able to to show my attended events", async () => {
   expect.assertions(2);
   const response = await functions.getevents();
-  expect(response.data).toEqual("beyonds");
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain("beyonds");
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.5 : As a user I should be able to to show my profile", async () => {
   expect.assertions(2);
@@ -50,20 +50,20 @@ test("6.6 : As a user i should see the signed contracnt and the validity of the 
   expect.assertions(2);
   const response = await functions.getcontract();
   const schema = "signed";
-  expect(response.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain(schema);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 test("6.1 : As a user i should be able to show my attended events", async () => {
   expect.assertions(2);
   const response = await functions.getevents();
   const schema = "beyonds";
-  expect(response.data).toEqual(schema);
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain(schema);
+  expect(Array.isArray(response.data)).toBe(true);
 });
 
 test("6.4	As a user I should be able to show my notifcations", async () => {
   expect.assertions(2);
   const response = await functions.getnotificatons();
-  expect(response.data).toEqual("gggg");
-  expect(Array.isArray(response.data)).toBe(false);
+  expect(response.data).toContain("gggg");
+  expect(Array.isArray(response.data)).toBe(true);
 });
