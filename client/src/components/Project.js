@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import React from "react";
 import {
   Card,
@@ -11,7 +12,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { Container } from "react-bootstrap";
 
 const Example = props => {
   return (
