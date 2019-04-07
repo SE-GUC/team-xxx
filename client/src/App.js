@@ -10,6 +10,8 @@ import home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
+import AllSlots from "./components/AllSlots";
+import FreeSlots from "./components/FreeSlots";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -29,6 +31,8 @@ class App extends Component {
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />
+            <Route path="/AllSlots" component={AllSlots} />
+            <Route path="/FreeSlots" component={FreeSlots} />
           </div>
         </Provider>
       </Router>
