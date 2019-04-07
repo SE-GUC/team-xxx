@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getSlots } from "../actions/SlotActions";
+import { getSlots ,deleteSlot} from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -23,7 +23,9 @@ class AllSlots extends Component {
   componentDidMount() {
     this.props.getSlots();
   }
-
+  onDeleteClick = id => {
+    this.props.deleteproject(id);
+  };
   render() {
     const { Slots } = this.props.Slot;
     return (
@@ -49,6 +51,14 @@ class AllSlots extends Component {
                       </CardTitle>
                       <CardText>({status})</CardText>
                       <Button color="info">Project Details</Button>
+                      <Button
+                        className="remove-btn"
+                        color="danger"
+                        size="sm"
+                        onClick={this.onDeleteClick.bind(this, _id)}
+                      >
+                        &times; Delete Project
+                      </Button>
                     </Card>
                   </Col>
                 </Row>
@@ -66,5 +76,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSlots }
+  { getSlots,deleteSlot }
 )(AllSlots);

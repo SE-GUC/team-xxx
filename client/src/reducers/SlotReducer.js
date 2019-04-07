@@ -28,6 +28,11 @@ export default function(state = initialState, action) {
         Slots: action.payload,
         loading: false
       };
+      case DELETE_SLOT:
+      return {
+        ...state,
+        Slots: state.Slots.filter(Slot => Slot._id !== action.payload)
+      };
     case GET_FREE_SLOTS:
       return {
         ...state,

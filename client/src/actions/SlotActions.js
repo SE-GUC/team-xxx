@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_SLOTS, SLOTS_LOADING, GET_FREE_SLOTS, ADD_SLOT } from "./types";
+import { GET_SLOTS, SLOTS_LOADING, GET_FREE_SLOTS, ADD_SLOT,DELETE_SLOT } from "./types";
 
 export const getSlots = () => dispatch => {
   dispatch(setSlotsLoading());
@@ -7,6 +7,14 @@ export const getSlots = () => dispatch => {
     dispatch({
       type: GET_SLOTS,
       payload: res.data
+    })
+  );
+};
+export const deleteSlot = id => (dispatch, getState) => {
+  axios.delete(`/api/slots/${id}`).then(res =>
+    dispatch({
+      type: DELETE_SLOT,
+      payload: id
     })
   );
 };
