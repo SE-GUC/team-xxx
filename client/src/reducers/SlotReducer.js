@@ -2,7 +2,8 @@ import {
   GET_SLOTS,
   GET_FREE_SLOTS,
   ADD_SLOT,
-  SLOTS_LOADING
+  SLOTS_LOADING,
+  DELETE_SLOT
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +29,7 @@ export default function(state = initialState, action) {
         Slots: action.payload,
         loading: false
       };
-      case DELETE_SLOT:
+    case DELETE_SLOT:
       return {
         ...state,
         Slots: state.Slots.filter(Slot => Slot._id !== action.payload)

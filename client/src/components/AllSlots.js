@@ -24,7 +24,7 @@ class AllSlots extends Component {
     this.props.getSlots();
   }
   onDeleteClick = id => {
-    this.props.deleteproject(id);
+    this.props.deleteSlot(id);
   };
   render() {
     const { Slots } = this.props.Slot;

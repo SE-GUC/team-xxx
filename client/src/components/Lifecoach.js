@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import { getSlots } from "../actions/SlotActions";
 import { Container, Col, Button, Row } from "react-bootstrap";
-
-export default class Lifecoach extends Component {
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+class Lifecoach extends Component {
+  static propTypes = {
+    getSlots: PropTypes.func.isRequired,
+    Slot: PropTypes.object.isRequired
+  };
   NewSlot = () => {
     this.props.history.push("/AddSlot");
   };
+  componentDidMount() {
+    this.props.getSlots();
+  }
 
   Slots = () => {
     this.props.history.push("/AllSlots");
@@ -40,3 +49,10 @@ export default class Lifecoach extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  Slot: state.Slot
+});
+export default connect(
+  mapStateToProps,
+  { getSlots }
+)(Lifecoach);
