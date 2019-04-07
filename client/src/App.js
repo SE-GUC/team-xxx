@@ -28,7 +28,6 @@ class App extends Component {
             <Route path="/Notifications" component={Notifications} />
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project" component={Project} />
-            <Route path="/Project" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />
           </div>
         </Provider>
