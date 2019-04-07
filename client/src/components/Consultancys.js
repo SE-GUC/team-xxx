@@ -23,15 +23,13 @@ class Consultancys extends Component {
   componentDidMount() {
     this.props.getConsultancys();
   }
-  
+
   render() {
     const { Consultancys } = this.props.Consultancy;
     return (
       <div>
         <Container>
-          <Row>
-            
-          </Row>
+          <Row />
           <br />
           <TransitionGroup className="shopping-list">
             {Consultancys.map(({ _id, Email, reports }) => (
@@ -45,9 +43,7 @@ class Consultancys extends Component {
                         </h1>
                       </CardTitle>
                       <CardText>({reports})</CardText>
-                      <Button color="info" >
-                        Delete
-                      </Button>
+                      <Button color="info">Delete</Button>
                     </Card>
                   </Col>
                 </Row>

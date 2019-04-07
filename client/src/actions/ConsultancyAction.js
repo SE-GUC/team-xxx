@@ -1,7 +1,5 @@
 import axios from "axios";
-import {
-  GET_CONSULTANCYS,CONSULTANCYS_LOADING
-} from "./types";
+import { GET_CONSULTANCYS, CONSULTANCYS_LOADING } from "./types";
 
 export const getConsultancys = () => dispatch => {
   dispatch(setConsultancysLoading());
@@ -13,7 +11,7 @@ export const getConsultancys = () => dispatch => {
   );
 };
 export const setConsultancysLoading = () => {
-    return {
-      type: CONSULTANCYS_LOADING
-    };
+  return {
+    type: CONSULTANCYS_LOADING
   };
+};
