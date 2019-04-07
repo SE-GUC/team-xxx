@@ -68,22 +68,29 @@ class Example extends React.Component {
               type="text"
               name="lifecoachEmail"
               id="lifecoachEmail"
-              placeholder="please write email"
+              placeholder="Life Coach Email"
               onChange={this.onChange}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="number">Number</Label>
+            <Label for="number">Slot Number</Label>
             <Input
               type="date"
               name="number"
               id="number"
+              placeholder="Slot Number"
               onChange={this.onChange}
             />
           </FormGroup>
           <FormGroup>
             <Label for="Date">Date </Label>
-            <Input type="date" name="Date" id="Date" onChange={this.onChange} />
+            <Input
+              type="date"
+              name="Date"
+              id="Date"
+              placeholder="Slot Date"
+              onChange={this.onChange}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="startTime">Start Time</Label>
@@ -91,6 +98,7 @@ class Example extends React.Component {
               type="date"
               name="startTime"
               id="startTime"
+              placeholder="Slot Start Time"
               onChange={this.onChange}
             />
           </FormGroup>
@@ -100,6 +108,7 @@ class Example extends React.Component {
               type="date"
               name="endTime"
               id="endTime"
+              placeholder="Slot End Time"
               onChange={this.onChange}
             />
           </FormGroup>
@@ -109,7 +118,7 @@ class Example extends React.Component {
               type="text"
               name="status"
               id="status"
-              placeholder="please write your status"
+              placeholder="Slot Status"
               onChange={this.onChange}
             />
           </FormGroup>
@@ -119,7 +128,7 @@ class Example extends React.Component {
               type="text"
               name="Location"
               id="Location"
-              placeholder="please write Location"
+              placeholder="Enter The Session Suggested Location"
               onChange={this.onChange}
             />
           </FormGroup>
