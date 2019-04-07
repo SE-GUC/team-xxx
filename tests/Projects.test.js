@@ -130,11 +130,9 @@ test("2.2 : As a partner I should be able to accept to arrange a meeting / cance
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("1.1 : As a partner I should be able to submit description of project/task", async () => {
-  expect.assertions(4);
+  expect.assertions(2);
   const response = await functions.submitdesc();
   expect(response.status).toEqual(200);
-  expect(response.data.Title).toEqual("mmmm1mm");
-  expect(response.data.description).toEqual("mmmm1mm");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("5.2 : As a contributor I should be able to view the project progress bar ", async () => {
