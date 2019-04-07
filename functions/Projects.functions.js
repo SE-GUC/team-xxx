@@ -4,7 +4,7 @@ const functions = {
   getDescriptionForAdmin: async () => {
     const Description = await axios
       .get(
-        "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b/description"
+        "http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a/description"
       )
       .catch(err => "error");
     return Description;
@@ -17,7 +17,7 @@ const functions = {
   },
   searchprojects: async () => {
     const Projects = await axios
-      .get("http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b")
+      .get("http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a")
       .catch(err => "error");
     return Projects;
   },
@@ -32,7 +32,7 @@ const functions = {
       assigned: "don5"
     };
     const member = axios.put(
-      "http://localhost:5000/api/projects/assign/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/projects/assign/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return member;
@@ -43,7 +43,7 @@ const functions = {
       extraInfo: "msh combutar awi"
     };
     const updatedCategoryAndInfo = axios.put(
-      "http://localhost:5000/api/Projects/updateCatAndInfo/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/updateCatAndInfo/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return updatedCategoryAndInfo;
@@ -53,7 +53,7 @@ const functions = {
       consultancyAcceptance: false
     };
     const assigned = axios.put(
-      "http://localhost:5000/api/projects/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/projects/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return assigned;
@@ -63,7 +63,7 @@ const functions = {
       consultancy: "testtest"
     };
     const chooseConsultant = axios.put(
-      "http://localhost:5000/api/Projects/chooseConsultant/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/chooseConsultant/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return chooseConsultant;
@@ -73,7 +73,7 @@ const functions = {
       state: "declined"
     };
     const providedesc = axios.put(
-      "http://localhost:5000/api/Projects/declineproject/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/declineproject/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return providedesc;
@@ -91,7 +91,7 @@ const functions = {
   },
   getstate: async () => {
     const State = await axios
-      .get("http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b/state")
+      .get("http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a/state")
       .catch(err => "error");
     return State;
   },
@@ -100,7 +100,7 @@ const functions = {
       extraInfo: "extraInfonewnew"
     };
     const providedesc = axios.put(
-      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return providedesc;
@@ -110,7 +110,7 @@ const functions = {
       memberWork: "memberWork1222"
     };
     const memberWorkk = axios.put(
-      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return memberWorkk;
@@ -120,7 +120,7 @@ const functions = {
       compensation: "compensation"
     };
     const memberWorkk = axios.put(
-      "http://localhost:5000/api/Projects/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return memberWorkk;
@@ -138,7 +138,7 @@ const functions = {
       detaileddescription: "moresdetails"
     };
     const providedesc = axios.put(
-      "http://localhost:5000/api/Projects/descc/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/descc/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return providedesc;
@@ -148,7 +148,7 @@ const functions = {
       detailedplan: "moresdetails"
     };
     const providedesc = axios.put(
-      "http://localhost:5000/api/Projects/plandet/5c7aa93aa8f0f42afbe8fa3b",
+      "http://localhost:5000/api/Projects/plandet/5ca8b3ba7c26e63ac8e9c41a",
       updateSchema
     );
     return providedesc;

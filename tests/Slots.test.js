@@ -104,7 +104,7 @@ test("7.7 : As a life coach I should be able to post my weekly schedule", async 
     Date: "2000-02-01T22:00:00.000Z",
     Location: "don5",
     __v: 0,
-    _id: "5c9e0c05c1d001514d73dc6a",
+    _id: "5ca9f381fe9a027688b0ef13",
     applicant: "don5",
     endTime: "2000-02-01T22:00:00.000Z",
     lifecoachEmail: "don5@email.com",
