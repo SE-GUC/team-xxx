@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Container, Col, Image } from "react-bootstrap";
+import { Container, Col, Image, FormGroup,Button } from "react-bootstrap";
 
 export default class Lifecoach extends Component {
+  NewSlot = () => {
+    this.props.history.push("/AddSlot");
+  };
   render() {
     return (
       <div>
@@ -15,6 +18,13 @@ export default class Lifecoach extends Component {
             />
             <h3>Frank The Tank</h3>
           </Col>
+          <FormGroup check row>
+            <Col sm={{ size: 10, offset: 5 }}>
+            <Button color="info" onClick={this.NewSlot}>
+                        Add Slot
+                      </Button>
+            </Col>
+          </FormGroup>
         </Container>
       </div>
     );

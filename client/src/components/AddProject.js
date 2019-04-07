@@ -17,9 +17,14 @@ class Example extends React.Component {
   }
   state = {
     visible: false,
-    Title: "",
-    description: "",
-    effort: ""
+    Title: "  ",
+    description: "  ",
+    partner: "  ",
+    Consultant:" ",
+    consultancy: " ", 
+    consultantRandom: " ",
+    detaileddescription: "  ",
+    detailedplan:"  "
   };
 
   onChange = e => {
@@ -27,15 +32,24 @@ class Example extends React.Component {
   };
 
   onSubmit = e => {
+    try{
     e.preventDefault();
     const newProject = {
       Title: this.state.Title,
       description: this.state.description,
-      effort: this.state.effort
+      partner: this.state.partner,
+      Consultant: this.state.Consultant,
+      consultancy: this.state.consultancy,
+      consultantRandom: this.state.consultantRandom,
+      detaileddescription: this.state.detaileddescription,
+      detailedplan: this.state.detailedplan
     };
     // Add Project via addProject action
     this.props.addProject(newProject);
     this.onshow();
+  }
+  catch (err) {
+    console.log(err);}
   };
   render() {
     return (
@@ -77,15 +91,84 @@ class Example extends React.Component {
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="effort" sm={2}>
-              Estimated Effort
+            <Label for="partner" sm={2}>
+              Partner name
             </Label>
             <Col sm={10}>
               <Input
                 type="text"
-                name="effort"
-                id="effort"
-                placeholder="Enter The Project Estimated Effort"
+                name="partner"
+                id="partner"
+                placeholder="Please enter the partner's name"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="detailedplan" sm={2}>
+             Detailed Plan
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="detailedplan"
+                id="detailedplan"
+                placeholder="Please enter a detailed plan for the project"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+         <FormGroup row>
+            <Label for="Consultant" sm={2}>
+              Want a Consultant
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="checkbox"
+                name="Consultant"
+                id="Consultant"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for=" consultantRandom" sm={2}>
+              Want a specific Consultant
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="checkbox"
+                name=" consultantRandom"
+                id=" consultantRandom"
+               
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="consultancy" sm={2}>
+              Consultant name
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="consultancy"
+                id="consultancy"
+                placeholder="Please specify the consultant you want"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="detaileddescription" sm={2}>
+              Detailed description
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="detaileddescription"
+                id="detaileddescription"
+                placeholder="Please enter a detailed description of the project"
                 onChange={this.onChange}
               />
             </Col>
