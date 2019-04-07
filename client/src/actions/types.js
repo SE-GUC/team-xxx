@@ -7,3 +7,6 @@ export const SLOTS_LOADING = "SLOTS_LOADING";
 export const GET_FREE_SLOTS = "GET_FREE_SLOTS";
 export const GET_SLOTS = "GET_SLOTS";
 export const DELETE_SLOT = "DELETE_SLOT";
+export const GET_MEMBERS = "GET_MEMBERS ";
+export const MEMBERS_LOADING = "MEMBERS_LOADING";
+export const DELETE_MEMBER="DELETE_MEMBER"
