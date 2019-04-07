@@ -1,4 +1,9 @@
-import { GET_SLOTS, GET_FREE_SLOTS } from "../actions/types";
+import {
+  GET_SLOTS,
+  GET_FREE_SLOTS,
+  ADD_SLOT,
+  SLOTS_LOADING
+} from "../actions/types";
 
 const initialState = {
   Slots: [],
@@ -7,13 +12,23 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case ADD_SLOT:
+      return {
+        ...state,
+        Slots: [action.payload, ...state.Slots]
+      };
+    case SLOTS_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     case GET_SLOTS:
       return {
         ...state,
         Slots: action.payload,
         loading: false
       };
-      case GET_FREE_SLOTS:
+    case GET_FREE_SLOTS:
       return {
         ...state,
         Slots: action.payload,
