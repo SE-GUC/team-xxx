@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Projects from "./components/Projects";
 import React, { Component } from "react";
 import About from "./components/About";
-import home from "./components/home";
+import Home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
@@ -21,7 +21,8 @@ class App extends Component {
         <Provider store={store}>
           <div>
             <AppNavbar />
-            <Route path="/home" component={home} />
+            <Route exact path="/" component={Home} />
+            <Route path="/home" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />

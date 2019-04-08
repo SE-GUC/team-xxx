@@ -1,63 +1,72 @@
+import { Container, ListGroup, ListGroupItem } from "reactstrap";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { getMembers } from "../actions/MemberActions";
+import { getPartners } from "../actions/PartnersActions";
+import { getAdmins } from "../actions/AdminActions";
+import { getConsultancys } from "../actions/ConsultancyActions";
 import React, { Component } from "react";
-import NotificationsCard from "./NotificationsCard";
-import { Container, Row, Col } from "reactstrap";
-export default class home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      people: [
-        {
-          id: 1,
-          name: "David Davidson",
-          company: "Some Company, Inc",
-          description: "Met at a party. Will connect with later"
-        },
-        {
-          id: 2,
-          name: "Mark Markson",
-          company: "Some Company, Inc",
-          description: "Met at a party. Will connect with later"
-        },
-        {
-          id: 3,
-          name: "Judy Judyson",
-          company: "Some Company, Inc",
-          description: "Met at a party. Will connect with later"
-        },
-        {
-          id: 4,
-          name: "James Jameson",
-          company: "Some Company, Inc",
-          description: "Met at a party. Will connect with later"
-        }
-      ]
-    };
-  }
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-  removePerson(id) {
-    this.setState({
-      people: this.state.people.filter(person => person.id !== id)
-    });
+class Notifications extends Component {
+  static propTypes = {
+    getMembers: PropTypes.func.isRequired,
+    getPartners: PropTypes.func.isRequired,
+    Member: PropTypes.object.isRequired,
+    Partner: PropTypes.object.isRequired
+  };
+
+  componentDidMount() {
+    this.props.getMembers();
+    this.props.getPartners();
+    this.props.getConsultancys();
+    this.props.getAdmins();
   }
 
   render() {
-    let peopleCards = this.state.people.map(person => {
-      return (
-        <Col sm="10">
-          <NotificationsCard
-            key={person.id}
-            removePerson={this.removePerson.bind(this)}
-            person={person}
-          />
-        </Col>
-      );
-    });
+    const { Members } = this.props.Member;
+    const { Partners } = this.props.Partner;
+    const { Consultancys } = this.props.Consultancy;
+    const { Admins } = this.props.Admin;
     return (
-      <div>
-        <Container>
-          <Row>{peopleCards}</Row>{" "}
-        </Container>
-      </div>
+      <Container>
+        <ListGroup>
+          <TransitionGroup className="shopping-list">
+            {Members.map(({ _id, Notifications }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroupItem>{Notifications}</ListGroupItem>
+              </CSSTransition>
+            ))}
+            {Partners.map(({ _id, Notifications }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroupItem>{Notifications}</ListGroupItem>
+              </CSSTransition>
+            ))}
+            {Consultancys.map(({ _id, Notifications }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroupItem>{Notifications}</ListGroupItem>
+              </CSSTransition>
+            ))}
+            {Admins.map(({ _id, Notifications }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroupItem>{Notifications}</ListGroupItem>
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+        </ListGroup>
+      </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  Member: state.Member,
+  Partner: state.Partner,
+  Consultancy: state.Consultancy,
+  Admin: state.Admin
+});
+
+export default connect(
+  mapStateToProps,
+  { getMembers, getPartners, getAdmins, getConsultancys }
+)(Notifications);

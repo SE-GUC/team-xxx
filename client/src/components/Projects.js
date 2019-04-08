@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import {
   Card,
   Container,
-  Row,
   Col,
   Button,
   Badge,
@@ -39,41 +38,37 @@ class Projects extends Component {
     return (
       <div>
         <Container>
-          <Row>
-            <Col sm={{ size: 6, order: 2, offset: 10 }}>
-              {" "}
-              <Button color="primary" onClick={this.addProject}>
-                Add Project
-              </Button>{" "}
-            </Col>
-          </Row>
+          <Col sm={{ size: 6, order: 2, offset: 10 }}>
+            {" "}
+            <Button color="primary" onClick={this.addProject}>
+              Add Project
+            </Button>{" "}
+          </Col>
           <br />
-          <TransitionGroup className="shopping-list">
+        </Container>
+        <Container>
+          <TransitionGroup className="Projects">
             {Projects.map(({ _id, Title, description }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
-                <Row>
-                  <Col sm="12">
-                    <Card body>
-                      <CardTitle>
-                        <h1>
-                          <Badge color="success">({Title})</Badge>
-                        </h1>
-                      </CardTitle>
-                      <CardText>({description})</CardText>
-                      <Button color="info" onClick={this.infoproject}>
-                        Project Details
-                      </Button>
-                      <Button
-                        className="remove-btn"
-                        color="danger"
-                        size="sm"
-                        onClick={this.onDeleteClick.bind(this, _id)}
-                      >
-                        &times; Delete Project
-                      </Button>
-                    </Card>
-                  </Col>
-                </Row>
+                <Card body>
+                  <CardTitle>
+                    <h1>
+                      <Badge color="success">({Title})</Badge>
+                    </h1>
+                  </CardTitle>
+                  <CardText>({description})</CardText>
+                  <Button color="info" onClick={this.infoproject}>
+                    Project Details
+                  </Button>
+                  <Button
+                    className="remove-btn"
+                    color="danger"
+                    size="sm"
+                    onClick={this.onDeleteClick.bind(this, _id)}
+                  >
+                    &times; Delete Project
+                  </Button>
+                </Card>
               </CSSTransition>
             ))}
           </TransitionGroup>
