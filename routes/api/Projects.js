@@ -41,15 +41,11 @@ router.delete("/:id", (req, res) => {
 });
 
 //@ find a specific project by ID
-router.get("/:id", function(req, res) {
-  Project.findById(req.params.id)
-    .then(doc => {
-      if (!doc) {
-        return res.status(404).end();
-      }
-      return res.status(200).json(doc);
-    })
-    .catch(err => next(err));
+router.get('/:id', function(req, res, next) {
+  Project.findById(req.params.id, function (err, Project) {
+    if (err) return next(err);
+    res.json(Project);
+  });
 });
 
 //@ find project's description by the prjoect's ID

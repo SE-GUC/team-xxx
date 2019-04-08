@@ -28,7 +28,7 @@ class App extends Component {
             <Route path="/Lifecoach" component={Lifecoach} />
             <Route path="/Notifications" component={Notifications} />
             <Route path="/AddProject" component={AddProject} />
-            <Route path="/Project" component={Project} />
+            <Route path="/Project/:id" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />
           </div>
         </Provider>

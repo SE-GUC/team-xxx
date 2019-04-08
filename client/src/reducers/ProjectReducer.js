@@ -2,7 +2,8 @@ import {
   GET_PROJECTS,
   PROJECTS_LOADING,
   DELETE_PROJECT,
-  ADD_PROJECT
+  ADD_PROJECT,
+  GET_PROJECT
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +19,12 @@ export default function(state = initialState, action) {
         Projects: action.payload,
         loading: false
       };
+    case GET_PROJECT:
+      return {
+        ...state,
+        Projects: action.payload,
+        loading: false
+      };
     case ADD_PROJECT:
       return {
         ...state,
@@ -26,7 +33,9 @@ export default function(state = initialState, action) {
     case DELETE_PROJECT:
       return {
         ...state,
-        Projects: state.Projects.filter(Project => Project._id !== action.payload)
+        Projects: state.Projects.filter(
+          Project => Project._id !== action.payload
+        )
       };
     case PROJECTS_LOADING:
       return {

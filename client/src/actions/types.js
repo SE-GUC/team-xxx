@@ -17,3 +17,4 @@ export const GET_ADMINS = "GET_ADMINS";
 export const GET_SLOTS = "GET_SLOTS";
 export const DELETE_ADMIN = "DELETE_ADMIN";
 export const ADMINS_LOADING = "ADMINS_LOADING";
+export const GET_PROJECT = "GET_PROJECT";

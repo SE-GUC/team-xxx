@@ -29,8 +29,8 @@ class Projects extends Component {
   addProject = () => {
     this.props.history.push("/AddProject");
   };
-  infoproject = () => {
-    this.props.history.push("/Project");
+  infoproject = id => {
+    this.props.history.push("/Project/" + id);
   };
 
   render() {
@@ -57,7 +57,10 @@ class Projects extends Component {
                     </h1>
                   </CardTitle>
                   <CardText>({description})</CardText>
-                  <Button color="info" onClick={this.infoproject}>
+                  <Button
+                    color="info"
+                    onClick={this.infoproject.bind(this, _id)}
+                  >
                     Project Details
                   </Button>
                   <Button
