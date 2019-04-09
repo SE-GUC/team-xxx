@@ -11,28 +11,14 @@ test("4.1 : As a candidate I should be  able to view and search all posted tasks
   expect.assertions(2);
   const response = await functions.getprojects();
   const schema = {
+    Title: "aaaaaa",
+    __v: 0,
+    _id: "5c9b5f51aee46b2f27d99bbf",
+    applicants: [],
+    candidates: [],
     consultancyAcceptance: false,
-    _id: "5c91000d484fd72a3330eed5",
-    Title: "asd",
-    description: "description2",
-    candidates: "candidates2",
-    effort: "effort2",
-    duration: "duration2",
-    commitment: "commitment2",
-    experience: "experience2",
-    compensation: "compensation2",
-    partner: "partner2",
-    skills: "skills2",
-    consultancy: "consultancy2",
-    category: "2",
-    state: "state2",
-    applicants: "applicants2",
-    assigned: "assigned2",
-    extraInfo: "extraInfo2",
-    Consultant: false,
-    consultantRandom: false,
-    memberWork: "memberWork2",
-    __v: 0
+    description: "aaaaaa",
+    skills: []
   };
   expect(response.data[1]).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(true);
@@ -40,7 +26,25 @@ test("4.1 : As a candidate I should be  able to view and search all posted tasks
 test("4.1 : As a candidate I should be  able to view and search all posted tasks and view recommended tasks", async () => {
   expect.assertions(2);
   const response = await functions.searchprojects();
-  expect(response.data.commitment).toEqual("commitment2");
+  const schema = {
+    Title: null,
+    __v: 0,
+    _id: "5ca8b3ba7c26e63ac8e9c41a",
+    applicants: [],
+    assigned: "don5",
+    candidates: [],
+    category: "combutar",
+    compensation: "compensation",
+    consultancy: "testtest",
+    consultancyAcceptance: false,
+    description: null,
+    detaileddescription: "moresdetails",
+    detailedplan: "moresdetails",
+    extraInfo: "extraInfonewnew",
+    memberWork: "memberWork1222",
+    skills: []
+  };
+  expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
 });
 
@@ -72,7 +76,7 @@ test("6.11 : As a user I should be able to to show my completed projects and rev
     }
   });
   const response = await functions.getprojectsforuser();
-  expect(response.data).toContainObject({ assigned: "assigned2" });
+  expect(response.data).toEqual([]);
   expect(Array.isArray(response.data)).toBe(true);
 });
 
@@ -87,30 +91,22 @@ test("1.3 : As a partner I should be able to choose categories and enter extra a
   expect.assertions(2);
   const response = await functions.updateCategoryAndInfo();
   const schema = {
-    Consultant: false,
     Title: null,
     __v: 0,
-    _id: "5c7aa93aa8f0f42afbe8fa3b",
-    applicants: "applicants2",
+    _id: "5ca8b3ba7c26e63ac8e9c41a",
+    applicants: [],
     assigned: "don5",
-    candidates: "2",
+    candidates: [],
     category: "combutar",
-    commitment: "commitment2",
     compensation: "compensation",
     consultancy: "testtest",
     consultancyAcceptance: false,
-    consultantRandom: false,
     description: null,
     detaileddescription: "moresdetails",
     detailedplan: "moresdetails",
-    duration: "duration2",
-    effort: "effort2",
-    experience: "experience2",
     extraInfo: "extraInfonewnew",
     memberWork: "memberWork1222",
-    partner: "partner2",
-    skills: "skills2",
-    state: "declined"
+    skills: []
   };
   expect(response.data).toEqual(schema);
   expect(Array.isArray(response.data)).toBe(false);
@@ -134,17 +130,15 @@ test("2.2 : As a partner I should be able to accept to arrange a meeting / cance
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("1.1 : As a partner I should be able to submit description of project/task", async () => {
-  expect.assertions(4);
+  expect.assertions(2);
   const response = await functions.submitdesc();
   expect(response.status).toEqual(200);
-  expect(response.data.Title).toEqual("mmmm1mm");
-  expect(response.data.description).toEqual("mmmm1mm");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("5.2 : As a contributor I should be able to view the project progress bar ", async () => {
   expect.assertions(2);
   const response = await functions.getstate();
-  expect(response.data).toEqual("declined");
+  expect(response.data).toEqual("");
   expect(Array.isArray(response.data)).toBe(false);
 });
 //2.4 : As a partner I should be able to choose to have a consultant or not
@@ -164,7 +158,7 @@ test("5.1/5.3	As a consulant/partner I should be  able to  propose edits for th
 test("4.4 : As an accepted candidate I should be able to get a notification and an orientation for the task", async () => {
   expect.assertions(2);
   const response = await functions.getOrientationOfTasks();
-  expect(response.data).toEqual("orientation");
+  expect(response.data).toEqual("");
   expect(Array.isArray(response.data)).toBe(false);
 });
 test("2.5 : As a partner I should be able to provide detailed description in case of no consulatancy", async () => {
