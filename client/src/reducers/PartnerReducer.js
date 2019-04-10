@@ -2,7 +2,8 @@ import {
   GET_PARTNERS,
   DELETE_PARTNER,
   PARTNERS_LOADING,
-  GET_PARTNERS_LIFECOACH
+  GET_PARTNERS_LIFECOACH,
+  GET_PARTNER
 } from "../actions/types";
 
 const initialState = {
@@ -13,6 +14,12 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_PARTNERS:
+      return {
+        ...state,
+        Partners: action.payload,
+        loading: false
+      };
+    case GET_PARTNER:
       return {
         ...state,
         Partners: action.payload,

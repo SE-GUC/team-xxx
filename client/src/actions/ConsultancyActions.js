@@ -3,7 +3,8 @@ import {
   GET_CONSULTANCYS,
   DELETE_CONSULTANCY,
   CONSULTANCYS_LOADING,
-  GET_CONSULTANCYS_LIFECOACH
+  GET_CONSULTANCYS_LIFECOACH,
+  GET_CONSULTANCY
 } from "./types";
 
 export const getConsultancys = () => dispatch => {
@@ -11,6 +12,15 @@ export const getConsultancys = () => dispatch => {
   axios.get("/api/Consultancys").then(res =>
     dispatch({
       type: GET_CONSULTANCYS,
+      payload: res.data
+    })
+  );
+};
+export const getConsultancy = id => dispatch => {
+  dispatch(setConsultancysLoading());
+  axios.get(`/api/Consultancys/${id}`).then(res =>
+    dispatch({
+      type: GET_CONSULTANCY,
       payload: res.data
     })
   );

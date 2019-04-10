@@ -2,7 +2,8 @@ import {
   GET_MEMBERS,
   DELETE_MEMBERS,
   MEMBERS_LOADING,
-  GET_MEMBERS_LIFECOACH
+  GET_MEMBERS_LIFECOACH,
+  GET_MEMBER
 } from "../actions/types";
 
 const initialState = {
@@ -13,6 +14,12 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_MEMBERS:
+      return {
+        ...state,
+        Members: action.payload,
+        loading: false
+      };
+    case GET_MEMBER:
       return {
         ...state,
         Members: action.payload,

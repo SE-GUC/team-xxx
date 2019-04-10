@@ -2,7 +2,8 @@ import {
   GET_CONSULTANCYS,
   DELETE_CONSULTANCY,
   CONSULTANCYS_LOADING,
-  GET_CONSULTANCYS_LIFECOACH
+  GET_CONSULTANCYS_LIFECOACH,
+  GET_CONSULTANCY
 } from "../actions/types";
 
 const initialState = {
@@ -13,6 +14,12 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CONSULTANCYS:
+      return {
+        ...state,
+        Consultancys: action.payload,
+        loading: false
+      };
+    case GET_CONSULTANCY:
       return {
         ...state,
         Consultancys: action.payload,

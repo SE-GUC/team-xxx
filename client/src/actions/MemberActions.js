@@ -3,7 +3,8 @@ import {
   GET_MEMBERS,
   DELETE_MEMBERS,
   MEMBERS_LOADING,
-  GET_MEMBERS_LIFECOACH
+  GET_MEMBERS_LIFECOACH,
+  GET_MEMBER
 } from "./types";
 
 export const getMembers = () => dispatch => {
@@ -11,6 +12,15 @@ export const getMembers = () => dispatch => {
   axios.get("/api/members").then(res =>
     dispatch({
       type: GET_MEMBERS,
+      payload: res.data
+    })
+  );
+};
+export const getMember = id => dispatch => {
+  dispatch(setMembersLoading());
+  axios.get(`/api/members/${id}`).then(res =>
+    dispatch({
+      type: GET_MEMBER,
       payload: res.data
     })
   );

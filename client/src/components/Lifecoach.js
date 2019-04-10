@@ -5,7 +5,6 @@ import { getlifecoachpartners } from "../actions/PartnersActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
 import {
   Card,
   CardImg,
@@ -27,7 +26,9 @@ class Lifecoach extends Component {
     getlifecoachpartners: PropTypes.func.isRequired,
     Partner: PropTypes.object.isRequired
   };
-
+  infoproject = id => {
+    this.props.history.push("/Booking/" + id);
+  };
   componentDidMount() {
     this.props.getlifecoachmembers();
     this.props.getlifecoachpartners();
@@ -54,7 +55,12 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button>Book</Button>
+                    <Button
+                      color="info"
+                      onClick={this.infoproject.bind(this, _id)}
+                    >
+                      Book
+                    </Button>
                   </CardBody>
                 </Card>
               </CSSTransition>
@@ -74,7 +80,12 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button>Book</Button>
+                    <Button
+                      color="info"
+                      onClick={this.infoproject.bind(this, _id)}
+                    >
+                      Book
+                    </Button>
                   </CardBody>
                 </Card>
               </CSSTransition>
@@ -94,7 +105,12 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button>Book</Button>
+                    <Button
+                      color="info"
+                      onClick={this.infoproject.bind(this, _id)}
+                    >
+                      Book
+                    </Button>
                   </CardBody>
                 </Card>
               </CSSTransition>

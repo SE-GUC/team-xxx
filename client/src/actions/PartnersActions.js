@@ -3,7 +3,8 @@ import {
   GET_PARTNERS,
   DELETE_PARTNER,
   PARTNERS_LOADING,
-  GET_PARTNERS_LIFECOACH
+  GET_PARTNERS_LIFECOACH,
+  GET_PARTNER
 } from "./types";
 
 export const getPartners = () => dispatch => {
@@ -11,6 +12,15 @@ export const getPartners = () => dispatch => {
   axios.get("/api/Partners").then(res =>
     dispatch({
       type: GET_PARTNERS,
+      payload: res.data
+    })
+  );
+};
+export const getPartner = id => dispatch => {
+  dispatch(setPartnersLoading());
+  axios.get(`/api/Partners/${id}`).then(res =>
+    dispatch({
+      type: GET_PARTNER,
       payload: res.data
     })
   );
