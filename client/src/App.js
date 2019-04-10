@@ -10,6 +10,7 @@ import Home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
+import Booking from "./components/Booking";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project/:id" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />
+            <Route path="/Booking" component={Booking} />
           </div>
         </Provider>
       </Router>
