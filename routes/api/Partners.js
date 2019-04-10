@@ -214,126 +214,133 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.post("/partners/:id",async (req, res) => {
+router.post("/partners/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       partners: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.partners
-    Partner.findByIdAndUpdate(req.params.id, { $push: {partners: bus } }).exec()
-    return res.json({msg: "partners added" })
+    const bus = req.body.partners;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { partners: bus }
+    }).exec();
+    return res.json({ msg: "partners added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add partners` })    
+    return res.json({ error: `Error,cant add partners` });
   }
 });
 
-router.post("/boardmembers/:id",async (req, res) => {
+router.post("/boardmembers/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       boardmembers: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.boardmembers
-    Partner.findByIdAndUpdate(req.params.id, { $push: {boardmembers: bus } }).exec()
-    return res.json({msg: "boardmembers added" })
+    const bus = req.body.boardmembers;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { boardmembers: bus }
+    }).exec();
+    return res.json({ msg: "boardmembers added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add boardmembers` })    
+    return res.json({ error: `Error,cant add boardmembers` });
   }
 });
-router.post("/events/:id",async (req, res) => {
+router.post("/events/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       events: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.events
-    Partner.findByIdAndUpdate(req.params.id, { $push: {events: bus } }).exec()
-    return res.json({msg: "events added" })
+    const bus = req.body.events;
+    Partner.findByIdAndUpdate(req.params.id, { $push: { events: bus } }).exec();
+    return res.json({ msg: "events added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add events` })    
+    return res.json({ error: `Error,cant add events` });
   }
 });
-router.post("/projects/:id",async (req, res) => {
+router.post("/projects/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       projects: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.projects
-    Partner.findByIdAndUpdate(req.params.id, { $push: {projects: bus } }).exec()
-    return res.json({msg: "projects added" })
+    const bus = req.body.projects;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { projects: bus }
+    }).exec();
+    return res.json({ msg: "projects added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add projects` })    
+    return res.json({ error: `Error,cant add projects` });
   }
 });
-router.post("/Contracts/:id",async (req, res) => {
+router.post("/Contracts/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       Contracts: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.Contracts
-    Partner.findByIdAndUpdate(req.params.id, { $push: {Contracts: bus } }).exec()
-    return res.json({msg: "Contracts added" })
+    const bus = req.body.Contracts;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { Contracts: bus }
+    }).exec();
+    return res.json({ msg: "Contracts added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add Contracts` })    
+    return res.json({ error: `Error,cant add Contracts` });
   }
 });
-router.post("/Notifications/:id",async (req, res) => {
+router.post("/Notifications/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       Notifications: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.Notifications
-    Partner.findByIdAndUpdate(req.params.id, { $push: {Notifications: bus } }).exec()
-    return res.json({msg: "Notifications added" })
+    const bus = req.body.Notifications;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { Notifications: bus }
+    }).exec();
+    return res.json({ msg: "Notifications added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add Notifications` })    
+    return res.json({ error: `Error,cant add Notifications` });
   }
 });
-router.post("/Reviews/:id",async (req, res) => {
+router.post("/Reviews/:id", async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
-     
       Reviews: Joi.string().required()
-    })
+    });
     if (status.error) {
-      return res.json({ error: status.error.details[0].message })
+      return res.json({ error: status.error.details[0].message });
     }
-      const bus= req.body.Reviews
-    Partner.findByIdAndUpdate(req.params.id, { $push: {Reviews: bus } }).exec()
-    return res.json({msg: "Reviews added" })
+    const bus = req.body.Reviews;
+    Partner.findByIdAndUpdate(req.params.id, {
+      $push: { Reviews: bus }
+    }).exec();
+    return res.json({ msg: "Reviews added" });
   } catch (err) {
     console.log(err);
-    return res.json({ error: `Error,cant add Reviews` })    
+    return res.json({ error: `Error,cant add Reviews` });
   }
 });
-
+router.get("/me/lifecoach/", (req, res) => {
+  Partner.find({ Lifecoach: true }).then(Partners => res.json(Partners));
+});
 
 module.exports = router;

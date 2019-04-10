@@ -42,9 +42,9 @@ class Project extends Component {
           <TransitionGroup className="Projects">
             <CSSTransition key={Projects._id} timeout={500} classNames="fade">
               <Card>
-                <CardHeader tag="h3">Featured</CardHeader>
+                <CardHeader tag="h3">{Projects.Title}</CardHeader>
                 <CardBody>
-                  <CardTitle>{Projects.Title}</CardTitle>
+                  <CardTitle />
                   <CardText>{Projects.description}</CardText>
                   <CardText>
                     <div className="text-center">Project State</div>

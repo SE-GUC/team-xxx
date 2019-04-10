@@ -1,7 +1,8 @@
 import {
   GET_CONSULTANCYS,
   DELETE_CONSULTANCY,
-  CONSULTANCYS_LOADING
+  CONSULTANCYS_LOADING,
+  GET_CONSULTANCYS_LIFECOACH
 } from "../actions/types";
 
 const initialState = {
@@ -17,10 +18,18 @@ export default function(state = initialState, action) {
         Consultancys: action.payload,
         loading: false
       };
+    case GET_CONSULTANCYS_LIFECOACH:
+      return {
+        ...state,
+        Consultancys: action.payload,
+        loading: false
+      };
     case DELETE_CONSULTANCY:
       return {
         ...state,
-        Consultancys: state.Consultancys.filter(Consultancy => Consultancy._id !== action.payload)
+        Consultancys: state.Consultancys.filter(
+          Consultancy => Consultancy._id !== action.payload
+        )
       };
     case CONSULTANCYS_LOADING:
       return {

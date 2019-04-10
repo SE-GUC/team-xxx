@@ -1,4 +1,9 @@
-import { GET_MEMBERS, DELETE_MEMBERS, MEMBERS_LOADING } from "../actions/types";
+import {
+  GET_MEMBERS,
+  DELETE_MEMBERS,
+  MEMBERS_LOADING,
+  GET_MEMBERS_LIFECOACH
+} from "../actions/types";
 
 const initialState = {
   Members: [],
@@ -8,6 +13,12 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_MEMBERS:
+      return {
+        ...state,
+        Members: action.payload,
+        loading: false
+      };
+    case GET_MEMBERS_LIFECOACH:
       return {
         ...state,
         Members: action.payload,
