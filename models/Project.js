@@ -6,7 +6,8 @@ const ProjectSchema = new Schema({
   Title: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    text: true
   },
   description: {
     type: String,
@@ -77,5 +78,5 @@ const ProjectSchema = new Schema({
     type: String
   }
 });
-
+ProjectSchema.index({ "$**": "text" });
 module.exports = Project = mongoose.model("Project", ProjectSchema);

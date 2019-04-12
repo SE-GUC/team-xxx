@@ -4,7 +4,8 @@ import {
   DELETE_PROJECT,
   PROJECTS_LOADING,
   ADD_PROJECT,
-  GET_PROJECT
+  GET_PROJECT,
+  SEARCH_PROJECT
 } from "./types";
 
 export const getProjects = () => dispatch => {
@@ -12,6 +13,15 @@ export const getProjects = () => dispatch => {
   axios.get("/api/projects").then(res =>
     dispatch({
       type: GET_PROJECTS,
+      payload: res.data
+    })
+  );
+};
+export const searchProject = query => dispatch => {
+  dispatch(setProjectsLoading());
+  axios.post(`/api/Projects/search/${query}`).then(res =>
+    dispatch({
+      type: SEARCH_PROJECT,
       payload: res.data
     })
   );

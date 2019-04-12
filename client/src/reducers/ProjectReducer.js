@@ -3,7 +3,8 @@ import {
   PROJECTS_LOADING,
   DELETE_PROJECT,
   ADD_PROJECT,
-  GET_PROJECT
+  GET_PROJECT,
+  SEARCH_PROJECT
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +15,12 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_PROJECTS:
+      return {
+        ...state,
+        Projects: action.payload,
+        loading: false
+      };
+    case SEARCH_PROJECT:
       return {
         ...state,
         Projects: action.payload,
