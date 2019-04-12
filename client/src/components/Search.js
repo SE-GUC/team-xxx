@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getProjects, deleteproject } from "../actions/ProjectActions";
+import { searchProject } from "../actions/ProjectActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -17,15 +17,14 @@ import {
   Form
 } from "reactstrap";
 
-class Projects extends Component {
+class Search extends Component {
   static propTypes = {
-    getProjects: PropTypes.func.isRequired,
-    deleteproject: PropTypes.func.isRequired,
+    searchProject: PropTypes.func.isRequired,
     Project: PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.getProjects();
+    this.props.searchProject(this.props.match.params.query.toString());
   }
   onDeleteClick = id => {
     this.props.deleteproject(id);
@@ -44,7 +43,7 @@ class Projects extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    this.props.history.push("/search/" + this.state.query);
+    this.forceUpdate(this.props.searchProject(this.state.query));
   };
   render() {
     const { Projects } = this.props.Project;
@@ -113,5 +112,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProjects, deleteproject }
-)(Projects);
+  { searchProject }
+)(Search);

@@ -42,7 +42,6 @@ class Example extends React.Component {
         status: this.state.status,
         Location: this.state.Location
       };
-
       this.props.addSlot(newSlot);
       this.onshow();
     } catch (err) {

@@ -10,6 +10,7 @@ import Home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
+import Search from "./components/Search";
 import Booking from "./components/Booking";
 import "./App.css";
 
@@ -23,6 +24,7 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route exact path="/" component={Home} />
+            <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
