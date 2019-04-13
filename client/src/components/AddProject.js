@@ -184,23 +184,6 @@ class Example extends React.Component {
               </Input>
             </Col>
           </FormGroup>
-          <FormGroup row>
-            <Label for="memberWork" sm={2}>
-              File
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="file"
-                name="memberWork"
-                id="memberWork"
-                onChange={this.onChange}
-              />
-              <FormText color="muted">
-                This is some placeholder block-level help text for the above
-                input. It's a bit lighter and easily wraps to a new line.
-              </FormText>
-            </Col>
-          </FormGroup>
           <FormGroup check row>
             <Col sm={{ size: 10, offset: 5 }}>
               <Button>Submit</Button>

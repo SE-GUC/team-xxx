@@ -53,7 +53,7 @@ class Projects extends Component {
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="Search" style={{ fontWeight: "bold" }}>
-                  Search By Title
+                  Search for a Project
                 </Label>
                 <Input
                   type="Text"
