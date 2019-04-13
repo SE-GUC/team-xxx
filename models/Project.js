@@ -51,7 +51,23 @@ const ProjectSchema = new Schema({
     type: [String]
   },
   category: {
-    type: String
+    type: String,
+    enum: [
+      "NA",
+      "Admin Support",
+      "Customer Service",
+      "Sales & Marketing",
+      "Accounting & Consulting",
+      "Legal",
+      "Translation",
+      "Writing",
+      "Design & Creative",
+      "Engineering & Architecture",
+      "Data Science & Analytics",
+      "IT & Networking",
+      "Web, Mobile & Software Dev"
+    ],
+    default: "NA"
   },
   state: {
     type: String,

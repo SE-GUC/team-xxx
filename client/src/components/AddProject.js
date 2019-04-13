@@ -29,7 +29,10 @@ class Example extends React.Component {
     Title: "",
     description: "",
     effort: "",
-    memberWork: null
+    duration: "",
+    commitment: "",
+    experience: "",
+    category: ""
   };
 
   onChange = e => {
@@ -42,7 +45,10 @@ class Example extends React.Component {
       Title: this.state.Title,
       description: this.state.description,
       effort: this.state.effort,
-      memberWork: this.state.memberWork
+      commitment: this.state.commitment,
+      experience: this.state.experience,
+      category: this.state.category,
+      duration: this.state.duration
     };
     // Add Project via addProject action
     this.props.addProject(newProject);
@@ -99,6 +105,83 @@ class Example extends React.Component {
                 placeholder="Enter The Project Estimated Effort"
                 onChange={this.onChange}
               />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="experience" sm={2}>
+              Experience
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="experience"
+                id="experience"
+                placeholder="Enter The Project Required Experience"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="commitment" sm={2}>
+              Commitment
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="commitment"
+                id="commitment"
+                placeholder="Enter The Project Required Commitment"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="duration" sm={2}>
+              Project Duration
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="duration"
+                id="duration"
+                placeholder="Enter The Project Duration"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="category" sm={2}>
+              Select Category
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="select"
+                name="category"
+                id="category"
+                onChange={this.onChange}
+              >
+                <option value="NA">NA</option>
+                <option value="Admin Support">Admin Support</option>
+                <option value="Customer Service">Customer Service</option>
+                <option value="Sales & Marketing">Sales & Marketing</option>
+                <option value="Accounting & Consulting">
+                  Accounting & Consulting
+                </option>
+                <option value="Legal">Legal</option>
+                <option value="Translation">Translation</option>
+                <option value="Writing">Writing</option>
+                <option value="Design & Creative">Design & Creative</option>
+                <option value="Engineering & Architecture">
+                  Engineering & Architecture
+                </option>
+                <option value="Data Science & Analytics">
+                  Data Science & Analytics
+                </option>
+                <option value="IT & Networking">IT & Networking</option>
+                <option value="Web, Mobile & Software Dev">
+                  Web, Mobile & Software Dev
+                </option>
+              </Input>
             </Col>
           </FormGroup>
           <FormGroup row>
