@@ -73,7 +73,7 @@ const ProjectSchema = new Schema({
     type: String
   },
   memberWork: {
-    type: String
+    type: Object
   },
   OrientaionForTheTask: {
     type: String
