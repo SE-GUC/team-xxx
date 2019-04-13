@@ -1,4 +1,13 @@
-import { Col, Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import {
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Alert,
+  FormText
+} from "reactstrap";
 import { addProject } from "../actions/ProjectActions";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -19,7 +28,8 @@ class Example extends React.Component {
     visible: false,
     Title: "",
     description: "",
-    effort: ""
+    effort: "",
+    memberWork: null
   };
 
   onChange = e => {
@@ -31,7 +41,8 @@ class Example extends React.Component {
     const newProject = {
       Title: this.state.Title,
       description: this.state.description,
-      effort: this.state.effort
+      effort: this.state.effort,
+      memberWork: this.state.memberWork
     };
     // Add Project via addProject action
     this.props.addProject(newProject);
@@ -88,6 +99,23 @@ class Example extends React.Component {
                 placeholder="Enter The Project Estimated Effort"
                 onChange={this.onChange}
               />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="memberWork" sm={2}>
+              File
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="file"
+                name="memberWork"
+                id="memberWork"
+                onChange={this.onChange}
+              />
+              <FormText color="muted">
+                This is some placeholder block-level help text for the above
+                input. It's a bit lighter and easily wraps to a new line.
+              </FormText>
             </Col>
           </FormGroup>
           <FormGroup check row>

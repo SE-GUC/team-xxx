@@ -26,4 +26,3 @@ export const GET_MEMBER = "GET_MEMBER";
 export const GET_CONSULTANCY = "GET_CONSULTANCY";
 export const SEARCH_PROJECT = "SEARCH_PROJECT";
 export const EDIT_PROJECT = "EDIT_PROJECT";
-
