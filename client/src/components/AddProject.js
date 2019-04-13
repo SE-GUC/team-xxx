@@ -1,13 +1,4 @@
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Alert,
-  FormText
-} from "reactstrap";
+import { Col, Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
 import { addProject } from "../actions/ProjectActions";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
