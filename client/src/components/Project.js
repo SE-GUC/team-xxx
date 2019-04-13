@@ -52,45 +52,99 @@ class Project extends Component {
                   <CardTitle />
                   <CardText>
                     <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Description
+                      Description
                     </h4>
                     {Projects.description}{" "}
                   </CardText>
                   <CardText>
                     <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Required Skills
-                    </h4>
-                    {Projects.skills}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Required Effort
-                    </h4>
-                    {Projects.effort}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Required commitment
-                    </h4>
-                    {Projects.commitment}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Required experience
-                    </h4>
-                    {Projects.experience}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Required category
+                      Category
                     </h4>
                     {Projects.category}{" "}
                   </CardText>
                   <CardText>
                     <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Duration
+                      Duration
                     </h4>
                     {Projects.duration}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project consultant
+                    </h4>
+                    {Projects.consultancy}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Consultant Acceptance
+                    </h4>
+                    {Projects.consultancyAcceptance}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Candidates
+                    </h4>
+                    {Projects.candidates}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Required experience
+                    </h4>
+                    {Projects.experience}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Required commitment
+                    </h4>
+                    {Projects.commitment}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Required Effort
+                    </h4>
+                    {Projects.effort}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Required Skills
+                    </h4>
+                    {Projects.skills}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      compensation
+                    </h4>
+                    {Projects.compensation}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project partner
+                    </h4>
+                    {Projects.partner}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Assignee
+                    </h4>
+                    {Projects.assigned}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Applicants
+                    </h4>
+                    {Projects.applicants}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Files
+                    </h4>
+                    {Projects.memberWork}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Extra information
+                    </h4>
+                    {Projects.extraInfo}{" "}
                   </CardText>
                 </CardBody>
                 <CardFooter className="text-muted">

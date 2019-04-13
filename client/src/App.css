@@ -19,3 +19,6 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+p {
+  font-family: "Times New Roman", Times, serif;
+}
