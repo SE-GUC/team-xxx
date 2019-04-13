@@ -98,20 +98,8 @@ class Project extends Component {
                     <div className="text-center">Project State</div>
                   </CardText>
                   <Progress multi>
-                    <Progress bar value="20">
-                      Pending
-                    </Progress>
-                    <Progress bar color="success" value="20">
-                      Posted
-                    </Progress>
-                    <Progress bar color="warning" value="20">
-                      Under Review
-                    </Progress>
-                    <Progress bar color="danger" value="20">
-                      WIP
-                    </Progress>
-                    <Progress bar color="info" value="20">
-                      Finished
+                    <Progress bar value={Projects.statevalue} max={100}>
+                      {Projects.state}
                     </Progress>
                   </Progress>
                 </CardFooter>
