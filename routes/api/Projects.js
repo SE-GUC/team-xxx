@@ -81,25 +81,14 @@ router.get("/:id/state", function(req, res) {
     .catch(err => next(err));
 });
 
-// toupdate the project attributes
-router.put("/:id", async (req, res) => {
-  try {
-    const project = await Project.findById(req.params.id);
-    if (!project)
-      return res.status(404).send({ error: "project does not exist" });
-    const isValidated = validator.updateValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    Project.findByIdAndUpdate(req.params.id, req.body, function(err) {
-      if (err) return next(err);
-      res.json({ msg: "Project updated successfully" });
-    });
-  } catch (error) {
-    console.log(error);
-  }
+/* UPDATE PROJECT */
+router.put("/:id", function(req, res, next) {
+  Project.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
 });
+
 router.get("/:id/OrientaionForTheTask", function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
