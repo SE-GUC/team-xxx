@@ -1,7 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose").set('debug', true);
+const mongoose = require("mongoose").set("debug", true);
 const bodyParser = require("body-parser");
-const joi = require("joi");
+const path = require("path");
 
 const app = express();
 
@@ -25,7 +25,7 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 mongoose.set("useCreateIndex", true);
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 
 // Use Routes
 app.use("/api/Consultancys", Consultancys);
@@ -35,6 +35,15 @@ app.use("/api/Projects", Projects);
 app.use("/api/Slots", Slots);
 app.use("/api/Meetings", Meetings);
 app.use("/api/Admins", Admins);
+
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const port = process.env.PORT || 5000;
 

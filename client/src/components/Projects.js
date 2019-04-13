@@ -54,7 +54,9 @@ class Projects extends Component {
           <Col md={6}>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="Search">Search By Title</Label>
+                <Label for="Search" style={{ fontWeight: "bold" }}>
+                  Search By Title
+                </Label>
                 <Input
                   type="Text"
                   name="query"
@@ -78,12 +80,14 @@ class Projects extends Component {
             {Projects.map(({ _id, Title, description }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <Card body>
-                  <CardTitle>
-                    <h1>
-                      <Badge color="success">({Title})</Badge>
-                    </h1>
-                  </CardTitle>
-                  <CardText>({description})</CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold" }}>Project Title</h4>
+                    {Title}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold" }}>Project Description</h4>
+                    {description}{" "}
+                  </CardText>
                   <Button
                     color="info"
                     onClick={this.infoproject.bind(this, _id)}
@@ -91,7 +95,6 @@ class Projects extends Component {
                     Project Details
                   </Button>
                   <Button
-                    className="remove-btn"
                     color="danger"
                     size="sm"
                     onClick={this.onDeleteClick.bind(this, _id)}

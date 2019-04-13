@@ -54,7 +54,9 @@ const ProjectSchema = new Schema({
     type: String
   },
   state: {
-    type: String
+    type: String,
+    enum: ["Pending", "Posted", "Under Review", "WIP", "Finished"],
+    default: "Pending"
   },
   applicants: {
     type: [String]
