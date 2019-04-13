@@ -4,11 +4,13 @@ import {
   DELETE_PROJECT,
   ADD_PROJECT,
   GET_PROJECT,
-  SEARCH_PROJECT
+  SEARCH_PROJECT,
+  EDIT_PROJECT
 } from "../actions/types";
 
 const initialState = {
   Projects: [],
+  Project: [],
   loading: false
 };
 
@@ -18,6 +20,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         Projects: action.payload,
+        loading: false
+      };
+    case EDIT_PROJECT:
+      return {
+        ...state,
+        Project: action.payload,
         loading: false
       };
     case SEARCH_PROJECT:

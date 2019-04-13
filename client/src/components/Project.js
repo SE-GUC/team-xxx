@@ -26,6 +26,9 @@ class Project extends Component {
   componentDidMount() {
     this.props.getProject(this.props.match.params.id);
   }
+  Editproject = id => {
+    this.props.history.push("/EditProject/" + this.props.match.params.id);
+  };
   render() {
     const { Projects } = this.props.Project;
     return (
@@ -35,7 +38,9 @@ class Project extends Component {
             <Col sm={{ size: 6, order: 2, offset: 9 }}>
               {" "}
               <Button color="primary">Apply for project</Button>{" "}
-              <Button color="primary">Edit Project</Button>{" "}
+              <Button color="primary" onClick={this.Editproject}>
+                Edit Project
+              </Button>{" "}
             </Col>
           </Row>
           <br />
@@ -45,30 +50,59 @@ class Project extends Component {
                 <CardHeader tag="h3">{Projects.Title}</CardHeader>
                 <CardBody>
                   <CardTitle />
-                  <CardText>{Projects.description}</CardText>
                   <CardText>
-                    <div className="text-center">Project State</div>
-                    <br />
-                    <Progress multi>
-                      <Progress bar value="20" max={55}>
-                        Pending
-                      </Progress>
-                      <Progress bar color="success" value="20" max={55}>
-                        Posted
-                      </Progress>
-                      <Progress bar color="warning" value="20" max={55}>
-                        Under Review
-                      </Progress>
-                      <Progress bar color="danger" value="20" max={55}>
-                        WIP
-                      </Progress>
-                      <Progress bar color="info" value="20" max={55}>
-                        Finished
-                      </Progress>
-                    </Progress>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Description
+                    </h4>
+                    {Projects.description}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Required Skills
+                    </h4>
+                    {Projects.skills}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Required Effort
+                    </h4>
+                    {Projects.effort}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Required commitment
+                    </h4>
+                    {Projects.commitment}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Required experience
+                    </h4>
+                    {Projects.experience}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Required category
+                    </h4>
+                    {Projects.category}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Project Duration
+                    </h4>
+                    {Projects.duration}{" "}
                   </CardText>
                 </CardBody>
-                <CardFooter className="text-muted">Footer</CardFooter>
+                <CardFooter className="text-muted">
+                  <CardText>
+                    <div className="text-center">Project State</div>
+                  </CardText>
+                  <Progress multi>
+                    <Progress bar value={Projects.statevalue} max={100}>
+                      {Projects.state}
+                    </Progress>
+                  </Progress>
+                </CardFooter>
               </Card>
             </CSSTransition>
           </TransitionGroup>
