@@ -23,7 +23,8 @@ class Example extends React.Component {
     duration: "",
     commitment: "",
     experience: "",
-    category: ""
+    category: "",
+    extraInfo: ""
   };
 
   onChange = e => {
@@ -39,7 +40,8 @@ class Example extends React.Component {
       commitment: this.state.commitment,
       experience: this.state.experience,
       category: this.state.category,
-      duration: this.state.duration
+      duration: this.state.duration,
+      extraInfo: this.state.extraInfo
     };
     // Add Project via addProject action
     this.props.addProject(newProject);
@@ -58,7 +60,7 @@ class Example extends React.Component {
           </Alert>
           <FormGroup row>
             <Label for="Title" sm={2}>
-              Project Title
+              <h5> Project Title</h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -72,7 +74,7 @@ class Example extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="description" sm={2}>
-              Project Description
+              <h5> Project Description</h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -86,7 +88,7 @@ class Example extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="effort" sm={2}>
-              Estimated Effort
+              <h5> Estimated Effort</h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -100,7 +102,7 @@ class Example extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="experience" sm={2}>
-              Experience
+              <h5> Experience </h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -114,7 +116,7 @@ class Example extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="commitment" sm={2}>
-              Commitment
+              <h5> Commitment </h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -128,7 +130,7 @@ class Example extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="duration" sm={2}>
-              Project Duration
+              <h5>Project Duration </h5>
             </Label>
             <Col sm={10}>
               <Input
@@ -140,9 +142,20 @@ class Example extends React.Component {
               />
             </Col>
           </FormGroup>
+          <FormGroup>
+            <Label for="extraInfo">
+              <h5>Enter Any Extra Data</h5>
+            </Label>
+            <Input
+              type="textarea"
+              name="extraInfo"
+              id="extraInfo"
+              onChange={this.onChange}
+            />
+          </FormGroup>
           <FormGroup row>
             <Label for="category" sm={2}>
-              Select Category
+              <h5> Select Category</h5>
             </Label>
             <Col sm={10}>
               <Input
