@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Create Schema
 const ProjectSchema = new Schema({
   Title: {
     type: String,
@@ -35,7 +34,9 @@ const ProjectSchema = new Schema({
     type: String
   },
   Consultant: {
-    type: Boolean
+    type: String,
+    enum: ["Yes", "No", "NA"],
+    default: "NA"
   },
   consultancy: {
     type: String
@@ -44,8 +45,9 @@ const ProjectSchema = new Schema({
     type: Boolean
   },
   consultancyAcceptance: {
-    type: Boolean,
-    default: false
+    type: String,
+    enum: ["Accept", "Decline", "NA"],
+    default: "NA"
   },
   skills: {
     type: [String]

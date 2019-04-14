@@ -40,13 +40,36 @@ class Project extends Component {
     category: this.props.defaultInputValue,
     state: this.props.defaultInputValue,
     extraInfo: this.props.defaultInputValue,
-    consultancy: this.props.defaultInputValue
+    consultancy: this.props.defaultInputValue,
+    consultancyAcceptance: this.props.defaultInputValue,
+    Consultant: this.props.defaultInputValue,
+    statevalue: this.props.defaultInputValue
   };
 
+  onChange2 = e => {
+    this.setState({ [e.target.name]: e.target.value });
+    // eslint-disable-next-line default-case
+    switch (e.target.value) {
+      case "Pending":
+        this.setState({ statevalue: 20 });
+        break;
+      case "Posted":
+        this.setState({ statevalue: 40 });
+        break;
+      case "Under Review":
+        this.setState({ statevalue: 60 });
+        break;
+      case "WIP":
+        this.setState({ statevalue: 80 });
+        break;
+      case "Finished":
+        this.setState({ statevalue: 100 });
+        break;
+    }
+  };
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   onSubmit = e => {
     try {
       e.preventDefault();
@@ -61,7 +84,10 @@ class Project extends Component {
         category: this.state.category,
         state: this.state.state,
         extraInfo: this.state.extraInfo,
-        consultancy: this.state.consultancy
+        consultancy: this.state.consultancy,
+        Consultant: this.state.Consultant,
+        consultancyAcceptance: this.state.consultancyAcceptance,
+        statevalue: this.state.statevalue
       };
       this.props.editProject(ProjectEdit, this.props.match.params.id);
       this.props.history.push("/Project/" + this.props.match.params.id);
@@ -69,7 +95,6 @@ class Project extends Component {
       console.log(err);
     }
   };
-
   componentDidMount() {
     this.props.getProject(this.props.match.params.id);
     this.props.getConsultancys();
@@ -229,13 +254,32 @@ class Project extends Component {
                           type="select"
                           name="state"
                           id="state"
-                          onChange={this.onChange}
+                          defaultValue={Projects.state}
+                          onChange={this.onChange2}
                         >
                           <option value="Pending">Pending</option>
                           <option value="Posted">Posted</option>
                           <option value="Under Review">Under Review</option>
                           <option value="WIP">WIP</option>
                           <option value="Finished">Finished</option>
+                        </Input>
+                      </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                      <Label for="state" sm={2}>
+                        <h5> Need a Consultant?</h5>
+                      </Label>
+                      <Col sm={10}>
+                        <Input
+                          type="select"
+                          name="Consultant"
+                          id="Consultant"
+                          defaultValue={Projects.Consultant}
+                          onChange={this.onChange}
+                        >
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                          <option value="NA">NA</option>
                         </Input>
                       </Col>
                     </FormGroup>
@@ -248,11 +292,31 @@ class Project extends Component {
                           type="select"
                           name="consultancy"
                           id="consultancy"
+                          defaultValue={Projects.consultancy}
                           onChange={this.onChange}
                         >
                           {Consultancys.map(({ Name }) => (
                             <option value={Name}>{Name}</option>
                           ))}
+                        </Input>
+                      </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                      <Label for="state" sm={2}>
+                        <h5> Do you Accept to be this Project Consultant ?</h5>
+                      </Label>
+                      <br />
+                      <Col sm={10}>
+                        <Input
+                          type="select"
+                          name="consultancyAcceptance"
+                          id="consultancyAcceptance"
+                          defaultValue={Projects.consultancyAcceptance}
+                          onChange={this.onChange}
+                        >
+                          <option value="Accept">Accept</option>
+                          <option value="Decline">Decline</option>
+                          <option value="NA">NA</option>
                         </Input>
                       </Col>
                     </FormGroup>
@@ -264,7 +328,7 @@ class Project extends Component {
                     <div className="text-center">Project State</div>
                   </CardText>
                   <Progress multi>
-                    <Progress bar value={Projects.statevalue} max={100}>
+                    <Progress bar defaultValue={Projects.statevalue} max={100}>
                       {Projects.state}
                     </Progress>
                   </Progress>

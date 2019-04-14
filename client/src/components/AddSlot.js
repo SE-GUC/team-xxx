@@ -1,8 +1,8 @@
-import React from "react";
 import { Button, Form, FormGroup, Label, Input, Alert, Col } from "reactstrap";
-import { Container } from "react-bootstrap";
 import { addSlot } from "../actions/SlotActions";
+import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
+import React from "react";
 
 class Example extends React.Component {
   constructor(props) {
@@ -60,7 +60,6 @@ class Example extends React.Component {
           >
             Your Slot is created successfully
           </Alert>
-
           <FormGroup>
             <Label for="lifecoachEmail">Life Coach Email</Label>
             <Input
