@@ -13,6 +13,7 @@ import AddSlot from "./components/AddSlot";
 import Search from "./components/Search";
 import Booking from "./components/Booking";
 import EditProject from "./components/EditProject";
+import FreeSlots from "./components/FreeSlots";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -36,6 +37,7 @@ class App extends Component {
             <Route path="/AddSlot" component={AddSlot} />
             <Route path="/Booking" component={Booking} />
             <Route path="/EditProject/:id" component={EditProject} />
+            <Route path="/FreeSlots" component={FreeSlots} />
           </div>
         </Provider>
       </Router>

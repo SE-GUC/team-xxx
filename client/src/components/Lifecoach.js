@@ -14,7 +14,7 @@ import {
   CardSubtitle,
   Button,
   CardColumns,
-  Container
+  Container,Col
 } from "reactstrap";
 
 class Lifecoach extends Component {
@@ -29,6 +29,12 @@ class Lifecoach extends Component {
   infoproject = id => {
     this.props.history.push("/Booking/" + id);
   };
+  Bookaslot = () => {
+    this.props.history.push("/FreeSlots");
+  };
+  Addaslot = () => {
+    this.props.history.push("/AddSlot");
+  };
   componentDidMount() {
     this.props.getlifecoachmembers();
     this.props.getlifecoachpartners();
@@ -40,6 +46,18 @@ class Lifecoach extends Component {
     const { Consultancys } = this.props.Consultancy;
     return (
       <Container>
+          <Col sm={{ size: 6, order: 2, offset: 10 }}>
+            {" "}
+            <Button color="primary" onClick={this.Bookaslot}>
+             Book a Slot
+            </Button>{" "}
+            <Button color="primary" onClick={this.Addaslot}>
+             Add a Slot
+            </Button>{" "}
+          </Col>
+          <br />
+       
+      
         <CardColumns>
           <TransitionGroup className="Members">
             {Members.map(({ _id, Email }) => (
@@ -55,12 +73,7 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button
-                      color="info"
-                      onClick={this.infoproject.bind(this, _id)}
-                    >
-                      Book
-                    </Button>
+                   
                   </CardBody>
                 </Card>
               </CSSTransition>
@@ -80,14 +93,10 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button
-                      color="info"
-                      onClick={this.infoproject.bind(this, _id)}
-                    >
-                      Book
-                    </Button>
+                   
                   </CardBody>
                 </Card>
+              
               </CSSTransition>
             ))}
           </TransitionGroup>
@@ -105,12 +114,7 @@ class Lifecoach extends Component {
                     <CardTitle>{Email}</CardTitle>
                     <CardSubtitle>{Email}</CardSubtitle>
                     <CardText>{Email}</CardText>
-                    <Button
-                      color="info"
-                      onClick={this.infoproject.bind(this, _id)}
-                    >
-                      Book
-                    </Button>
+                    
                   </CardBody>
                 </Card>
               </CSSTransition>

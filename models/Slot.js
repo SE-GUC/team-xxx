@@ -32,6 +32,14 @@ const SlotSchema = new Schema({
   },
   Location: {
     type: String
+  },
+  BookingCon: {
+    type: Boolean,
+    default: false
+  },
+  LocationCon: {
+    type: Boolean,
+    default: false
   }
 });
 module.exports = Slot = mongoose.model("Slot", SlotSchema);
