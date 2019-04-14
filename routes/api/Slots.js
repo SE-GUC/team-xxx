@@ -24,6 +24,18 @@ router.get("/state/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
+///////////////////////////////////////tessssssssst///////////////////////
+
+router.get("/lifecoachEmail/:id", function(req, res) {
+  Slot.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(doc.lifecoachEmail);
+    })
+    .catch(err => next(err));
+});
 
 router.get("/:id", function(req, res) {
   Slot.findById(req.params.id)
@@ -78,6 +90,7 @@ router.delete("/:id", (req, res) => {
   Slot.findById(req.params.id)
     .then(Slot => Slot.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
+    
 });
 
 //get free slots
@@ -108,6 +121,29 @@ router.put("/book/:id", async function(req, res, next) {
     console.log(error);
   }
 });
+///////////////////////confrim////////////////
+router.put("/confim/:id", async function(req, res, next) {
+  try {
+    const slot = await Slot.findById(req.params.id);
+    if (!slot) return res.status(404).send({ error: "Slot does not exist" });
+    const isValidated = validator.bookValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    const updateSchema = {
+      BookingCon: true
+      
+    };
+    Slot.findByIdAndUpdate(req.params.id, updateSchema, function(err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/Date/:id", function(req, res) {
   Slot.findById(req.params.id)
     .then(doc => {
@@ -128,5 +164,4 @@ router.get("/Location/:id", function(req, res) {
     })
     .catch(err => next(err));
 });
-
 module.exports = router;
