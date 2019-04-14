@@ -1,137 +1,117 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getlifecoachmembers } from "../actions/MemberActions";
-import { getlifecoachconsultancys } from "../actions/ConsultancyActions";
-import { getlifecoachpartners } from "../actions/PartnersActions";
+import { getSlots, BookSlot, ConfirmSlot } from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
   Card,
-  CardImg,
+  Row,
   CardText,
-  CardBody,
   CardTitle,
-  CardSubtitle,
   Button,
-  CardColumns,
-  Container,Col
+  Container,
+  Col,
+  Badge
 } from "reactstrap";
 
 class Lifecoach extends Component {
   static propTypes = {
-    getlifecoachmembers: PropTypes.func.isRequired,
-    Member: PropTypes.object.isRequired,
-    getlifecoachconsultancys: PropTypes.func.isRequired,
-    Consultancy: PropTypes.object.isRequired,
-    getlifecoachpartners: PropTypes.func.isRequired,
-    Partner: PropTypes.object.isRequired
+    getSlots: PropTypes.func.isRequired,
+    BookSlot: PropTypes.func.isRequired,
+    Slot: PropTypes.object.isRequired
   };
-  infoproject = id => {
-    this.props.history.push("/Booking/" + id);
+
+  componentDidMount() {
+    this.props.getSlots();
+  }
+  BookSlot = id => {
+    this.props.BookSlot(id);
   };
-  Bookaslot = () => {
-    this.props.history.push("/FreeSlots");
+  state = {
+    visible: false,
+    BookingCon: false
+  };
+
+  ConfirmSlot = id => {
+    this.setState({ BookingCon: true });
+    this.props.ConfirmSlot(id);
   };
   Addaslot = () => {
     this.props.history.push("/AddSlot");
   };
-  componentDidMount() {
-    this.props.getlifecoachmembers();
-    this.props.getlifecoachpartners();
-    this.props.getlifecoachconsultancys();
-  }
+
   render() {
-    const { Members } = this.props.Member;
-    const { Partners } = this.props.Partner;
-    const { Consultancys } = this.props.Consultancy;
+    const { Slots } = this.props.Slot;
     return (
-      <Container>
+      <div>
+        <Container>
           <Col sm={{ size: 6, order: 2, offset: 10 }}>
             {" "}
-            <Button color="primary" onClick={this.Bookaslot}>
-             Book a Slot
-            </Button>{" "}
             <Button color="primary" onClick={this.Addaslot}>
-             Add a Slot
+              Add a Slot
             </Button>{" "}
           </Col>
           <br />
-       
-      
-        <CardColumns>
-          <TransitionGroup className="Members">
-            {Members.map(({ _id, Email }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <Card>
-                  <CardImg
-                    top
-                    width="100%"
-                    src="https://i.pinimg.com/originals/18/47/ca/1847caef4e19d6e5e4e8fdb2e793dffb.jpg"
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>{Email}</CardTitle>
-                    <CardSubtitle>{Email}</CardSubtitle>
-                    <CardText>{Email}</CardText>
-                   
-                  </CardBody>
-                </Card>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-          <TransitionGroup className="Partners">
-            {Partners.map(({ _id, Email }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <Card>
-                  <CardImg
-                    top
-                    width="100%"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzJoJ2t1fd07gef02ORWPUw_vTy86AXXL9etdk562l2hxc3RNm2Q"
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>{Email}</CardTitle>
-                    <CardSubtitle>{Email}</CardSubtitle>
-                    <CardText>{Email}</CardText>
-                   
-                  </CardBody>
-                </Card>
-              
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-          <TransitionGroup className="Consultancys">
-            {Consultancys.map(({ _id, Email }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <Card>
-                  <CardImg
-                    top
-                    width="100%"
-                    src="http://www.lgfgfashionhouse.com/wp-content/uploads/2015/10/tumblr_inline_nwzvqylS7E1rg11t7_540.jpg"
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>{Email}</CardTitle>
-                    <CardSubtitle>{Email}</CardSubtitle>
-                    <CardText>{Email}</CardText>
-                    
-                  </CardBody>
-                </Card>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </CardColumns>
-      </Container>
+          <Container>
+            <br />
+            <TransitionGroup className="shopping-list">
+              {Slots.map(
+                ({
+                  _id,
+                  lifecoachEmail,
+                  number,
+                  Date,
+                  startTime,
+                  endTime,
+                  Location
+                }) => (
+                  <CSSTransition key={_id} timeout={500} classNames="fade">
+                    <Row>
+                      <Col sm="12">
+                        <Card body>
+                          <CardTitle>
+                            <h1>
+                              <Badge color="success">({lifecoachEmail})</Badge>
+                            </h1>
+                          </CardTitle>
+                          <CardText>({number})</CardText>
+                          <CardText>({Date})</CardText>
+                          <CardText>({startTime})</CardText>
+                          <CardText>({endTime})</CardText>
+                          <CardText>({Location})</CardText>
+
+                          <Button
+                            color="info"
+                            size="sm"
+                            onClick={this.BookSlot.bind(this, _id)}
+                          >
+                            Book A Slot
+                          </Button>
+
+                          <Button
+                            color="info"
+                            size="sm"
+                            onClick={this.ConfirmSlot.bind(this, _id)}
+                          >
+                            Confirm A Slot
+                          </Button>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </CSSTransition>
+                )
+              )}
+            </TransitionGroup>
+          </Container>
+        </Container>
+      </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  Member: state.Member,
-  Partner: state.Partner,
-  Consultancy: state.Consultancy
+  Slot: state.Slot
 });
-
 export default connect(
   mapStateToProps,
-  { getlifecoachmembers, getlifecoachconsultancys, getlifecoachpartners }
+  { getSlots, BookSlot, ConfirmSlot }
 )(Lifecoach);

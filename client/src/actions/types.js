@@ -29,6 +29,4 @@ export const EDIT_PROJECT = "EDIT_PROJECT";
 export const GET_FREE_SLOTS = " GET_FREE_SLOTS";
 export const DELETE_SLOT = "DELETE_SLOT";
 export const BOOK_SLOT = "BOOK_SLOT";
-export const GET_SLOT = "GET_SLOT";
-export const GET_LIFECOACHEMAIL = "GET_LIFECOACHEMAIL";
 export const CONFIRM_SLOT = "CONFIRM_SLOT";

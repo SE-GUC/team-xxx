@@ -70,6 +70,12 @@ class Project extends Component {
                   </CardText>
                   <CardText>
                     <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Consultancy Needed
+                    </h4>
+                    {Projects.Consultant}{" "}
+                  </CardText>
+                  <CardText>
+                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
                       Project consultant
                     </h4>
                     {Projects.consultancy}{" "}

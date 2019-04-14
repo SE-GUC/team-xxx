@@ -6,8 +6,6 @@ import {
   ADD_SLOT,
   DELETE_SLOT,
   BOOK_SLOT,
-  GET_SLOT,
-  GET_LIFECOACHEMAIL,
   CONFIRM_SLOT
 } from "./types";
 
@@ -51,22 +49,6 @@ export const getFreeSlots = () => dispatch => {
   axios.get("/api/Slots/status//").then(res =>
     dispatch({
       type: GET_FREE_SLOTS,
-      payload: res.data
-    })
-  );
-};
-export const getSlot = Slot => dispatch => {
-  axios.post("/api/Slots/:id", Slot).then(res =>
-    dispatch({
-      type: GET_SLOT,
-      payload: res.data
-    })
-  );
-};
-export const getLifeCoachEmail = Slot => dispatch => {
-  axios.get("/api/Slots/lifecoachEmail/:id", Slot).then(res =>
-    dispatch({
-      type: GET_LIFECOACHEMAIL,
       payload: res.data
     })
   );

@@ -5,8 +5,6 @@ import {
   SLOTS_LOADING,
   DELETE_SLOT,
   BOOK_SLOT,
-  GET_SLOT,
-  GET_LIFECOACHEMAIL,
   CONFIRM_SLOT
 } from "../actions/types";
 
@@ -48,17 +46,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         Slots: [action.payload, ...state.Slots]
-      };
-    case GET_SLOT:
-      return {
-        ...state,
-        Slots: [action.payload, ...state.Slots]
-      };
-    case GET_LIFECOACHEMAIL:
-      return {
-        ...state,
-        Slots: action.payload,
-        loading: false
       };
     case CONFIRM_SLOT:
       return {
