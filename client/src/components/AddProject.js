@@ -24,7 +24,11 @@ class Example extends React.Component {
     commitment: "",
     experience: "",
     category: "",
-    extraInfo: ""
+    extraInfo: "",
+    Consultant: "NA",
+    skills: [""],
+    compensation: "",
+    partner: ""
   };
 
   onChange = e => {
@@ -41,7 +45,11 @@ class Example extends React.Component {
       experience: this.state.experience,
       category: this.state.category,
       duration: this.state.duration,
-      extraInfo: this.state.extraInfo
+      extraInfo: this.state.extraInfo,
+      Consultant: this.state.Consultant,
+      skills: this.state.skills,
+      compensation: this.state.compensation,
+      partner: this.state.partner
     };
     // Add Project via addProject action
     this.props.addProject(newProject);
@@ -68,6 +76,48 @@ class Example extends React.Component {
                 name="Title"
                 id="Title"
                 placeholder="Enter The Project Title"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="Title" sm={2}>
+              <h5> Project Required Skills</h5>
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="skills"
+                id="skills"
+                placeholder="Enter The Project required skills"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="Title" sm={2}>
+              <h5> Project Compensation</h5>
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="compensation"
+                id="compensation"
+                placeholder="Enter The Project Compensation"
+                onChange={this.onChange}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="Title" sm={2}>
+              <h5> Project Partner</h5>
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="partner"
+                id="partner"
+                placeholder="Enter The Project partner"
                 onChange={this.onChange}
               />
             </Col>
@@ -185,6 +235,24 @@ class Example extends React.Component {
                 <option value="Web, Mobile & Software Dev">
                   Web, Mobile & Software Dev
                 </option>
+              </Input>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="state" sm={2}>
+              <h5> Need a Consultant?</h5>
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="select"
+                name="Consultant"
+                id="Consultant"
+                defaultValue={"NA"}
+                onChange={this.onChange}
+              >
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="NA">NA</option>
               </Input>
             </Col>
           </FormGroup>
