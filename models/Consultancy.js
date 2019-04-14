@@ -16,6 +16,10 @@ const ConsultancySchema = new Schema({
     type: [String],
     required: true
   },
+  Name: {
+    type: String,
+    required: true
+  },
   partners: {
     type: [String],
     required: true
