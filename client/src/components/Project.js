@@ -26,9 +26,6 @@ class Project extends Component {
   componentDidMount() {
     this.props.getProject(this.props.match.params.id);
   }
-  Editproject = id => {
-    this.props.history.push("/EditProject/" + this.props.match.params.id);
-  };
   render() {
     const { Projects } = this.props.Project;
     return (
@@ -38,9 +35,7 @@ class Project extends Component {
             <Col sm={{ size: 6, order: 2, offset: 9 }}>
               {" "}
               <Button color="primary">Apply for project</Button>{" "}
-              <Button color="primary" onClick={this.Editproject}>
-                Edit Project
-              </Button>{" "}
+              <Button color="primary">Edit Project</Button>{" "}
             </Col>
           </Row>
           <br />
@@ -50,113 +45,30 @@ class Project extends Component {
                 <CardHeader tag="h3">{Projects.Title}</CardHeader>
                 <CardBody>
                   <CardTitle />
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Description
-                    </h4>
-                    {Projects.description}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Category
-                    </h4>
-                    {Projects.category}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Duration
-                    </h4>
-                    {Projects.duration}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project consultant
-                    </h4>
-                    {Projects.consultancy}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Consultant Acceptance
-                    </h4>
-                    {Projects.consultancyAcceptance}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Candidates
-                    </h4>
-                    {Projects.candidates}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Required experience
-                    </h4>
-                    {Projects.experience}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Required commitment
-                    </h4>
-                    {Projects.commitment}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Required Effort
-                    </h4>
-                    {Projects.effort}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Required Skills
-                    </h4>
-                    {Projects.skills}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      compensation
-                    </h4>
-                    {Projects.compensation}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project partner
-                    </h4>
-                    {Projects.partner}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Assignee
-                    </h4>
-                    {Projects.assigned}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Applicants
-                    </h4>
-                    {Projects.applicants}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Project Files
-                    </h4>
-                    {Projects.memberWork}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Extra information
-                    </h4>
-                    {Projects.extraInfo}{" "}
-                  </CardText>
-                </CardBody>
-                <CardFooter className="text-muted">
+                  <CardText>{Projects.description}</CardText>
                   <CardText>
                     <div className="text-center">Project State</div>
-                  </CardText>
-                  <Progress multi>
-                    <Progress bar value={Projects.statevalue} max={100}>
-                      {Projects.state}
+                    <br />
+                    <Progress multi>
+                      <Progress bar value="20" max={55}>
+                        Pending
+                      </Progress>
+                      <Progress bar color="success" value="20" max={55}>
+                        Posted
+                      </Progress>
+                      <Progress bar color="warning" value="20" max={55}>
+                        Under Review
+                      </Progress>
+                      <Progress bar color="danger" value="20" max={55}>
+                        WIP
+                      </Progress>
+                      <Progress bar color="info" value="20" max={55}>
+                        Finished
+                      </Progress>
                     </Progress>
-                  </Progress>
-                </CardFooter>
+                  </CardText>
+                </CardBody>
+                <CardFooter className="text-muted">Footer</CardFooter>
               </Card>
             </CSSTransition>
           </TransitionGroup>

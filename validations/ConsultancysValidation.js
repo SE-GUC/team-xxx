@@ -45,8 +45,7 @@ module.exports = {
       projects: Joi.array(),
       Reviews: Joi.array(),
       ReviewOwner: Joi.string(),
-      Submission: Joi.array(),
-      Name: Joi.string()
+      Submission: Joi.array()
     };
     return Joi.validate(request, updateSchema);
   }

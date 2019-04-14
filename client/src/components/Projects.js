@@ -8,11 +8,9 @@ import {
   Container,
   Col,
   Button,
-  CardText,
-  FormGroup,
-  Label,
-  Input,
-  Form
+  Badge,
+  CardTitle,
+  CardText
 } from "reactstrap";
 
 class Projects extends Component {
@@ -34,37 +32,12 @@ class Projects extends Component {
   infoproject = id => {
     this.props.history.push("/Project/" + id);
   };
-  state = {
-    query: ""
-  };
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.history.push("/search/" + this.state.query);
-  };
+
   render() {
     const { Projects } = this.props.Project;
     return (
       <div>
         <Container>
-          <Col md={6}>
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="Search" style={{ fontWeight: "bold" }}>
-                  Search for a Project
-                </Label>
-                <Input
-                  type="Text"
-                  name="query"
-                  id="query"
-                  placeholder="Enter The Title of the Desired Project"
-                  onChange={this.onChange}
-                />
-              </FormGroup>
-            </Form>
-          </Col>
           <Col sm={{ size: 6, order: 2, offset: 10 }}>
             {" "}
             <Button color="primary" onClick={this.addProject}>
@@ -78,14 +51,12 @@ class Projects extends Component {
             {Projects.map(({ _id, Title, description }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <Card body>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold" }}>Project Title</h4>
-                    {Title}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold" }}>Project Description</h4>
-                    {description}{" "}
-                  </CardText>
+                  <CardTitle>
+                    <h1>
+                      <Badge color="success">({Title})</Badge>
+                    </h1>
+                  </CardTitle>
+                  <CardText>({description})</CardText>
                   <Button
                     color="info"
                     onClick={this.infoproject.bind(this, _id)}
@@ -93,6 +64,7 @@ class Projects extends Component {
                     Project Details
                   </Button>
                   <Button
+                    className="remove-btn"
                     color="danger"
                     size="sm"
                     onClick={this.onDeleteClick.bind(this, _id)}

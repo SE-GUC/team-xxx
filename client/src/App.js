@@ -10,9 +10,9 @@ import Home from "./components/home";
 import AddProject from "./components/AddProject";
 import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
-import Search from "./components/Search";
 import Booking from "./components/Booking";
-import EditProject from "./components/EditProject";
+import FreeSlots from "./components/FreeSlots";
+
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -25,7 +25,6 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route exact path="/" component={Home} />
-            <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
@@ -35,7 +34,8 @@ class App extends Component {
             <Route path="/Project/:id" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />
             <Route path="/Booking" component={Booking} />
-            <Route path="/EditProject/:id" component={EditProject} />
+            <Route path="/FreeSlots" component={FreeSlots} />
+            
           </div>
         </Provider>
       </Router>

@@ -6,8 +6,7 @@ const ProjectSchema = new Schema({
   Title: {
     type: String,
     required: true,
-    unique: true,
-    text: true
+    unique: true
   },
   description: {
     type: String,
@@ -51,33 +50,10 @@ const ProjectSchema = new Schema({
     type: [String]
   },
   category: {
-    type: String,
-    enum: [
-      "NA",
-      "Admin Support",
-      "Customer Service",
-      "Sales & Marketing",
-      "Accounting & Consulting",
-      "Legal",
-      "Translation",
-      "Writing",
-      "Design & Creative",
-      "Engineering & Architecture",
-      "Data Science & Analytics",
-      "IT & Networking",
-      "Web, Mobile & Software Dev"
-    ],
-    default: "NA"
+    type: String
   },
   state: {
-    type: String,
-    enum: ["Pending", "Posted", "Under Review", "WIP", "Finished"],
-    default: "Pending"
-  },
-  statevalue: {
-    type: Number,
-    enum: [20, 40, 60, 80, 100],
-    default: 20
+    type: String
   },
   applicants: {
     type: [String]
@@ -89,7 +65,7 @@ const ProjectSchema = new Schema({
     type: String
   },
   memberWork: {
-    type: [Object]
+    type: String
   },
   OrientaionForTheTask: {
     type: String
@@ -101,5 +77,5 @@ const ProjectSchema = new Schema({
     type: String
   }
 });
-ProjectSchema.index({ "$**": "text" });
+
 module.exports = Project = mongoose.model("Project", ProjectSchema);
