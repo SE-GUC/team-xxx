@@ -1,5 +1,6 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProject, editProject } from "../actions/ProjectActions";
+import { getConsultancys } from "../actions/ConsultancyActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -24,7 +25,8 @@ class Project extends Component {
   static propTypes = {
     getProject: PropTypes.func.isRequired,
     editProject: PropTypes.func.isRequired,
-    Project: PropTypes.object.isRequired
+    Project: PropTypes.object.isRequired,
+    getConsultancys: PropTypes.func.isRequired
   };
   state = {
     visible: false,
@@ -37,7 +39,8 @@ class Project extends Component {
     experience: this.props.defaultInputValue,
     category: this.props.defaultInputValue,
     state: this.props.defaultInputValue,
-    extraInfo: this.props.defaultInputValue
+    extraInfo: this.props.defaultInputValue,
+    consultancy: this.props.defaultInputValue
   };
 
   onChange = e => {
@@ -57,7 +60,8 @@ class Project extends Component {
         duration: this.state.experience,
         category: this.state.category,
         state: this.state.state,
-        extraInfo: this.state.extraInfo
+        extraInfo: this.state.extraInfo,
+        consultancy: this.state.consultancy
       };
       this.props.editProject(ProjectEdit, this.props.match.params.id);
       this.props.history.push("/Project/" + this.props.match.params.id);
@@ -68,10 +72,12 @@ class Project extends Component {
 
   componentDidMount() {
     this.props.getProject(this.props.match.params.id);
+    this.props.getConsultancys();
   }
 
   render() {
     const { Projects } = this.props.Project;
+    const { Consultancys } = this.props.Consultancy;
     return (
       <div>
         <Container>
@@ -233,6 +239,23 @@ class Project extends Component {
                         </Input>
                       </Col>
                     </FormGroup>
+                    <FormGroup row>
+                      <Label for="state" sm={2}>
+                        <h5>Assign Consultant</h5>
+                      </Label>
+                      <Col sm={10}>
+                        <Input
+                          type="select"
+                          name="consultancy"
+                          id="consultancy"
+                          onChange={this.onChange}
+                        >
+                          {Consultancys.map(({ Name }) => (
+                            <option value={Name}>{Name}</option>
+                          ))}
+                        </Input>
+                      </Col>
+                    </FormGroup>
                     <Button>Submit</Button>
                   </Form>
                 </CardBody>
@@ -255,10 +278,11 @@ class Project extends Component {
   }
 }
 const mapStateToProps = state => ({
-  Project: state.Project
+  Project: state.Project,
+  Consultancy: state.Consultancy
 });
 
 export default connect(
   mapStateToProps,
-  { getProject, editProject }
+  { getProject, editProject, getConsultancys }
 )(Project);
