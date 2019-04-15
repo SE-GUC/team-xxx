@@ -5,7 +5,7 @@ const FormPage = () => {
   return (
     <Container>
       <Row>
-        <Col md="6">
+        <Col md={{ size: 6, offset: 3 }}>
           <form>
             <p className="h4 text-center mb-4">Sign in</p>
             <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
