@@ -12,6 +12,7 @@ import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
 import Search from "./components/Search";
 import EditProject from "./components/EditProject";
+import Login from "./components/Login";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
+            <Route path="/Login" component={Login} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
