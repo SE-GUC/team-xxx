@@ -6,7 +6,9 @@ import {
   ADD_SLOT,
   DELETE_SLOT,
   BOOK_SLOT,
-  CONFIRM_SLOT
+  CONFIRM_SLOT,
+  GET_SLOT,
+  EDIT_SLOT
 } from "./types";
 
 export const getSlots = () => dispatch => {
@@ -14,6 +16,24 @@ export const getSlots = () => dispatch => {
   axios.get("/api/Slots/").then(res =>
     dispatch({
       type: GET_SLOTS,
+      payload: res.data
+    })
+  );
+};
+export const editSlot = (SlotEdit, id) => dispatch => {
+  dispatch(setSlotsLoading());
+  axios.put(`/api/Slots/${id}`, SlotEdit).then(res =>
+    dispatch({
+      type: EDIT_SLOT,
+      payload: res.data
+    })
+  );
+};
+export const getslot = id => dispatch => {
+  dispatch(setSlotsLoading());
+  axios.get(`/api/Slots/${id}`).then(res =>
+    dispatch({
+      type: GET_SLOT,
       payload: res.data
     })
   );

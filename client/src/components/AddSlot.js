@@ -18,12 +18,9 @@ class Example extends React.Component {
   state = {
     visible: false,
     lifecoachEmail: "",
-    number: "",
     Date: "",
     startTime: "",
-    endTime: "",
-    status: "",
-    Location: ""
+    endTime: ""
   };
 
   onChange = e => {
@@ -35,12 +32,9 @@ class Example extends React.Component {
       e.preventDefault();
       const newSlot = {
         lifecoachEmail: this.state.lifecoachEmail,
-        number: this.state.number,
         Date: this.state.Date,
         startTime: this.state.startTime,
-        endTime: this.state.endTime,
-        status: this.state.status,
-        Location: this.state.Location
+        endTime: this.state.endTime
       };
       this.props.addSlot(newSlot);
       this.onshow();
@@ -71,16 +65,6 @@ class Example extends React.Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="number">Slot Number</Label>
-            <Input
-              type="date"
-              name="number"
-              id="number"
-              placeholder="Slot Number"
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
             <Label for="Date">Date </Label>
             <Input
               type="date"
@@ -93,7 +77,7 @@ class Example extends React.Component {
           <FormGroup>
             <Label for="startTime">Start Time</Label>
             <Input
-              type="date"
+              type="time"
               name="startTime"
               id="startTime"
               placeholder="Slot Start Time"
@@ -103,30 +87,10 @@ class Example extends React.Component {
           <FormGroup>
             <Label for="endTime">End Time</Label>
             <Input
-              type="date"
+              type="time"
               name="endTime"
               id="endTime"
               placeholder="Slot End Time"
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="status">Status</Label>
-            <Input
-              type="text"
-              name="status"
-              id="status"
-              placeholder="Slot Status"
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="Location">Location</Label>
-            <Input
-              type="text"
-              name="Location"
-              id="Location"
-              placeholder="Enter The Session Suggested Location"
               onChange={this.onChange}
             />
           </FormGroup>

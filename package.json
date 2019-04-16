@@ -40,6 +40,7 @@
     "mongoose": "^5.4.16",
     "multer": "^1.4.1",
     "nodemon": "^1.18.10",
+    "react-datetime": "^2.16.3",
     "react-social-media-icons": "^1.1.0",
     "react-transition-group": "^3.0.0"
   },

@@ -26,7 +26,7 @@ class Project extends Component {
   componentDidMount() {
     this.props.getProject(this.props.match.params.id);
   }
-  Editproject = id => {
+  Editproject = () => {
     this.props.history.push("/EditProject/" + this.props.match.params.id);
   };
   render() {

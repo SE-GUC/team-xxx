@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardFooter,
   CardBody,
-  CardTitle,
   CardText,
   Progress,
   Container,
@@ -111,7 +110,6 @@ class Project extends Component {
               <Card>
                 <CardHeader tag="h3">{Projects.Title}</CardHeader>
                 <CardBody>
-                  <CardTitle />
                   <Form onSubmit={this.onSubmit}>
                     <FormGroup>
                       <h5>Project Description</h5>

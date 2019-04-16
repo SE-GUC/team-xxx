@@ -6,7 +6,6 @@ module.exports = {
       lifecoachEmail: Joi.string()
         .email()
         .required(),
-      number: Joi.date().required(),
       Date: Joi.date().required(),
       startTime: Joi.date().required(),
       endTime: Joi.date().required(),
@@ -19,7 +18,6 @@ module.exports = {
   updateValidation: request => {
     const updateSchema = {
       lifecoachEmail: Joi.string().email(),
-      number: Joi.date(),
       Date: Joi.date(),
       startTime: Joi.date(),
       endTime: Joi.date(),
