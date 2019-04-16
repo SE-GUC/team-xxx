@@ -11,6 +11,10 @@ import {
   CardText,
   Row,
   Col,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
   Container
 } from "reactstrap";
 
@@ -19,7 +23,19 @@ class Slot extends Component {
     getslot: PropTypes.func.isRequired,
     Slot: PropTypes.object.isRequired
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+    this.toggle = this.toggle.bind(this);
+  }
 
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
   componentDidMount() {
     this.props.getslot(this.props.match.params.id);
   }
@@ -32,8 +48,13 @@ class Slot extends Component {
       <div>
         <Container>
           <Row>
-            <Col sm={{ size: 6, order: 2, offset: 10 }}>
+            <Col sm={{ size: 10, order: 2, offset: 5 }}>
               {" "}
+              <Button color="primary" onClick={this.toggle}>
+                Suggest Location
+              </Button>{" "}
+              <Button color="primary">Decline Booking</Button>{" "}
+              <Button color="primary">Confirm Booking</Button>{" "}
               <Button color="primary">Book Slot</Button>{" "}
               <Button color="primary" onClick={this.Editslot}>
                 Edit Slot
@@ -94,6 +115,22 @@ class Slot extends Component {
             </CSSTransition>
           </TransitionGroup>
         </Container>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody />
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>
+              Do Something
+            </Button>{" "}
+            <Button color="secondary" onClick={this.toggle}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
         <br />
         <br />
       </div>

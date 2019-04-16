@@ -33,13 +33,13 @@ const SlotSchema = new Schema(
     },
     BookingCon: {
       type: String,
-      enum: ["Pending", "Confirmed"],
-      default: "Pending"
+      enum: ["NA", "Pending", "Confirmed"],
+      default: "NA"
     },
     LocationCon: {
       type: String,
-      enum: ["Pending", "Confirmed"],
-      default: "Pending"
+      enum: ["NA", "Pending", "Confirmed"],
+      default: "NA"
     }
   },
   {
