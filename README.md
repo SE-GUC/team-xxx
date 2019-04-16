@@ -18,5 +18,26 @@ npm run server
 # Run the React client only
 npm run client
 
-# Server runs on http://localhost:5000 and client on http://localhost:3000
+# Server ruteam-xxxns on http://localhost:5000 and client on http://localhost:3000
+```
+```
+# Admin Profiles
+1. Email    : 
+   Password :
+
+```
+```
+# Admin Profiles
+1. Email    : 
+   Password :
+```
+```
+# Admin Profiles
+1. Email    : 
+   Password :
+```
+```
+# Admin Profiles
+1. Email    : 
+   Password :
 ```
