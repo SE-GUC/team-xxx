@@ -25,19 +25,19 @@ npm run client
 1. Email    : 
    Password :
 
-```
-```
-# Admin Profiles
+
+
+# Consultancy Profiles
 1. Email    : 
    Password :
-```
-```
-# Admin Profiles
+
+
+# Partner Profiles
 1. Email    : 
    Password :
-```
-```
-# Admin Profiles
+
+
+# Member Profiles
 1. Email    : 
    Password :
 ```
