@@ -3,6 +3,9 @@ const router = express.Router();
 const validator = require("../../validations/PartnersValidation");
 const Partner = require("../../models/Partner");
 const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 // @route   GET api/Partners
 // @desc    Get All Partners
@@ -166,26 +169,6 @@ router.get("/Contracts/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-// @route   POST api/Partners
-// @desc    Create An Partner
-// @access  Public
-router.post("/", async (req, res) => {
-  try {
-    Partner.findOne({ Email }).then(user => {
-      if (user) return res.status(400).json({ msg: "User already exists" });
-    });
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const newPartner = await Partner.create(req.body);
-    res.json({ msg: "Partner was created successfully", data: newPartner });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 // @route   DELETE api/Partners/:id
 // @desc    Delete A Partner
 // @access  Public
@@ -341,6 +324,87 @@ router.post("/Reviews/:id", async (req, res) => {
 });
 router.get("/me/lifecoach/", (req, res) => {
   Partner.find({ Lifecoach: true }).then(Partners => res.json(Partners));
+});
+
+// @route   POST api/partners
+// @desc    Register new partner
+// @access  Public
+router.post("/", (req, res) => {
+  const {
+    Name,
+    Email,
+    Password,
+    business,
+    partners,
+    boardmembers,
+    events,
+    field,
+    projects,
+    feedback
+  } = req.body;
+  // Simple validation
+  if (
+    !Name ||
+    !Email ||
+    !Password ||
+    !business ||
+    !partners ||
+    !boardmembers ||
+    !events ||
+    !field ||
+    !projects ||
+    !feedback
+  ) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  // Check for existing partner
+  Partner.findOne({ Email }).then(partner => {
+    if (partner) return res.status(400).json({ msg: "Partner already exists" });
+    const newPartner = new Partner({
+      Name,
+      Email,
+      Password,
+      business,
+      partners,
+      boardmembers,
+      events,
+      field,
+      projects,
+      feedback
+    });
+    // Create salt & hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newPartner.Password, salt, (err, hash) => {
+        if (err) throw err;
+        newPartner.Password = hash;
+        newPartner.save().then(partner => {
+          jwt.sign(
+            { id: partner.id },
+            config.get("jwtSecret"),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                partner: {
+                  id: partner.id,
+                  Name: partner.Name,
+                  Email: partner.Email,
+                  business: partner.business,
+                  partners: partner.partners,
+                  boardmembers: partner.boardmembers,
+                  events: partner.events,
+                  field: partner.field,
+                  projects: partner.projects,
+                  feedback: partner.feedback
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
 });
 
 module.exports = router;
