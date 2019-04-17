@@ -18,7 +18,8 @@ class EditSlot extends Component {
   static propTypes = {
     getslot: PropTypes.func.isRequired,
     editSlot: PropTypes.func.isRequired,
-    Slot: PropTypes.object.isRequired
+    Slot: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
   };
   state = {
     visible: false,
@@ -53,58 +54,62 @@ class EditSlot extends Component {
     return (
       <div>
         <Container>
-          <TransitionGroup className="Slots">
-            <CSSTransition key={Slots._id} timeout={500} classNames="fade">
-              <Card>
-                <CardHeader tag="h3">{Slots.lifecoachEmail}</CardHeader>
-                <CardBody>
-                  <Form onSubmit={this.onSubmit}>
-                    <FormGroup>
-                      <h5>Slot Date</h5>
-                      <Input
-                        type="date"
-                        name="Date"
-                        id="Date"
-                        defaultValue={Slots.Date}
-                        placeholder="Enter Slot Date"
-                        onChange={this.onChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <h5>Slot Start Time</h5>
-                      <Input
-                        type="time"
-                        name="startTime"
-                        id="startTime"
-                        defaultValue={Slots.startTime}
-                        placeholder="Enter Slot Start Time"
-                        onChange={this.onChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <h5>Slot End Time</h5>
-                      <Input
-                        type="time"
-                        name="endTime"
-                        id="endTime"
-                        defaultValue={Slots.endTime}
-                        placeholder="Enter Slot End Time"
-                        onChange={this.onChange}
-                      />
-                    </FormGroup>
-                    <Button>Submit</Button>
-                  </Form>
-                </CardBody>
-              </Card>
-            </CSSTransition>
-          </TransitionGroup>
+          {" "}
+          {this.props.isAuthenticated ? (
+            <TransitionGroup className="Slots">
+              <CSSTransition key={Slots._id} timeout={500} classNames="fade">
+                <Card>
+                  <CardHeader tag="h3">{Slots.lifecoachEmail}</CardHeader>
+                  <CardBody>
+                    <Form onSubmit={this.onSubmit}>
+                      <FormGroup>
+                        <h5>Slot Date</h5>
+                        <Input
+                          type="date"
+                          name="Date"
+                          id="Date"
+                          defaultValue={Slots.Date}
+                          placeholder="Enter Slot Date"
+                          onChange={this.onChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <h5>Slot Start Time</h5>
+                        <Input
+                          type="time"
+                          name="startTime"
+                          id="startTime"
+                          defaultValue={Slots.startTime}
+                          placeholder="Enter Slot Start Time"
+                          onChange={this.onChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <h5>Slot End Time</h5>
+                        <Input
+                          type="time"
+                          name="endTime"
+                          id="endTime"
+                          defaultValue={Slots.endTime}
+                          placeholder="Enter Slot End Time"
+                          onChange={this.onChange}
+                        />
+                      </FormGroup>
+                      <Button>Submit</Button>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </CSSTransition>
+            </TransitionGroup>
+          ) : null}
         </Container>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  Slot: state.Slot
+  Slot: state.Slot,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

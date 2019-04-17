@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const validator = require("../../validations/MembersValidation");
 const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 // Member Model
 const Member = require("../../models/Member");
 
@@ -184,26 +187,6 @@ router.get("/masterclasses/:id", (req, res) => {
       return res.status(200).json(doc.masterclasses);
     })
     .catch(err => next(err));
-});
-
-// @route   POST api/Members
-// @desc    Create An Member
-// @access  Public
-router.post("/", async (req, res) => {
-  try {
-    Member.findOne({ Email }).then(user => {
-      if (user) return res.status(400).json({ msg: "User already exists" });
-    });
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const newMember = await Member.create(req.body);
-    res.json({ msg: "Member was created successfully", data: newMember });
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 router.put("/:id", async (req, res) => {
@@ -428,6 +411,88 @@ router.post("/RecommendedTasks/:id", async (req, res) => {
 
 router.get("/me/lifecoach/", (req, res) => {
   Member.find({ Lifecoach: true }).then(Members => res.json(Members));
+});
+
+// @route   POST api/members
+// @desc    Register new member
+// @access  Public
+router.post("/", (req, res) => {
+  const {
+    Name,
+    Email,
+    Password,
+    age,
+    skills,
+    interests,
+    events,
+    tasks,
+    reviews,
+    masterclasses
+  } = req.body;
+  // Simple validation
+  if (
+    !Name ||
+    !Email ||
+    !Password ||
+    !age ||
+    !skills ||
+    !interests ||
+    !events ||
+    !tasks ||
+    !reviews ||
+    !masterclasses
+  ) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  // Check for existing member
+  Member.findOne({ Email }).then(member => {
+    if (member) return res.status(400).json({ msg: "Member already exists" });
+    const newMember = new Member({
+      Name,
+      Email,
+      Password,
+      age,
+      skills,
+      interests,
+      events,
+      tasks,
+      reviews,
+      masterclasses
+    });
+    // Create salt & hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newMember.Password, salt, (err, hash) => {
+        if (err) throw err;
+        newMember.Password = hash;
+        newMember.save().then(member => {
+          jwt.sign(
+            { id: member.id },
+            config.get("jwtSecret"),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                member: {
+                  id: member.id,
+                  Name: member.Name,
+                  age: member.age,
+                  skills: member.skills,
+                  interests: member.interests,
+                  events: member.events,
+                  events: member.events,
+                  tasks: member.tasks,
+                  reviews: member.reviews,
+                  masterclasses: member.masterclasses,
+                  Email: member.Email
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
 });
 
 module.exports = router;

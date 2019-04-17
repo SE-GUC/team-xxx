@@ -9,7 +9,8 @@ class Lifecoach extends Component {
   static propTypes = {
     getSlots: PropTypes.func.isRequired,
     deleteSlot: PropTypes.func.isRequired,
-    Slot: PropTypes.object.isRequired
+    Slot: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
   };
 
   componentDidMount() {
@@ -39,60 +40,63 @@ class Lifecoach extends Component {
         </Container>
         <Container>
           <br />
-          <TransitionGroup className="Slots">
-            {Slots.map(
-              ({ _id, lifecoachEmail, Date, startTime, endTime, status }) => (
-                <CSSTransition key={_id} timeout={500} classNames="fade">
-                  <Card body>
-                    <CardText>
-                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                        Life Coach Email
-                      </h4>
-                      {lifecoachEmail}
-                    </CardText>
-                    <CardText>
-                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                        Slot Date
-                      </h4>
-                      {Date}
-                    </CardText>
-                    <CardText>
-                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                        {" "}
-                        From : {<h6>{startTime}</h6>} To :{<h6>{endTime}</h6>}
-                      </h4>
-                    </CardText>
-                    <CardText>
-                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                        Status{" "}
-                      </h4>
-                      {status}
-                    </CardText>
-                    <Button
-                      color="info"
-                      onClick={this.infoslot.bind(this, _id)}
-                    >
-                      Slot Details
-                    </Button>
-                    <Button
-                      color="danger"
-                      size="sm"
-                      onClick={this.onDeleteClick.bind(this, _id)}
-                    >
-                      &times; Delete Slot
-                    </Button>
-                  </Card>
-                </CSSTransition>
-              )
-            )}
-          </TransitionGroup>
+          {this.props.isAuthenticated ? (
+            <TransitionGroup className="Slots">
+              {Slots.map(
+                ({ _id, lifecoachEmail, Date, startTime, endTime, status }) => (
+                  <CSSTransition key={_id} timeout={500} classNames="fade">
+                    <Card body>
+                      <CardText>
+                        <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                          Life Coach Email
+                        </h4>
+                        {lifecoachEmail}
+                      </CardText>
+                      <CardText>
+                        <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                          Slot Date
+                        </h4>
+                        {Date}
+                      </CardText>
+                      <CardText>
+                        <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                          {" "}
+                          From : {<h6>{startTime}</h6>} To :{<h6>{endTime}</h6>}
+                        </h4>
+                      </CardText>
+                      <CardText>
+                        <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                          Status{" "}
+                        </h4>
+                        {status}
+                      </CardText>
+                      <Button
+                        color="info"
+                        onClick={this.infoslot.bind(this, _id)}
+                      >
+                        Slot Details
+                      </Button>
+                      <Button
+                        color="danger"
+                        size="sm"
+                        onClick={this.onDeleteClick.bind(this, _id)}
+                      >
+                        &times; Delete Slot
+                      </Button>
+                    </Card>
+                  </CSSTransition>
+                )
+              )}
+            </TransitionGroup>
+          ) : null}
         </Container>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  Slot: state.Slot
+  Slot: state.Slot,
+  isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(
   mapStateToProps,

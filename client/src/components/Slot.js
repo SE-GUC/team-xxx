@@ -21,7 +21,8 @@ import {
 class Slot extends Component {
   static propTypes = {
     getslot: PropTypes.func.isRequired,
-    Slot: PropTypes.object.isRequired
+    Slot: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
   };
   constructor(props) {
     super(props);
@@ -62,58 +63,60 @@ class Slot extends Component {
             </Col>
           </Row>
           <br />
-          <TransitionGroup className="Slots">
-            <CSSTransition key={Slots._id} timeout={500} classNames="fade">
-              <Card>
-                <CardHeader tag="h3">{Slots.lifecoachEmail}</CardHeader>
-                <CardBody>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Slot Date
-                    </h4>
-                    {Slots.Date}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      {" "}
-                      From : {<h6>{Slots.startTime}</h6>} To :
-                      {<h6>{Slots.endTime}</h6>}
-                    </h4>
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Status{" "}
-                    </h4>
-                    {Slots.status}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Location :
-                    </h4>
-                    {Slots.Location}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Applicant :{" "}
-                    </h4>
-                    {Slots.applicant}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Booking Confirmation :{" "}
-                    </h4>
-                    {Slots.BookingCon}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                      Location Confirmation :{" "}
-                    </h4>
-                    {Slots.LocationCon}
-                  </CardText>
-                </CardBody>
-              </Card>
-            </CSSTransition>
-          </TransitionGroup>
+          {this.props.isAuthenticated ? (
+            <TransitionGroup className="Slots">
+              <CSSTransition key={Slots._id} timeout={500} classNames="fade">
+                <Card>
+                  <CardHeader tag="h3">{Slots.lifecoachEmail}</CardHeader>
+                  <CardBody>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Slot Date
+                      </h4>
+                      {Slots.Date}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        {" "}
+                        From : {<h6>{Slots.startTime}</h6>} To :
+                        {<h6>{Slots.endTime}</h6>}
+                      </h4>
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Status{" "}
+                      </h4>
+                      {Slots.status}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Location :
+                      </h4>
+                      {Slots.Location}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Applicant :{" "}
+                      </h4>
+                      {Slots.applicant}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Booking Confirmation :{" "}
+                      </h4>
+                      {Slots.BookingCon}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Location Confirmation :{" "}
+                      </h4>
+                      {Slots.LocationCon}
+                    </CardText>
+                  </CardBody>
+                </Card>
+              </CSSTransition>
+            </TransitionGroup>
+          ) : null}
         </Container>
         <Modal
           isOpen={this.state.modal}
@@ -138,7 +141,8 @@ class Slot extends Component {
   }
 }
 const mapStateToProps = state => ({
-  Slot: state.Slot
+  Slot: state.Slot,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
