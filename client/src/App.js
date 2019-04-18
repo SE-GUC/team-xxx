@@ -12,14 +12,25 @@ import Project from "./components/Project";
 import AddSlot from "./components/AddSlot";
 import Search from "./components/Search";
 import EditProject from "./components/EditProject";
-import Login from "./components/Login";
 import EditSlot from "./components/EditSlot";
 import Slot from "./components/Slot";
+import {
+  loadAdmin,
+  loadPartner,
+  loadConsultancy,
+  loadMember
+} from "./actions/authActions";
 import "./App.css";
 
 import { Provider } from "react-redux";
 import store from "./store";
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadAdmin());
+    store.dispatch(loadPartner());
+    store.dispatch(loadConsultancy());
+    store.dispatch(loadMember());
+  }
   render() {
     return (
       <Router>
@@ -31,7 +42,6 @@ class App extends Component {
             <Route path="/home" component={Home} />
             <Route path="/EditSlot/:id" component={EditSlot} />
             <Route path="/Slot/:id" component={Slot} />
-            <Route path="/Login" component={Login} />
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
