@@ -10,77 +10,118 @@ import {
   GET_SLOT,
   EDIT_SLOT
 } from "./types";
-
-export const getSlots = () => dispatch => {
+import { tokenConfig } from "./authActions";
+import { returnErrors } from "./errorActions";
+export const getSlots = () => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.get("/api/Slots/").then(res =>
-    dispatch({
-      type: GET_SLOTS,
-      payload: res.data
-    })
-  );
+  axios
+    .get("/api/Slots/", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: GET_SLOTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
-export const editSlot = (SlotEdit, id) => dispatch => {
+export const editSlot = (SlotEdit, id) => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.put(`/api/Slots/${id}`, SlotEdit).then(res =>
-    dispatch({
-      type: EDIT_SLOT,
-      payload: res.data
-    })
-  );
+  axios
+    .put(`/api/Slots/${id}`, SlotEdit, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: EDIT_SLOT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
-export const getslot = id => dispatch => {
+export const getslot = id => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.get(`/api/Slots/${id}`).then(res =>
-    dispatch({
-      type: GET_SLOT,
-      payload: res.data
-    })
-  );
+  axios
+    .get(`/api/Slots/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: GET_SLOT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 export const deleteSlot = id => (dispatch, getState) => {
-  axios.delete(`/api/slots/${id}`).then(res =>
-    dispatch({
-      type: DELETE_SLOT,
-      payload: id
-    })
-  );
+  axios
+    .delete(`/api/slots/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: DELETE_SLOT,
+        payload: id
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 export const addSlot = Slot => (dispatch, getState) => {
-  axios.post("/api/Slots", Slot).then(res =>
-    dispatch({
-      type: ADD_SLOT,
-      payload: res.data
-    })
-  );
+  axios
+    .post("/api/Slots", Slot, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: ADD_SLOT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
-export const BookSlot = id => dispatch => {
+export const BookSlot = id => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.put(`/api/Slots/book/${id}`).then(res =>
-    dispatch({
-      type: BOOK_SLOT,
-      payload: res.data
-    })
-  );
+  axios
+    .put(`/api/Slots/book/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: BOOK_SLOT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 //get FREE Slots
-export const getFreeSlots = () => dispatch => {
+export const getFreeSlots = () => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.get("/api/Slots/status//").then(res =>
-    dispatch({
-      type: GET_FREE_SLOTS,
-      payload: res.data
-    })
-  );
+  axios
+    .get("/api/Slots/status//", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: GET_FREE_SLOTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
-export const ConfirmSlot = id => dispatch => {
+export const ConfirmSlot = id => (dispatch, getState) => {
   dispatch(setSlotsLoading());
-  axios.put(`/api/Slots/confim/${id}`).then(res =>
-    dispatch({
-      type: CONFIRM_SLOT,
-      payload: res.data
-    })
-  );
+  axios
+    .put(`/api/Slots/confim/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: CONFIRM_SLOT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 export const setSlotsLoading = () => {
   return {
