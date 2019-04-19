@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
 const validator = require("../../validations/ProjectValidation");
-
+const auth = require("../../middleware/auth");
 // Project Model
 const Project = require("../../models/Project");
 
 // @route   GET api/Projects
 // @desc    Get All Projects
 // @access  Public
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   Project.find()
     .sort({ name: 1 })
     .then(Projects => res.json(Projects));
@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
@@ -34,14 +34,14 @@ router.post("/", async (req, res) => {
 // @route   DELETE api/Projects/:id
 // @desc    Delete A Project
 // @access  Public
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
   Project.findById(req.params.id)
     .then(Project => Project.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });
 
 //@ find a specific project by ID
-router.get("/:id", function(req, res, next) {
+router.get("/:id", auth, function(req, res, next) {
   Project.findById(req.params.id, function(err, Project) {
     if (err) return next(err);
     res.json(Project);
@@ -49,7 +49,7 @@ router.get("/:id", function(req, res, next) {
 });
 
 //@ find project's description by the prjoect's ID
-router.get("/:id/description", function(req, res) {
+router.get("/:id/description", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -59,7 +59,7 @@ router.get("/:id/description", function(req, res) {
     })
     .catch(err => next(err));
 });
-router.get("/:id/memberWork", function(req, res) {
+router.get("/:id/memberWork", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -70,7 +70,7 @@ router.get("/:id/memberWork", function(req, res) {
     .catch(err => next(err));
 });
 
-router.get("/:id/state", function(req, res) {
+router.get("/:id/state", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -82,14 +82,14 @@ router.get("/:id/state", function(req, res) {
 });
 
 /* UPDATE PROJECT */
-router.put("/:id", function(req, res, next) {
+router.put("/:id", auth, function(req, res, next) {
   Project.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.get("/:id/OrientaionForTheTask", function(req, res) {
+router.get("/:id/OrientaionForTheTask", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -99,7 +99,7 @@ router.get("/:id/OrientaionForTheTask", function(req, res) {
     })
     .catch(err => next(err));
 });
-router.get("/:id/category", function(req, res) {
+router.get("/:id/category", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -110,7 +110,7 @@ router.get("/:id/category", function(req, res) {
     .catch(err => next(err));
 });
 
-router.get("/:id/skill", function(req, res) {
+router.get("/:id/skill", auth, function(req, res) {
   Project.findById(req.params.id)
     .then(doc => {
       if (!doc) {
@@ -121,11 +121,11 @@ router.get("/:id/skill", function(req, res) {
     .catch(err => next(err));
 });
 //get projects of the logged in member
-router.get("/projects//", (req, res) => {
+router.get("/projects//", auth, (req, res) => {
   Project.find({ assigned: "assigned2" }).then(Projects => res.json(Projects));
 });
 
-router.put("/assign/:id", function(req, res, next) {
+router.put("/assign/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -140,7 +140,7 @@ router.put("/assign/:id", function(req, res, next) {
     console.log(error);
   }
 });
-router.put("/updateCatAndInfo/:id", async function(req, res, next) {
+router.put("/updateCatAndInfo/:id", auth, async function(req, res, next) {
   try {
     const project = await Project.findById(req.params.id);
     if (!project)
@@ -165,7 +165,7 @@ router.put("/updateCatAndInfo/:id", async function(req, res, next) {
   }
 });
 
-router.put("/chooseConsultant/:id", async function(req, res, next) {
+router.put("/chooseConsultant/:id", auth, async function(req, res, next) {
   try {
     const project = await Project.findById(req.params.id);
     if (!project)
@@ -188,7 +188,7 @@ router.put("/chooseConsultant/:id", async function(req, res, next) {
     console.log(error);
   }
 });
-router.put("/declineproject/:id", function(req, res, next) {
+router.put("/declineproject/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -204,7 +204,7 @@ router.put("/declineproject/:id", function(req, res, next) {
   }
 });
 //provide detailed description
-router.put("/descc/:id", function(req, res, next) {
+router.put("/descc/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -220,7 +220,7 @@ router.put("/descc/:id", function(req, res, next) {
   }
 });
 //provide detailed Plan
-router.put("/plandet/:id", function(req, res, next) {
+router.put("/plandet/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -235,7 +235,7 @@ router.put("/plandet/:id", function(req, res, next) {
     console.log(error);
   }
 }); //provide detailed description
-router.put("/descc/:id", function(req, res, next) {
+router.put("/descc/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -251,7 +251,7 @@ router.put("/descc/:id", function(req, res, next) {
   }
 });
 //provide detailed Plan
-router.put("/plandet/:id", function(req, res, next) {
+router.put("/plandet/:id", auth, function(req, res, next) {
   try {
     const updateSchema = {
       Title: Project.findById(req.params.id).Title,
@@ -267,7 +267,7 @@ router.put("/plandet/:id", function(req, res, next) {
   }
 });
 
-router.post("/candidates/:id", async (req, res) => {
+router.post("/candidates/:id", auth, async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
       candidates: Joi.string().required()
@@ -286,7 +286,7 @@ router.post("/candidates/:id", async (req, res) => {
   }
 });
 
-router.post("/skills/:id", async (req, res) => {
+router.post("/skills/:id", auth, async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
       skills: Joi.string().required()
@@ -303,7 +303,7 @@ router.post("/skills/:id", async (req, res) => {
   }
 });
 
-router.post("/applicants/:id", async (req, res) => {
+router.post("/applicants/:id", auth, async (req, res) => {
   try {
     const status = Joi.validate(req.body, {
       applicants: Joi.string().required()
@@ -322,7 +322,7 @@ router.post("/applicants/:id", async (req, res) => {
   }
 });
 
-router.post("/search/:query", (req, res) => {
+router.post("/search/:query", auth, (req, res) => {
   Project.find(
     { $text: { $search: req.params.query } },
     { score: { $meta: "textScore" } }

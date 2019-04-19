@@ -20,3 +20,23 @@ npm run client
 
 # Server runs on http://localhost:5000 and client on http://localhost:3000
 ```
+```
+# Admin Profiles
+1. Email    : 
+   Password :
+
+
+# Consultancy Profiles
+1. Email    : 
+   Password :
+
+
+# Partner Profiles
+1. Email    : 
+   Password :
+
+
+# Member Profiles
+1. Email    : 
+   Password :
+```

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 const validator = require("../../validations/ConsultancysValidation");
 
 // Consultancy Model
@@ -69,22 +72,6 @@ router.get("/:id", function(req, res) {
     .catch(err => next(err));
 });
 
-router.post("/", async (req, res) => {
-  try {
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const newConsultancy = await Consultancy.create(req.body);
-    res.json({
-      msg: "Consultancy was created successfully",
-      data: newConsultancy
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
 router.get("/Notifications/:id", function(req, res) {
   Consultancy.findById(req.params.id)
     .then(doc => {
@@ -388,6 +375,79 @@ router.get("/lifecoach/me/", (req, res) => {
   Consultancy.find({ Lifecoach: true }).then(Consultancys =>
     res.json(Consultancys)
   );
+});
+// @route   POST api/consultancys
+// @desc    Register new consultancy
+// @access  Public
+router.post("/", (req, res) => {
+  const {
+    Email,
+    Password,
+    business,
+    Name,
+    partners,
+    boardmembers,
+    events,
+    reports
+  } = req.body;
+  // Simple validation
+  if (
+    !Email ||
+    !Password ||
+    !business ||
+    !Name ||
+    !partners ||
+    !boardmembers ||
+    !events ||
+    !reports
+  ) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  // Check for existing consultancy
+  Consultancy.findOne({ Email }).then(consultancy => {
+    if (consultancy)
+      return res.status(400).json({ msg: "Consultancy already exists" });
+    const newConsultancy = new Consultancy({
+      Email,
+      Password,
+      business,
+      Name,
+      partners,
+      boardmembers,
+      events,
+      reports
+    });
+    // Create salt & hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newConsultancy.Password, salt, (err, hash) => {
+        if (err) throw err;
+        newConsultancy.Password = hash;
+        newConsultancy.save().then(consultancy => {
+          jwt.sign(
+            { id: consultancy.id },
+            config.get("jwtSecret"),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                consultancy: {
+                  id: consultancy.id,
+                  Email: consultancy.Email,
+                  business: consultancy.business,
+                  Name: consultancy.Name,
+                  partners: consultancy.partners,
+                  boardmembers: consultancy.boardmembers,
+                  events: consultancy.events,
+                  reports: consultancy.reports
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
 });
 
 module.exports = router;

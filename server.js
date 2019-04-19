@@ -1,10 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose").set("debug", true);
-const bodyParser = require("body-parser");
 const path = require("path");
 
 const app = express();
-
+const config = require("config");
 const Consultancys = require("./routes/api/Consultancys");
 const Members = require("./routes/api/Members");
 const Partners = require("./routes/api/Partners");
@@ -12,12 +11,13 @@ const Projects = require("./routes/api/Projects");
 const Slots = require("./routes/api/Slots");
 const Meetings = require("./routes/api/Meetings");
 const Admins = require("./routes/api/Admins");
+const auth = require("./routes/api/auth");
 
 // Bodyparser Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 // Connect to Mongo
 mongoose
@@ -35,6 +35,7 @@ app.use("/api/Projects", Projects);
 app.use("/api/Slots", Slots);
 app.use("/api/Meetings", Meetings);
 app.use("/api/Admins", Admins);
+app.use("/api/auth", auth);
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder

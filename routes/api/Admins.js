@@ -1,26 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
 const validator = require("../../validations/AdminsValidation");
-
 const Admin = require("../../models/Admin");
-
-router.post("/", async (req, res) => {
-  try {
-    User.findOne({ email }).then(user => {
-      if (user) return res.status(400).json({ msg: "User already exists" });
-    });
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const newAdmin = await Admin.create(req.body);
-    res.json({ msg: "Admin was created successfully", data: newAdmin });
-  } catch (error) {
-    console.log(error);
-  }
-});
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
   Admin.find()
@@ -73,5 +57,50 @@ router.put("/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+// @route   POST api/Admin
+// @desc    Register new Admin
+// @access  Public
+router.post("/", (req, res) => {
+  const { Name, Email, Password } = req.body;
+  // Simple validation
+  if (!Name || !Email || !Password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  // Check for existing Admin
+  Admin.findOne({ Email }).then(admin => {
+    if (admin) return res.status(400).json({ msg: "Admin already exists" });
+    const newAdmin = new Admin({
+      Name,
+      Email,
+      Password
+    });
+    // Create salt & hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newAdmin.Password, salt, (err, hash) => {
+        if (err) throw err;
+        newAdmin.Password = hash;
+        newAdmin.save().then(admin => {
+          jwt.sign(
+            { id: admin.id },
+            config.get("jwtSecret"),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                admin: {
+                  id: admin.id,
+                  Name: admin.Name,
+                  Email: admin.email
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
 });
 module.exports = router;

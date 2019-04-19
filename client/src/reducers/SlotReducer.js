@@ -5,11 +5,14 @@ import {
   SLOTS_LOADING,
   DELETE_SLOT,
   BOOK_SLOT,
-  CONFIRM_SLOT
+  CONFIRM_SLOT,
+  GET_SLOT,
+  EDIT_SLOT
 } from "../actions/types";
 
 const initialState = {
   Slots: [],
+  Slot: [],
   loading: false
 };
 
@@ -20,12 +23,24 @@ export default function(state = initialState, action) {
         ...state,
         Slots: [action.payload, ...state.Slots]
       };
+    case EDIT_SLOT:
+      return {
+        ...state,
+        Slot: action.payload,
+        loading: false
+      };
     case SLOTS_LOADING:
       return {
         ...state,
         loading: true
       };
     case GET_SLOTS:
+      return {
+        ...state,
+        Slots: action.payload,
+        loading: false
+      };
+    case GET_SLOT:
       return {
         ...state,
         Slots: action.payload,

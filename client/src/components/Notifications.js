@@ -13,7 +13,8 @@ class Notifications extends Component {
     getMembers: PropTypes.func.isRequired,
     getPartners: PropTypes.func.isRequired,
     Member: PropTypes.object.isRequired,
-    Partner: PropTypes.object.isRequired
+    Partner: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
   };
 
   componentDidMount() {
@@ -30,29 +31,33 @@ class Notifications extends Component {
     const { Admins } = this.props.Admin;
     return (
       <Container>
+        <br />
         <ListGroup>
-          <TransitionGroup className="shopping-list">
-            {Members.map(({ _id, Notifications }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>{Notifications}</ListGroupItem>
-              </CSSTransition>
-            ))}
-            {Partners.map(({ _id, Notifications }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>{Notifications}</ListGroupItem>
-              </CSSTransition>
-            ))}
-            {Consultancys.map(({ _id, Notifications }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>{Notifications}</ListGroupItem>
-              </CSSTransition>
-            ))}
-            {Admins.map(({ _id, Notifications }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>{Notifications}</ListGroupItem>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
+          {" "}
+          {this.props.isAuthenticated ? (
+            <TransitionGroup className="shopping-list">
+              {Members.map(({ _id, Notifications }) => (
+                <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <ListGroupItem>{Notifications}</ListGroupItem>
+                </CSSTransition>
+              ))}
+              {Partners.map(({ _id, Notifications }) => (
+                <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <ListGroupItem>{Notifications}</ListGroupItem>
+                </CSSTransition>
+              ))}
+              {Consultancys.map(({ _id, Notifications }) => (
+                <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <ListGroupItem>{Notifications}</ListGroupItem>
+                </CSSTransition>
+              ))}
+              {Admins.map(({ _id, Notifications }) => (
+                <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <ListGroupItem>{Notifications}</ListGroupItem>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+          ) : null}
         </ListGroup>
       </Container>
     );
@@ -63,7 +68,8 @@ const mapStateToProps = state => ({
   Member: state.Member,
   Partner: state.Partner,
   Consultancy: state.Consultancy,
-  Admin: state.Admin
+  Admin: state.Admin,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

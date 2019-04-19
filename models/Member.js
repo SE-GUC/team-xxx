@@ -12,7 +12,7 @@ const MemberSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
+  Name: {
     type: String,
     required: true
   },
