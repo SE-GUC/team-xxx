@@ -108,7 +108,7 @@ class LoginModal extends Component {
         <NavLink onClick={this.toggle} href="#">
           Login
         </NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} size={"lg"}>
           <ModalHeader toggle={this.toggle}>
             {" "}
             <Nav tabs>
@@ -136,6 +136,30 @@ class LoginModal extends Component {
                   As Partner
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({
+                    active: this.state.activeTab === "3"
+                  })}
+                  onClick={() => {
+                    this.toggleTab("3");
+                  }}
+                >
+                  As Member
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({
+                    active: this.state.activeTab === "4"
+                  })}
+                  onClick={() => {
+                    this.toggleTab("4");
+                  }}
+                >
+                  As Consultant
+                </NavLink>
+              </NavItem>
             </Nav>
           </ModalHeader>
           <TabContent activeTab={this.state.activeTab}>
@@ -155,7 +179,6 @@ class LoginModal extends Component {
                       className="mb-3"
                       onChange={this.onChange}
                     />
-
                     <Label for="Password">Password</Label>
                     <Input
                       type="password"
@@ -190,7 +213,74 @@ class LoginModal extends Component {
                       className="mb-3"
                       onChange={this.onChange}
                     />
-
+                    <Label for="Password">Password</Label>
+                    <Input
+                      type="password"
+                      name="Password"
+                      id="Password"
+                      placeholder="Password"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                    <Button color="dark" style={{ marginTop: "2rem" }} block>
+                      Login
+                    </Button>
+                  </FormGroup>
+                </Form>
+              </ModalBody>
+            </TabPane>
+          </TabContent>
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane tabId="3">
+              <ModalBody>
+                {this.state.msg ? (
+                  <Alert color="danger">{this.state.msg}</Alert>
+                ) : null}
+                <Form onSubmit={this.onSubmit}>
+                  <FormGroup>
+                    <Label for="email">Email</Label>
+                    <Input
+                      type="email"
+                      name="Email"
+                      id="Email"
+                      placeholder="Email"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                    <Label for="Password">Password</Label>
+                    <Input
+                      type="password"
+                      name="Password"
+                      id="Password"
+                      placeholder="Password"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                    <Button color="dark" style={{ marginTop: "2rem" }} block>
+                      Login
+                    </Button>
+                  </FormGroup>
+                </Form>
+              </ModalBody>
+            </TabPane>
+          </TabContent>
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane tabId="4">
+              <ModalBody>
+                {this.state.msg ? (
+                  <Alert color="danger">{this.state.msg}</Alert>
+                ) : null}
+                <Form onSubmit={this.onSubmit2}>
+                  <FormGroup>
+                    <Label for="email">Email</Label>
+                    <Input
+                      type="email"
+                      name="Email"
+                      id="Email"
+                      placeholder="Email"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
                     <Label for="Password">Password</Label>
                     <Input
                       type="password"

@@ -31,6 +31,7 @@ class Notifications extends Component {
     const { Admins } = this.props.Admin;
     return (
       <Container>
+        <br />
         <ListGroup>
           {" "}
           {this.props.isAuthenticated ? (

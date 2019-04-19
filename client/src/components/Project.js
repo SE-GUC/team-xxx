@@ -34,6 +34,7 @@ class Project extends Component {
     const { Projects } = this.props.Project;
     return (
       <div>
+        <br />
         <Container>
           <Row>
             <Col sm={{ size: 6, order: 2, offset: 9 }}>

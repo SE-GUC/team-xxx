@@ -381,23 +381,23 @@ router.get("/lifecoach/me/", (req, res) => {
 // @access  Public
 router.post("/", (req, res) => {
   const {
-    Name,
     Email,
     Password,
-    age,
-    skills,
-    interests,
+    business,
+    Name,
+    partners,
+    boardmembers,
     events,
     reports
   } = req.body;
   // Simple validation
   if (
-    !Name ||
     !Email ||
     !Password ||
-    !age ||
-    !skills ||
-    !interests ||
+    !business ||
+    !Name ||
+    !partners ||
+    !boardmembers ||
     !events ||
     !reports
   ) {
@@ -408,10 +408,10 @@ router.post("/", (req, res) => {
     if (consultancy)
       return res.status(400).json({ msg: "Consultancy already exists" });
     const newConsultancy = new Consultancy({
-      Name,
       Email,
       Password,
       business,
+      Name,
       partners,
       boardmembers,
       events,
@@ -433,9 +433,9 @@ router.post("/", (req, res) => {
                 token,
                 consultancy: {
                   id: consultancy.id,
-                  Name: consultancy.Name,
                   Email: consultancy.Email,
                   business: consultancy.business,
+                  Name: consultancy.Name,
                   partners: consultancy.partners,
                   boardmembers: consultancy.boardmembers,
                   events: consultancy.events,

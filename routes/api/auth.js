@@ -101,7 +101,7 @@ router.get("/Partner", auth, (req, res) => {
 // @route   POST api/auth
 // @desc    Auth Member
 // @access  Public
-router.post("/Member", (req, res) => {
+router.post("/member", (req, res) => {
   const { Email, Password } = req.body;
   // Simple validation
   if (!Email || !Password) {

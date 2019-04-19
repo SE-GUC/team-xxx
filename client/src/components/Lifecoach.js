@@ -29,6 +29,7 @@ class Lifecoach extends Component {
     const { Slots } = this.props.Slot;
     return (
       <div>
+        <br />
         <Container>
           <Col sm={{ size: 6, order: 2, offset: 10 }}>
             {" "}

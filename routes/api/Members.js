@@ -418,9 +418,9 @@ router.get("/me/lifecoach/", (req, res) => {
 // @access  Public
 router.post("/", (req, res) => {
   const {
-    Name,
     Email,
     Password,
+    Name,
     age,
     skills,
     interests,
@@ -431,9 +431,9 @@ router.post("/", (req, res) => {
   } = req.body;
   // Simple validation
   if (
-    !Name ||
     !Email ||
     !Password ||
+    !Name ||
     !age ||
     !skills ||
     !interests ||
@@ -448,9 +448,9 @@ router.post("/", (req, res) => {
   Member.findOne({ Email }).then(member => {
     if (member) return res.status(400).json({ msg: "Member already exists" });
     const newMember = new Member({
-      Name,
       Email,
       Password,
+      Name,
       age,
       skills,
       interests,
@@ -476,15 +476,14 @@ router.post("/", (req, res) => {
                 member: {
                   id: member.id,
                   Name: member.Name,
+                  Email: member.Email,
                   age: member.age,
                   skills: member.skills,
                   interests: member.interests,
                   events: member.events,
-                  events: member.events,
                   tasks: member.tasks,
                   reviews: member.reviews,
-                  masterclasses: member.masterclasses,
-                  Email: member.Email
+                  masterclasses: member.masterclasses
                 }
               });
             }

@@ -200,106 +200,6 @@ export const logout = () => {
   };
 };
 
-// Check token & load member
-export const loadMember = () => (dispatch, getState) => {
-  // member loading
-  dispatch({ type: MEMBER_LOADING });
-  axios
-    .get("/api/auth/member", tokenConfig(getState))
-    .then(res =>
-      dispatch({
-        type: MEMBER_LOADED,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR
-      });
-    });
-};
-// Register member
-export const registerMember = ({
-  Name,
-  Email,
-  Password,
-  age,
-  skills,
-  interests,
-  events,
-  tasks,
-  reviews,
-  masterclasses
-}) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-  // Request body
-  const body = JSON.stringify({
-    Name,
-    Email,
-    Password,
-    age,
-    skills,
-    interests,
-    events,
-    tasks,
-    reviews,
-    masterclasses
-  });
-  axios
-    .post("/api/members", body, config)
-    .then(res =>
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(
-          err.response.data,
-          err.response.status,
-          "REGISTER_FAIL_MEMBER"
-        )
-      );
-      dispatch({
-        type: REGISTER_FAIL_MEMBER
-      });
-    });
-};
-// Login Member
-export const loginMember = ({ Email, Password }) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-  // Request body
-  const body = JSON.stringify({ Email, Password });
-  axios
-    .post("/api/auth/member", body, config)
-    .then(res =>
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
-      );
-      dispatch({
-        type: LOGIN_FAIL
-      });
-    });
-};
-
 // Check token & load Consultancy
 export const loadConsultancy = () => (dispatch, getState) => {
   // Consultancy loading
@@ -348,7 +248,7 @@ export const registerConsultancy = ({
     reports
   });
   axios
-    .post("/api/Consultancys", body, config)
+    .post("/api/Consultancys/", body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -396,6 +296,105 @@ export const loginConsultancy = ({ Email, Password }) => dispatch => {
     });
 };
 
+// Check token & load Member
+export const loadMember = () => (dispatch, getState) => {
+  // Member loading
+  dispatch({ type: MEMBER_LOADING });
+  axios
+    .get("/api/auth/member", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: MEMBER_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
+};
+// Register Member
+export const registerMember = ({
+  Email,
+  Password,
+  Name,
+  age,
+  skills,
+  interests,
+  events,
+  tasks,
+  reviews,
+  masterclasses
+}) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  // Request body
+  const body = JSON.stringify({
+    Email,
+    Password,
+    Name,
+    age,
+    skills,
+    interests,
+    events,
+    tasks,
+    reviews,
+    masterclasses
+  });
+  axios
+    .post("/api/members/", body, config)
+    .then(res =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          "REGISTER_FAIL_MEMBER"
+        )
+      );
+      dispatch({
+        type: REGISTER_FAIL_MEMBER
+      });
+    });
+};
+// Login Member
+export const loginMember = ({ Email, Password }) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  // Request body
+  const body = JSON.stringify({ Email, Password });
+  axios
+    .post("/api/auth/member", body, config)
+    .then(res =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL
+      });
+    });
+};
 // Setup config/headers and token
 export const tokenConfig = getState => {
   // Get token from localstorage

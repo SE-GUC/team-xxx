@@ -62,6 +62,7 @@ class Example extends React.Component {
   render() {
     return (
       <Container>
+        <br />
         {this.props.isAuthenticated ? (
           <Form onSubmit={this.onSubmit}>
             <Alert

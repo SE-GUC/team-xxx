@@ -207,7 +207,7 @@ class RegisterModal extends Component {
         <NavLink onClick={this.toggle} href="#">
           Register
         </NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} size={"lg"}>
           <ModalHeader toggle={this.toggle}>
             {" "}
             <Nav tabs>
