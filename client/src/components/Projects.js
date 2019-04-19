@@ -19,7 +19,8 @@ class Projects extends Component {
   static propTypes = {
     getProjects: PropTypes.func.isRequired,
     deleteproject: PropTypes.func.isRequired,
-    Project: PropTypes.object.isRequired
+    Project: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
   };
 
   componentDidMount() {
@@ -74,42 +75,47 @@ class Projects extends Component {
           <br />
         </Container>
         <Container>
-          <TransitionGroup className="Projects">
-            {Projects.map(({ _id, Title, description }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <Card body>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold" }}>Project Title</h4>
-                    {Title}{" "}
-                  </CardText>
-                  <CardText>
-                    <h4 style={{ fontWeight: "bold" }}>Project Description</h4>
-                    {description}{" "}
-                  </CardText>
-                  <Button
-                    color="info"
-                    onClick={this.infoproject.bind(this, _id)}
-                  >
-                    Project Details
-                  </Button>
-                  <Button
-                    color="danger"
-                    size="sm"
-                    onClick={this.onDeleteClick.bind(this, _id)}
-                  >
-                    &times; Delete Project
-                  </Button>
-                </Card>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
+          {this.props.isAuthenticated ? (
+            <TransitionGroup className="Projects">
+              {Projects.map(({ _id, Title, description }) => (
+                <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <Card body>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold" }}>Project Title</h4>
+                      {Title}{" "}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold" }}>
+                        Project Description
+                      </h4>
+                      {description}{" "}
+                    </CardText>
+                    <Button
+                      color="info"
+                      onClick={this.infoproject.bind(this, _id)}
+                    >
+                      Project Details
+                    </Button>
+                    <Button
+                      color="danger"
+                      size="sm"
+                      onClick={this.onDeleteClick.bind(this, _id)}
+                    >
+                      &times; Delete Project
+                    </Button>
+                  </Card>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+          ) : null}
         </Container>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  Project: state.Project
+  Project: state.Project,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
