@@ -53,6 +53,7 @@ class EditSlot extends Component {
     const { Slots } = this.props.Slot;
     return (
       <div>
+        <br />
         <Container>
           {" "}
           {this.props.isAuthenticated ? (

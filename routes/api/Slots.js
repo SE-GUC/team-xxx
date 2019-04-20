@@ -98,6 +98,13 @@ router.put("/book/:id", auth, async function(req, res, next) {
   }
 });
 
+router.put("/book/:id", function(req, res, next) {
+  Book.findByIdAndUpdate(req.params.id, req.body, auth, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 router.put("/confim/:id", auth, async function(req, res, next) {
   try {
     const slot = await Slot.findById(req.params.id);

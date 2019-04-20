@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getslot } from "../actions/SlotActions";
+import { getslot, editSlot } from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -21,6 +21,7 @@ import {
 class Slot extends Component {
   static propTypes = {
     getslot: PropTypes.func.isRequired,
+    editSlot: PropTypes.func.isRequired,
     Slot: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool
   };
@@ -43,10 +44,16 @@ class Slot extends Component {
   Editslot = () => {
     this.props.history.push("/EditSlot/" + this.props.match.params.id);
   };
+  bookslot = () => {
+    this.forceUpdate(
+      this.props.editSlot({ status: "Booked" }, this.props.match.params.id)
+    );
+  };
   render() {
     const { Slots } = this.props.Slot;
     return (
       <div>
+        <br />
         <Container>
           <Row>
             <Col sm={{ size: 10, order: 2, offset: 5 }}>
@@ -56,7 +63,13 @@ class Slot extends Component {
               </Button>{" "}
               <Button color="primary">Decline Booking</Button>{" "}
               <Button color="primary">Confirm Booking</Button>{" "}
-              <Button color="primary">Book Slot</Button>{" "}
+              <Button
+                color="primary"
+                onClick={this.bookslot}
+                disabled={Slots.status === "Booked"}
+              >
+                Book Slot
+              </Button>{" "}
               <Button color="primary" onClick={this.Editslot}>
                 Edit Slot
               </Button>{" "}
@@ -147,5 +160,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getslot }
+  { getslot, editSlot }
 )(Slot);
