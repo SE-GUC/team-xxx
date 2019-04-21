@@ -61,7 +61,6 @@ class Slot extends Component {
               <Button color="primary" onClick={this.toggle}>
                 Suggest Location
               </Button>{" "}
-              <Button color="primary">Decline Booking</Button>{" "}
               <Button color="primary">Confirm Booking</Button>{" "}
               <Button
                 color="primary"

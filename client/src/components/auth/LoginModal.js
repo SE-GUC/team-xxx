@@ -17,7 +17,12 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login, loginpartner } from "../../actions/authActions";
+import {
+  login,
+  loginpartner,
+  loginConsultancy,
+  loginMember
+} from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import classnames from "classnames";
 class LoginModal extends Component {
@@ -47,6 +52,8 @@ class LoginModal extends Component {
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     loginpartner: PropTypes.func.isRequired,
+    loginConsultancy: PropTypes.func.isRequired,
+    loginMember: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
 
@@ -100,6 +107,26 @@ class LoginModal extends Component {
     };
     // Attempt to login
     this.props.loginpartner(admin);
+  };
+  onSubmit3 = e => {
+    e.preventDefault();
+    const { Email, Password } = this.state;
+    const member = {
+      Email,
+      Password
+    };
+    // Attempt to login
+    this.props.loginMember(member);
+  };
+  onSubmit4 = e => {
+    e.preventDefault();
+    const { Email, Password } = this.state;
+    const consultancy = {
+      Email,
+      Password
+    };
+    // Attempt to login
+    this.props.loginConsultancy(consultancy);
   };
 
   render() {
@@ -311,5 +338,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors, loginpartner }
+  { login, clearErrors, loginpartner, loginMember, loginConsultancy }
 )(LoginModal);

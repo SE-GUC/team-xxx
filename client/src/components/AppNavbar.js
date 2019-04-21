@@ -33,12 +33,20 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const { isAuthenticated, admin, partner } = this.props.auth;
+    const {
+      isAuthenticated,
+      admin,
+      partner,
+      member,
+      consultancy
+    } = this.props.auth;
     const authLinks = (
       <Fragment>
         <DropdownItem>
           <strong>{admin ? `Welcome ${admin.Name}` : ""}</strong>
           <strong>{partner ? `Welcome ${partner.Name}` : ""}</strong>
+          <strong>{partner ? `Welcome ${member.Name}` : ""}</strong>
+          <strong>{partner ? `Welcome ${consultancy.Name}` : ""}</strong>
         </DropdownItem>
         <DropdownItem>
           <Logout />

@@ -4,6 +4,9 @@ import { SocialIcon } from "react-social-icons";
 import YouTube from "react-youtube";
 
 class About extends React.Component {
+  info2 = () => {
+    this.props.history.push("/About2/");
+  };
   render() {
     const opts = {
       height: "390",
@@ -15,19 +18,23 @@ class About extends React.Component {
     return (
       <div>
         <Jumbotron>
-          <h1 className="display-3">Hello, world!</h1>
+          <h2 className="display-3">Welcome to Lirten Hub!</h2>
           <p className="lead">
-            This is a simple hero unit, a simple Jumbotron-style component for
-            calling extra attention to featured content or information.
+            LirtenHub is trying to play the role of a platform connecting people
+            who need work to get done, with the talent that can get it done.
           </p>
           <hr className="my-2" />
           <p>
-            It uses utility classes for typography and spacing to space content
-            out within the larger container.
+            Isn’t that just any freelancing website? Well, there is a catch.
+            trying to over- come the mess in the freelancing wolrd today. You
+            see, traditionally if some company wanted to outsource, they would
+            just post a description of a task and someone might do it or not.
+            There were no guarantees and the alloca- tion of tasks followed a
+            sub-optimal procedure. LirtenHub aims to solve the missing piece of
+            the puzzle. LirtenHub introduces the solution by resolving the
+            traditional operation to itʼs fundamental constituents.
           </p>
-          <p className="lead">
-            <Button color="primary">Learn More</Button>
-          </p>
+          <p className="lead" />
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <YouTube
               videoId="pQc8gRcmZRY"
