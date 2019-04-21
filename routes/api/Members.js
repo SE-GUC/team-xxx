@@ -457,7 +457,7 @@ router.post("/", (req, res) => {
       events,
       tasks,
       reviews,
-      masterclasses
+      masterclasses,   Notifications: "please head to the head office to sign your contract at 10 am "
     });
     // Create salt & hash
     bcrypt.genSalt(10, (err, salt) => {
@@ -483,7 +483,8 @@ router.post("/", (req, res) => {
                   events: member.events,
                   tasks: member.tasks,
                   reviews: member.reviews,
-                  masterclasses: member.masterclasses
+                  masterclasses: member.masterclasses,
+                  Notifications: member.Notifications
                 }
               });
             }

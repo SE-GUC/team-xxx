@@ -5,7 +5,8 @@ import {
   ADD_PROJECT,
   GET_PROJECT,
   SEARCH_PROJECT,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  APPLY_MEMBER
 } from "../actions/types";
 
 const initialState = {
@@ -56,6 +57,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+      case APPLY_MEMBER:
+      return {
+        ...state,
+        Projects: [action.payload, ...state.Projects]
       };
     default:
       return state;
