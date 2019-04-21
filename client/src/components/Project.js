@@ -1,6 +1,8 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getProject } from "../actions/ProjectActions";
+import { getProject, memberapply } from "../actions/ProjectActions";
+//import { loadAdmin } from "../actions/authActions";
 import React, { Component } from "react";
+import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -14,14 +16,21 @@ import {
   Progress,
   Row,
   Col,
-  Container
+  Container,
+  Badge
 } from "reactstrap";
 
 class Project extends Component {
   static propTypes = {
     getProject: PropTypes.func.isRequired,
+    memberapply: PropTypes.func.isRequired,
     Project: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool
+    Admin: PropTypes.object.isRequired,
+    Partner: PropTypes.object.isRequired,
+    Member: PropTypes.object.isRequired,
+    Consultancy: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool,
+    auth: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -30,6 +39,12 @@ class Project extends Component {
   Editproject = () => {
     this.props.history.push("/EditProject/" + this.props.match.params.id);
   };
+  Apply = () => {
+    const { member } = this.props.auth;
+    const memb = { applicants: `${member.Name}` };
+    this.props.memberapply(memb, this.props.match.params.id);
+  };
+
   render() {
     const { Projects } = this.props.Project;
     return (
@@ -39,7 +54,9 @@ class Project extends Component {
           <Row>
             <Col sm={{ size: 6, order: 2, offset: 9 }}>
               {" "}
-              <Button color="primary">Apply for project</Button>{" "}
+              <Button color="primary" onClick={this.Apply}>
+                Apply for project
+              </Button>{" "}
               <Button color="primary" onClick={this.Editproject}>
                 Edit Project
               </Button>{" "}
@@ -169,7 +186,16 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );
@@ -177,10 +203,15 @@ class Project extends Component {
 }
 const mapStateToProps = state => ({
   Project: state.Project,
-  isAuthenticated: state.auth.isAuthenticated
+  Admin: state.Project,
+  Partner: state.Project,
+  Member: state.Project,
+  Consultancy: state.Project,
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getProject }
+  { getProject, memberapply }
 )(Project);

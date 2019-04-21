@@ -3,7 +3,8 @@ import { getSlots, deleteSlot } from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Card, CardText, Button, Container, Col } from "reactstrap";
+import LoginModal from "./auth/LoginModal";
+import { Card, CardText, Button, Container, Col, Badge } from "reactstrap";
 
 class Lifecoach extends Component {
   static propTypes = {
@@ -89,7 +90,16 @@ class Lifecoach extends Component {
                 )
               )}
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );

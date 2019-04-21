@@ -33,12 +33,20 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const { isAuthenticated, admin, partner } = this.props.auth;
+    const {
+      isAuthenticated,
+      admin,
+      partner,
+      member,
+      consultancy
+    } = this.props.auth;
     const authLinks = (
       <Fragment>
         <DropdownItem>
           <strong>{admin ? `Welcome ${admin.Name}` : ""}</strong>
           <strong>{partner ? `Welcome ${partner.Name}` : ""}</strong>
+          <strong>{member ? `Welcome ${member.Name}` : ""}</strong>
+          <strong>{consultancy ? `Welcome ${consultancy.Name}` : ""}</strong>
         </DropdownItem>
         <DropdownItem>
           <Logout />
@@ -89,7 +97,7 @@ class AppNavbar extends Component {
                   </DropdownItem>
                   <DropdownItem>
                     {" "}
-                    <NavLink href="/Notifications">Notifications</NavLink>
+                    <NavLink href="/Notification">Notifications</NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                   {isAuthenticated ? authLinks : guestLinks}

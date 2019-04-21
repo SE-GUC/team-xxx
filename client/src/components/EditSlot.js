@@ -2,6 +2,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getslot, editSlot } from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import LoginModal from "./auth/LoginModal";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -11,7 +12,8 @@ import {
   Container,
   FormGroup,
   Form,
-  Input
+  Input,
+  Badge
 } from "reactstrap";
 
 class EditSlot extends Component {
@@ -53,6 +55,7 @@ class EditSlot extends Component {
     const { Slots } = this.props.Slot;
     return (
       <div>
+        <br />
         <Container>
           {" "}
           {this.props.isAuthenticated ? (
@@ -101,7 +104,16 @@ class EditSlot extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );

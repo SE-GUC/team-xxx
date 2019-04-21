@@ -1,7 +1,17 @@
-import { Button, Form, FormGroup, Label, Input, Alert, Col } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Badge,
+  Label,
+  Input,
+  Alert,
+  Col
+} from "reactstrap";
 import { addSlot } from "../actions/SlotActions";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
+import LoginModal from "./auth/LoginModal";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -107,7 +117,16 @@ class Example extends React.Component {
               </Col>
             </FormGroup>
           </Form>
-        ) : null}
+        ) : (
+          <h4 className="mb-3 ml-4">
+            Please{"  "}
+            <Badge color="light">
+              <LoginModal />
+            </Badge>
+            {"  "}
+            to manage{"  "}
+          </h4>
+        )}
       </Container>
     );
   }

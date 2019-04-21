@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Notifications from "./components/Notifications";
+import Notification from "./components/Notification";
 import AppNavbar from "./components/AppNavbar";
 import Lifecoach from "./components/Lifecoach";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +14,7 @@ import Search from "./components/Search";
 import EditProject from "./components/EditProject";
 import EditSlot from "./components/EditSlot";
 import Slot from "./components/Slot";
+import Profile from "./components/Profile";
 import {
   loadAdmin,
   loadPartner,
@@ -38,6 +39,7 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route exact path="/" component={Home} />
+            <Route exact path="/Profile" component={Profile} />
             <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
             <Route path="/EditSlot/:id" component={EditSlot} />
@@ -45,7 +47,7 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
-            <Route path="/Notifications" component={Notifications} />
+            <Route path="/Notification" component={Notification} />
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project/:id" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />

@@ -370,7 +370,8 @@ router.post("/", (req, res) => {
       events,
       field,
       projects,
-      feedback
+      feedback,
+      Notifications: "please head to the head office to sign your contract at 10 am "
     });
     // Create salt & hash
     bcrypt.genSalt(10, (err, salt) => {
@@ -396,7 +397,8 @@ router.post("/", (req, res) => {
                   events: partner.events,
                   field: partner.field,
                   projects: partner.projects,
-                  feedback: partner.feedback
+                  feedback: partner.feedback,
+                  Notifications: partner.Notifications
                 }
               });
             }
