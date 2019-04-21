@@ -6,7 +6,8 @@ import {
   ADD_PROJECT,
   GET_PROJECT,
   SEARCH_PROJECT,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  APPLY_MEMBER
 } from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
@@ -93,6 +94,21 @@ export const deleteproject = id => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+export const memberapply = (memb, id) => (dispatch, getState) => {
+  dispatch(setProjectsLoading());
+  axios
+    .post(`/api/Projects/applicants/${id}`, memb, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: APPLY_MEMBER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors( ))
+    );
+};
+
 export const setProjectsLoading = () => {
   return {
     type: PROJECTS_LOADING
