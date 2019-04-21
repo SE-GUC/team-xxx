@@ -2,6 +2,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getslot, editSlot } from "../actions/SlotActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import LoginModal from "./auth/LoginModal";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -15,7 +16,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Container
+  Container,
+  Input,
+  Badge,
+  FormGroup,
+  Label
 } from "reactstrap";
 
 class Slot extends Component {
@@ -30,10 +35,21 @@ class Slot extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      Location: ""
     };
     this.toggle = this.toggle.bind(this);
   }
+
+  suggest = () => {
+    this.forceUpdate(
+      this.props.editSlot(
+        { Location: this.state.Location },
+        this.props.match.params.id
+      )
+    );
+    this.toggle();
+  };
 
   toggle() {
     this.setState(prevState => ({
@@ -47,20 +63,24 @@ class Slot extends Component {
     this.props.history.push("/EditSlot/" + this.props.match.params.id);
   };
   bookslot = () => {
-    const {
-      isAuthenticated,
-      admin,
-      partner,
-      member,
-      consultancy
-    } = this.props.auth;
+    const { member } = this.props.auth;
     this.forceUpdate(
-      this.props.editSlot({ status: "Booked" ,BookingCon: "Pending" ,applicant:`${member.Name}`}, this.props.match.params.id)
+      this.props.editSlot(
+        {
+          status: "Booked",
+          BookingCon: "Pending",
+          applicant: `${member.Name}`
+        },
+        this.props.match.params.id
+      )
     );
   };
   confirmslot = () => {
     this.forceUpdate(
-      this.props.editSlot({ BookingCon: "Confirmed" }, this.props.match.params.id)
+      this.props.editSlot(
+        { BookingCon: "Confirmed" },
+        this.props.match.params.id
+      )
     );
   };
   render() {
@@ -70,17 +90,19 @@ class Slot extends Component {
         <br />
         <Container>
           <Row>
-            <Col sm={{ size: 10, order: 2, offset: 5 }}>
+            <Col sm={{ size: 10, order: 6, offset: 7 }}>
               {" "}
               <Button color="primary" onClick={this.toggle}>
                 Suggest Location
               </Button>{" "}
               <Button color="primary">Decline Booking</Button>{" "}
-              <Button 
-              color="primary"
-              onClick ={this.confirmslot}
-              disabled={Slots.BookingCon === "Confirmed"}
-              >Confirm Booking</Button>{" "}
+              <Button
+                color="primary"
+                onClick={this.confirmslot}
+                disabled={Slots.BookingCon === "Confirmed"}
+              >
+                Confirm Booking
+              </Button>{" "}
               <Button
                 color="primary"
                 onClick={this.bookslot}
@@ -91,6 +113,37 @@ class Slot extends Component {
               <Button color="primary" onClick={this.Editslot}>
                 Edit Slot
               </Button>{" "}
+              <Button color="danger" onClick={this.toggle}>
+                Suggest Location {this.props.buttonLabel}
+              </Button>
+              <Modal
+                isOpen={this.state.modal}
+                toggle={this.toggle}
+                className={this.props.className}
+              >
+                <ModalHeader toggle={this.toggle}>
+                  <Label for="exampleCity">Location</Label>
+                </ModalHeader>
+                <ModalBody>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      name="Location"
+                      id="Location"
+                      placeholder="Suggest Location"
+                      onChange={this.onChange}
+                    />
+                  </FormGroup>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={this.suggest}>
+                    Confirm
+                  </Button>{" "}
+                  <Button color="secondary" onClick={this.toggle}>
+                    Cancel
+                  </Button>
+                </ModalFooter>
+              </Modal>
             </Col>
           </Row>
           <br />
@@ -147,24 +200,18 @@ class Slot extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
+          }
         </Container>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-          <ModalBody />
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Do Something
-            </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
         <br />
         <br />
       </div>

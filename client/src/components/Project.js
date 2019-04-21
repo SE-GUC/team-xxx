@@ -2,6 +2,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProject, memberapply } from "../actions/ProjectActions";
 //import { loadAdmin } from "../actions/authActions";
 import React, { Component } from "react";
+import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -15,7 +16,8 @@ import {
   Progress,
   Row,
   Col,
-  Container
+  Container,
+  Badge
 } from "reactstrap";
 
 class Project extends Component {
@@ -38,14 +40,7 @@ class Project extends Component {
     this.props.history.push("/EditProject/" + this.props.match.params.id);
   };
   Apply = () => {
-    const {
-      isAuthenticated,
-      admin,
-      partner,
-      member,
-      consultancy
-    } = this.props.auth;
-
+    const { member } = this.props.auth;
     const memb = { applicants: `${member.Name}` };
     this.props.memberapply(memb, this.props.match.params.id);
   };
@@ -59,11 +54,7 @@ class Project extends Component {
           <Row>
             <Col sm={{ size: 6, order: 2, offset: 9 }}>
               {" "}
-              <Button
-                color="primary"
-                onClick={this.Apply}
-               // disabled={!this.props.isAuthenticated && !this.props.member}
-              >
+              <Button color="primary" onClick={this.Apply}>
                 Apply for project
               </Button>{" "}
               <Button color="primary" onClick={this.Editproject}>
@@ -195,7 +186,16 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );

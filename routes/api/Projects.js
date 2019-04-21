@@ -322,7 +322,7 @@ router.post("/applicants/:id", auth, async (req, res) => {
   }
 });
 
-router.post("/search/:query", auth, (req, res) => {
+router.post("/search/:query", (req, res) => {
   Project.find(
     { $text: { $search: req.params.query } },
     { score: { $meta: "textScore" } }
