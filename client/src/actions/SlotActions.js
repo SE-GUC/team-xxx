@@ -8,7 +8,8 @@ import {
   BOOK_SLOT,
   CONFIRM_SLOT,
   GET_SLOT,
-  EDIT_SLOT
+  EDIT_SLOT,
+  SLOT_APPLY
 } from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
@@ -123,6 +124,21 @@ export const ConfirmSlot = id => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+// export const Slotapply = (memb, id) => (dispatch, getState) => {
+//   dispatch(setProjectsLoading());
+//   axios
+//     .put(`/api/Slots/${id}`, memb, tokenConfig(getState))
+//     .then(res =>
+//       dispatch({
+//         type: SLOT_APPLY,
+//         payload: res.data
+//       })
+//     )
+//     .catch(err =>
+//       dispatch(returnErrors( ))
+//     );
+// };
+
 export const setSlotsLoading = () => {
   return {
     type: SLOTS_LOADING

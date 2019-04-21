@@ -7,7 +7,8 @@ import {
   BOOK_SLOT,
   CONFIRM_SLOT,
   GET_SLOT,
-  EDIT_SLOT
+  EDIT_SLOT,
+  SLOT_APPLY
 } from "../actions/types";
 
 const initialState = {
@@ -66,6 +67,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         Slots: [action.payload, ...state.Slots]
+      };
+      case SLOT_APPLY:
+      return {
+        ...state,
+        Projects: [action.payload, ...state.Projects]
       };
     default:
       return state;

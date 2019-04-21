@@ -1,7 +1,6 @@
-import { Container, ListGroup, ListGroupItem, Badge } from "reactstrap";
+import { Container, ListGroup, ListGroupItem } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getMembers } from "../actions/MemberActions";
-import LoginModal from "./auth/LoginModal";
 import { getPartners } from "../actions/PartnersActions";
 import { getAdmins } from "../actions/AdminActions";
 import { getConsultancys } from "../actions/ConsultancyActions";
@@ -58,16 +57,7 @@ class Notifications extends Component {
                 </CSSTransition>
               ))}
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </ListGroup>
       </Container>
     );

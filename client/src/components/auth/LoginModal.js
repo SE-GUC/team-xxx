@@ -17,12 +17,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  login,
-  loginpartner,
-  loginConsultancy,
-  loginMember
-} from "../../actions/authActions";
+import { login, loginpartner } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import classnames from "classnames";
 class LoginModal extends Component {
@@ -52,8 +47,6 @@ class LoginModal extends Component {
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     loginpartner: PropTypes.func.isRequired,
-    loginConsultancy: PropTypes.func.isRequired,
-    loginMember: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
 
@@ -107,26 +100,6 @@ class LoginModal extends Component {
     };
     // Attempt to login
     this.props.loginpartner(admin);
-  };
-  onSubmit3 = e => {
-    e.preventDefault();
-    const { Email, Password } = this.state;
-    const member = {
-      Email,
-      Password
-    };
-    // Attempt to login
-    this.props.loginMember(member);
-  };
-  onSubmit4 = e => {
-    e.preventDefault();
-    const { Email, Password } = this.state;
-    const consultancy = {
-      Email,
-      Password
-    };
-    // Attempt to login
-    this.props.loginConsultancy(consultancy);
   };
 
   render() {
@@ -263,7 +236,7 @@ class LoginModal extends Component {
                 {this.state.msg ? (
                   <Alert color="danger">{this.state.msg}</Alert>
                 ) : null}
-                <Form onSubmit={this.onSubmit3}>
+                <Form onSubmit={this.onSubmit}>
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
@@ -297,7 +270,7 @@ class LoginModal extends Component {
                 {this.state.msg ? (
                   <Alert color="danger">{this.state.msg}</Alert>
                 ) : null}
-                <Form onSubmit={this.onSubmit4}>
+                <Form onSubmit={this.onSubmit2}>
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
@@ -338,5 +311,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors, loginpartner, loginMember, loginConsultancy }
+  { login, clearErrors, loginpartner }
 )(LoginModal);

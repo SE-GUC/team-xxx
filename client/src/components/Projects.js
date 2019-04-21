@@ -1,6 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProjects, deleteproject } from "../actions/ProjectActions";
-import LoginModal from "./auth/LoginModal";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -13,8 +12,7 @@ import {
   FormGroup,
   Label,
   Input,
-  Form,
-  Badge
+  Form
 } from "reactstrap";
 
 class Projects extends Component {
@@ -110,16 +108,7 @@ class Projects extends Component {
                 </CSSTransition>
               ))}
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </Container>
       </div>
     );

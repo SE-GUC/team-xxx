@@ -33,13 +33,7 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const {
-      isAuthenticated,
-      admin,
-      partner,
-      member,
-      consultancy
-    } = this.props.auth;
+    const { isAuthenticated, admin, partner,member , consultancy} = this.props.auth;
     const authLinks = (
       <Fragment>
         <DropdownItem>

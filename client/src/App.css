@@ -19,9 +19,6 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
-* {
-  font-family: "ARIAL ";
-}
 p {
-  font-family: "MONTSERRAT REGULAR";
+  font-family: "Times New Roman", Times, serif;
 }
