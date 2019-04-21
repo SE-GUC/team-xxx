@@ -263,7 +263,7 @@ class LoginModal extends Component {
                 {this.state.msg ? (
                   <Alert color="danger">{this.state.msg}</Alert>
                 ) : null}
-                <Form onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit3}>
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
@@ -297,7 +297,7 @@ class LoginModal extends Component {
                 {this.state.msg ? (
                   <Alert color="danger">{this.state.msg}</Alert>
                 ) : null}
-                <Form onSubmit={this.onSubmit2}>
+                <Form onSubmit={this.onSubmit4}>
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
