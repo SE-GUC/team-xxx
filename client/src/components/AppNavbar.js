@@ -97,7 +97,7 @@ class AppNavbar extends Component {
                   </DropdownItem>
                   <DropdownItem>
                     {" "}
-                    <NavLink href="/Notifications">Notifications</NavLink>
+                    <NavLink href="/Notification">Notifications</NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                   {isAuthenticated ? authLinks : guestLinks}

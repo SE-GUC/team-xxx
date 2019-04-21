@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Notifications from "./components/Notifications";
+import Notification from "./components/Notification";
 import AppNavbar from "./components/AppNavbar";
 import Lifecoach from "./components/Lifecoach";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,7 +47,7 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/Projects" component={Projects} />
             <Route path="/Lifecoach" component={Lifecoach} />
-            <Route path="/Notifications" component={Notifications} />
+            <Route path="/Notification" component={Notification} />
             <Route path="/AddProject" component={AddProject} />
             <Route path="/Project/:id" component={Project} />
             <Route path="/AddSlot" component={AddSlot} />

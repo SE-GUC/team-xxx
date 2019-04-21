@@ -1,4 +1,3 @@
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getPartner } from "../actions/PartnersActions";
 import { getMember } from "../actions/MemberActions";
 import { getConsultancy } from "../actions/ConsultancyActions";
@@ -7,16 +6,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
   Card,
-  Button,
   CardHeader,
   CardBody,
   CardText,
   Row,
   Col,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Container
 } from "reactstrap";
 
@@ -49,13 +43,7 @@ class Notification extends Component {
   // }
 
   render() {
-    const {
-      isAuthenticated,
-      admin,
-      partner,
-      member,
-      consultancy
-    } = this.props.auth;
+    const { partner, member, consultancy } = this.props.auth;
     return (
       <div>
         <br />
@@ -89,7 +77,6 @@ class Notification extends Component {
             </Card>
           ) : null}
         </Container>
-
         <br />
         <br />
       </div>
