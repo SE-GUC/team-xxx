@@ -14,6 +14,7 @@ import Search from "./components/Search";
 import EditProject from "./components/EditProject";
 import EditSlot from "./components/EditSlot";
 import Slot from "./components/Slot";
+import Profile from "./components/Profile";
 import {
   loadAdmin,
   loadPartner,
@@ -38,6 +39,7 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route exact path="/" component={Home} />
+            <Route exact path="/Profile" component={Profile} />
             <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
             <Route path="/EditSlot/:id" component={EditSlot} />

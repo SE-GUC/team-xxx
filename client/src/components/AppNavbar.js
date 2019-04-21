@@ -45,8 +45,8 @@ class AppNavbar extends Component {
         <DropdownItem>
           <strong>{admin ? `Welcome ${admin.Name}` : ""}</strong>
           <strong>{partner ? `Welcome ${partner.Name}` : ""}</strong>
-          <strong>{partner ? `Welcome ${member.Name}` : ""}</strong>
-          <strong>{partner ? `Welcome ${consultancy.Name}` : ""}</strong>
+          <strong>{member ? `Welcome ${member.Name}` : ""}</strong>
+          <strong>{consultancy ? `Welcome ${consultancy.Name}` : ""}</strong>
         </DropdownItem>
         <DropdownItem>
           <Logout />

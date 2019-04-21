@@ -1,6 +1,7 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProject } from "../actions/ProjectActions";
 import React, { Component } from "react";
+import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -14,7 +15,8 @@ import {
   Progress,
   Row,
   Col,
-  Container
+  Container,
+  Badge
 } from "reactstrap";
 
 class Project extends Component {
@@ -169,7 +171,16 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );

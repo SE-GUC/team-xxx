@@ -1,12 +1,9 @@
 import React from "react";
-import { Jumbotron, Button, Col } from "reactstrap";
+import { Jumbotron, Col } from "reactstrap";
 import { SocialIcon } from "react-social-icons";
 import YouTube from "react-youtube";
 
 class About extends React.Component {
-  info2 = () => {
-    this.props.history.push("/About2/");
-  };
   render() {
     const opts = {
       height: "390",

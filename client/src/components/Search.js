@@ -2,6 +2,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { searchProject } from "../actions/ProjectActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import LoginModal from "./auth/LoginModal";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -50,11 +51,14 @@ class Search extends Component {
     const { Projects } = this.props.Project;
     return (
       <div>
+        <br />
         <Container>
           <Col md={6}>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="Search">Search By Title</Label>
+                <Label for="Search" style={{ fontWeight: "bold" }}>
+                  Search for a Project
+                </Label>
                 <Input
                   type="Text"
                   name="query"
@@ -80,12 +84,16 @@ class Search extends Component {
               {Projects.map(({ _id, Title, description }) => (
                 <CSSTransition key={_id} timeout={500} classNames="fade">
                   <Card body>
-                    <CardTitle>
-                      <h1>
-                        <Badge color="success">({Title})</Badge>
-                      </h1>
-                    </CardTitle>
-                    <CardText>({description})</CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold" }}>Project Title</h4>
+                      {Title}{" "}
+                    </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold" }}>
+                        Project Description
+                      </h4>
+                      {description}{" "}
+                    </CardText>
                     <Button
                       color="info"
                       onClick={this.infoproject.bind(this, _id)}
@@ -93,7 +101,6 @@ class Search extends Component {
                       Project Details
                     </Button>
                     <Button
-                      className="remove-btn"
                       color="danger"
                       size="sm"
                       onClick={this.onDeleteClick.bind(this, _id)}
@@ -104,7 +111,16 @@ class Search extends Component {
                 </CSSTransition>
               ))}
             </TransitionGroup>
-          ) : null}
+          ) : (
+            <h4 className="mb-3 ml-4">
+              Please{"  "}
+              <Badge color="light">
+                <LoginModal />
+              </Badge>
+              {"  "}
+              to manage{"  "}
+            </h4>
+          )}
         </Container>
       </div>
     );
