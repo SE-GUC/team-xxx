@@ -42,15 +42,16 @@ class Slot extends Component {
   }
 
   suggest = () => {
-    this.forceUpdate(
-      this.props.editSlot(
-        { Location: this.state.Location },
-        this.props.match.params.id
-      )
+    this.props.editSlot(
+      { Location: this.state.Location },
+      this.props.match.params.id
     );
+
     this.toggle();
   };
-
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -90,11 +91,8 @@ class Slot extends Component {
         <br />
         <Container>
           <Row>
-            <Col sm={{ size: 10, order: 6, offset: 7 }}>
+            <Col sm={{ size: 10, order: 6, offset: 5 }}>
               {" "}
-              <Button color="primary" onClick={this.toggle}>
-                Suggest Location
-              </Button>{" "}
               <Button color="primary">Decline Booking</Button>{" "}
               <Button
                 color="primary"
@@ -210,7 +208,6 @@ class Slot extends Component {
               to manage{"  "}
             </h4>
           )}
-          }
         </Container>
         <br />
         <br />
