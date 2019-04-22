@@ -22,21 +22,21 @@ npm run client
 ```
 ```
 # Admin Profiles
-1. Email    : 
-   Password :
+1. Email    : Mohamedteiby@gmail.com
+   Password : Mohamedse2019
 
 
 # Consultancy Profiles
-1. Email    : 
-   Password :
+1. Email    : claudianady41@gmail.com
+   Password : ClaudiaNady123
 
 
 # Partner Profiles
-1. Email    : 
-   Password :
+1. Email    : ahmed.shazly15@gmail.com
+   Password : new@new
 
 
 # Member Profiles
-1. Email    : 
-   Password :
+1. Email    : mayarsadek98@gmail.com
+   Password : MayarSadek1234
 ```
