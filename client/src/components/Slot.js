@@ -29,6 +29,9 @@ class Slot extends Component {
     editSlot: PropTypes.func.isRequired,
     Slot: PropTypes.object.isRequired,
     Member: PropTypes.object.isRequired,
+    Consultancy: PropTypes.object.isRequired,
+    Admin: PropTypes.object.isRequired,
+    Partner: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool
   };
@@ -64,17 +67,55 @@ class Slot extends Component {
     this.props.history.push("/EditSlot/" + this.props.match.params.id);
   };
   bookslot = () => {
-    const { member } = this.props.auth;
-    this.forceUpdate(
-      this.props.editSlot(
-        {
-          status: "Booked",
-          BookingCon: "Pending",
-          applicant: `${member.Name}`
-        },
-        this.props.match.params.id
-      )
-    );
+    const { member, consultancy, admin, partner } = this.props.auth;
+    if (member != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${member.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (admin != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${admin.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (consultancy != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${consultancy.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (partner != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${partner.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
   };
   confirmslot = () => {
     this.forceUpdate(
@@ -218,6 +259,9 @@ class Slot extends Component {
 const mapStateToProps = state => ({
   Slot: state.Slot,
   Member: state.Slot,
+  Consultancy: state.Slot,
+  Admin: state.Slot,
+  Partner: state.Slot,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
