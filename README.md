@@ -2,6 +2,8 @@
 
 Domain : https://team-xxx.herokuapp.com
 
+Demonstration Video : https://drive.google.com/file/d/1IWQCnhoQFfRo4wLhMHoByag9-JB1vvaz/view?usp=sharing
+
 ```bash
 # Install dependencies for server
 npm install
@@ -22,8 +24,8 @@ npm run client
 ```
 ```
 # Admin Profiles
-1. Email    : Mohamedteiby@gmail.com
-   Password : Mohamedse2019
+1. Email    : HaidySaleh@gmail.com
+   Password : 123123
 
 
 # Consultancy Profiles
