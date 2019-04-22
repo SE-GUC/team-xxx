@@ -3,7 +3,8 @@ import {
   DELETE_MEMBERS,
   MEMBERS_LOADING,
   GET_MEMBERS_LIFECOACH,
-  GET_MEMBER
+  GET_MEMBER,
+  ADD_NOTIFICATION
 } from "../actions/types";
 
 const initialState = {
@@ -35,6 +36,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         Members: state.Members.filter(Member => Member._id !== action.payload)
+      };
+    case ADD_NOTIFICATION:
+      return {
+        ...state,
+        Members: [action.payload, ...state.Members]
       };
     case MEMBERS_LOADING:
       return {

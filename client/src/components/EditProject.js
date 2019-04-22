@@ -2,7 +2,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProject, editProject } from "../actions/ProjectActions";
 import { getConsultancys } from "../actions/ConsultancyActions";
 import React, { Component } from "react";
-import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -18,8 +17,7 @@ import {
   Form,
   Input,
   Col,
-  Label,
-  Badge
+  Label
 } from "reactstrap";
 
 class Project extends Component {
@@ -45,7 +43,8 @@ class Project extends Component {
     consultancy: this.props.defaultInputValue,
     consultancyAcceptance: this.props.defaultInputValue,
     Consultant: this.props.defaultInputValue,
-    statevalue: this.props.defaultInputValue
+    statevalue: this.props.defaultInputValue,
+    feedback: this.props.defaultInputValue
   };
 
   onChange2 = e => {
@@ -89,7 +88,8 @@ class Project extends Component {
         consultancy: this.state.consultancy,
         Consultant: this.state.Consultant,
         consultancyAcceptance: this.state.consultancyAcceptance,
-        statevalue: this.state.statevalue
+        statevalue: this.state.statevalue,
+        feedback: this.state.feedback
       };
       this.props.editProject(ProjectEdit, this.props.match.params.id);
       this.props.history.push("/Project/" + this.props.match.params.id);
@@ -107,7 +107,6 @@ class Project extends Component {
     const { Consultancys } = this.props.Consultancy;
     return (
       <div>
-        <br />
         <Container>
           {" "}
           {this.props.isAuthenticated ? (
@@ -203,6 +202,18 @@ class Project extends Component {
                           name="extraInfo"
                           id="extraInfo"
                           defaultValue={Projects.effort}
+                          onChange={this.onChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="feedback">
+                          <h5>Write Your Feedback for the Project</h5>
+                        </Label>
+                        <Input
+                          type="textarea"
+                          name="feedback"
+                          id="feedback"
+                          defaultValue={Projects.feedback}
                           onChange={this.onChange}
                         />
                       </FormGroup>
@@ -347,16 +358,7 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </Container>
       </div>
     );

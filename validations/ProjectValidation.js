@@ -23,7 +23,8 @@ module.exports = {
       assigned: Joi.string(),
       extraInfo: Joi.string(),
       memberWork: Joi.string(),
-      OrientaionForTheTask: Joi.string()
+      OrientaionForTheTask: Joi.string(),
+      feedback: Joi.string()
     };
     return Joi.validate(request, createSchema);
   },
@@ -50,7 +51,8 @@ module.exports = {
       assigned: Joi.string(),
       extraInfo: Joi.string(),
       memberWork: Joi.string(),
-      OrientaionForTheTask: Joi.string()
+      OrientaionForTheTask: Joi.string(),
+      feedback: Joi.string()
     };
     return Joi.validate(request, updateSchema);
   },

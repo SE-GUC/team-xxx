@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ADMINS, DELETE_ADMIN, ADMINS_LOADING } from "./types";
+import { GET_ADMINS, DELETE_ADMIN, ADMINS_LOADING, GET_ADMIN } from "./types";
 
 export const getAdmins = () => dispatch => {
   dispatch(setAdminsLoading());
@@ -15,6 +15,15 @@ export const deleteAdmin = id => (dispatch, getState) => {
     dispatch({
       type: DELETE_ADMIN,
       payload: id
+    })
+  );
+};
+export const getAdmin = id => dispatch => {
+  dispatch(setAdminsLoading());
+  axios.get(`/api/admins/${id}`).then(res =>
+    dispatch({
+      type: GET_ADMIN,
+      payload: res.data
     })
   );
 };
