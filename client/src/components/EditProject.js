@@ -45,7 +45,8 @@ class Project extends Component {
     consultancy: this.props.defaultInputValue,
     consultancyAcceptance: this.props.defaultInputValue,
     Consultant: this.props.defaultInputValue,
-    statevalue: this.props.defaultInputValue
+    statevalue: this.props.defaultInputValue,
+    feedback: this.props.defaultInputValue
   };
 
   onChange2 = e => {
@@ -89,7 +90,8 @@ class Project extends Component {
         consultancy: this.state.consultancy,
         Consultant: this.state.Consultant,
         consultancyAcceptance: this.state.consultancyAcceptance,
-        statevalue: this.state.statevalue
+        statevalue: this.state.statevalue,
+        feedback: this.state.feedback
       };
       this.props.editProject(ProjectEdit, this.props.match.params.id);
       this.props.history.push("/Project/" + this.props.match.params.id);
@@ -203,6 +205,18 @@ class Project extends Component {
                           name="extraInfo"
                           id="extraInfo"
                           defaultValue={Projects.effort}
+                          onChange={this.onChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="feedback">
+                          <h5>Write Your Feedback for the Project</h5>
+                        </Label>
+                        <Input
+                          type="textarea"
+                          name="feedback"
+                          id="feedback"
+                          defaultValue={Projects.feedback}
                           onChange={this.onChange}
                         />
                       </FormGroup>

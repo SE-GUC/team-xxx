@@ -39,7 +39,7 @@ class App extends Component {
           <div>
             <AppNavbar />
             <Route exact path="/" component={Home} />
-            <Route exact path="/Profile" component={Profile} />
+            <Route path="/Profile" component={Profile} />
             <Route path="/Search/:query" component={Search} />
             <Route path="/home" component={Home} />
             <Route path="/EditSlot/:id" component={EditSlot} />
