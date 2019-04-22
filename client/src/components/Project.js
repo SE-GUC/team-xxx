@@ -1,9 +1,6 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getProject, memberapply } from "../actions/ProjectActions";
-//import { loadAdmin } from "../actions/authActions";
+import { getProject } from "../actions/ProjectActions";
 import React, { Component } from "react";
-import LoginModal from "./auth/LoginModal";
-import { addNotification } from "../actions/MemberActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -17,21 +14,14 @@ import {
   Progress,
   Row,
   Col,
-  Container,
-  Badge
+  Container
 } from "reactstrap";
 
 class Project extends Component {
   static propTypes = {
     getProject: PropTypes.func.isRequired,
-    memberapply: PropTypes.func.isRequired,
     Project: PropTypes.object.isRequired,
-    Admin: PropTypes.object.isRequired,
-    Partner: PropTypes.object.isRequired,
-    Member: PropTypes.object.isRequired,
-    Consultancy: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool,
-    auth: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool
   };
 
   componentDidMount() {
@@ -40,15 +30,6 @@ class Project extends Component {
   Editproject = () => {
     this.props.history.push("/EditProject/" + this.props.match.params.id);
   };
-  Apply = () => {
-    const { member } = this.props.auth;
-    const memb = { applicants: `${member.Name}` };
-    this.props.memberapply(memb, this.props.match.params.id);
-    const id = member._id;
-    const Notifications = { Notifications: `you applied for a project` };
-    this.props.addNotification(id, Notifications);
-  };
-
   render() {
     const { Projects } = this.props.Project;
     return (
@@ -58,12 +39,14 @@ class Project extends Component {
           <Row>
             <Col sm={{ size: 6, order: 2, offset: 9 }}>
               {" "}
-              <Button color="primary" onClick={this.Apply}>
-                Apply for project
-              </Button>{" "}
-              <Button color="primary" onClick={this.Editproject}>
-                Edit Project
-              </Button>{" "}
+              {this.props.isAuthenticated && this.props.member ? (
+                <Button color="primary">Apply for project</Button>
+              ) : null}{" "}
+              {this.props.isAuthenticated ? (
+                <Button color="primary" onClick={this.Editproject}>
+                  Edit Project
+                </Button>
+              ) : null}{" "}
             </Col>
           </Row>
           <br />{" "}
@@ -176,12 +159,6 @@ class Project extends Component {
                       </h4>
                       {Projects.extraInfo}{" "}
                     </CardText>
-                    <CardText>
-                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
-                        Project Feedback
-                      </h4>
-                      {Projects.feedback}{" "}
-                    </CardText>
                   </CardBody>
                   <CardFooter className="text-muted">
                     <CardText>
@@ -196,16 +173,7 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </Container>
       </div>
     );
@@ -213,15 +181,11 @@ class Project extends Component {
 }
 const mapStateToProps = state => ({
   Project: state.Project,
-  Admin: state.Project,
-  Partner: state.Project,
-  Member: state.Project,
-  Consultancy: state.Project,
   isAuthenticated: state.auth.isAuthenticated,
-  auth: state.auth
+  member: state.auth.member
 });
 
 export default connect(
   mapStateToProps,
-  { getProject, memberapply, addNotification }
+  { getProject }
 )(Project);

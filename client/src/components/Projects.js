@@ -1,6 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProjects, deleteproject } from "../actions/ProjectActions";
-import LoginModal from "./auth/LoginModal";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -13,8 +12,7 @@ import {
   FormGroup,
   Label,
   Input,
-  Form,
-  Badge
+  Form
 } from "reactstrap";
 
 class Projects extends Component {
@@ -69,14 +67,20 @@ class Projects extends Component {
               </FormGroup>
             </Form>
           </Col>
-          <Col sm={{ size: 6, order: 2, offset: 10 }}>
-            {" "}
-            <Button color="primary" onClick={this.addProject}>
-              Add Project
-            </Button>{" "}
-          </Col>
-          <br />
         </Container>
+        <br />
+        <Container>
+          {this.props.isAuthenticated &&
+          (this.props.admin || this.props.partner) ? (
+            <Col sm={{ size: 6, order: 2, offset: 10 }}>
+              {" "}
+              <Button color="primary" onClick={this.addProject}>
+                Add Project
+              </Button>{" "}
+            </Col>
+          ) : null}
+        </Container>
+        <br />
         <Container>
           {this.props.isAuthenticated ? (
             <TransitionGroup className="Projects">
@@ -99,27 +103,21 @@ class Projects extends Component {
                     >
                       Project Details
                     </Button>
-                    <Button
-                      color="danger"
-                      size="sm"
-                      onClick={this.onDeleteClick.bind(this, _id)}
-                    >
-                      &times; Delete Project
-                    </Button>
+
+                    {this.props.isAuthenticated && this.props.admin ? (
+                      <Button
+                        color="danger"
+                        size="sm"
+                        onClick={this.onDeleteClick.bind(this, _id)}
+                      >
+                        &times; Delete Project
+                      </Button>
+                    ) : null}
                   </Card>
                 </CSSTransition>
               ))}
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </Container>
       </div>
     );
@@ -127,7 +125,10 @@ class Projects extends Component {
 }
 const mapStateToProps = state => ({
   Project: state.Project,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  admin: state.auth.admin,
+  partner: state.auth.partner,
+  member: state.auth.member
 });
 
 export default connect(

@@ -2,7 +2,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getProject, editProject } from "../actions/ProjectActions";
 import { getConsultancys } from "../actions/ConsultancyActions";
 import React, { Component } from "react";
-import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -18,8 +17,7 @@ import {
   Form,
   Input,
   Col,
-  Label,
-  Badge
+  Label
 } from "reactstrap";
 
 class Project extends Component {
@@ -45,8 +43,7 @@ class Project extends Component {
     consultancy: this.props.defaultInputValue,
     consultancyAcceptance: this.props.defaultInputValue,
     Consultant: this.props.defaultInputValue,
-    statevalue: this.props.defaultInputValue,
-    feedback: this.props.defaultInputValue
+    statevalue: this.props.defaultInputValue
   };
 
   onChange2 = e => {
@@ -90,8 +87,7 @@ class Project extends Component {
         consultancy: this.state.consultancy,
         Consultant: this.state.Consultant,
         consultancyAcceptance: this.state.consultancyAcceptance,
-        statevalue: this.state.statevalue,
-        feedback: this.state.feedback
+        statevalue: this.state.statevalue
       };
       this.props.editProject(ProjectEdit, this.props.match.params.id);
       this.props.history.push("/Project/" + this.props.match.params.id);
@@ -118,206 +114,230 @@ class Project extends Component {
                   <CardHeader tag="h3">{Projects.Title}</CardHeader>
                   <CardBody>
                     <Form onSubmit={this.onSubmit}>
-                      <FormGroup>
-                        <h5>Project Description</h5>
-                        <Input
-                          type="text"
-                          name="description"
-                          id="description"
-                          defaultValue={Projects.description}
-                          placeholder="Enter Project Description"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Required Skills</h5>
-                        <Input
-                          type="text"
-                          name="skills"
-                          id="skills"
-                          defaultValue={Projects.skills}
-                          placeholder="Enter Project Required Skills"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Required Effort</h5>
-                        <Input
-                          type="text"
-                          name="effort"
-                          id="effort"
-                          defaultValue={Projects.effort}
-                          placeholder="Enter Project Required Effort"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Duration</h5>
-                        <Input
-                          type="text"
-                          name="duration"
-                          id="duration"
-                          defaultValue={Projects.duration}
-                          placeholder="Enter Project Duration"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Required Commitment</h5>
-                        <Input
-                          type="text"
-                          name="commitment"
-                          id="commitment"
-                          defaultValue={Projects.commitment}
-                          placeholder="Enter Project Required Commitment"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Required Compensation</h5>
-                        <Input
-                          type="text"
-                          name="compensation"
-                          id="compensation"
-                          defaultValue={Projects.compensation}
-                          placeholder="Enter Project Compensation"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <h5>Project Required Experience</h5>
-                        <Input
-                          type="text"
-                          name="experience"
-                          id="experience"
-                          defaultValue={Projects.experience}
-                          placeholder="Enter Project Required Experience"
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="extraInfo">
-                          <h5>Enter Any Extra Data</h5>
-                        </Label>
-                        <Input
-                          type="textarea"
-                          name="extraInfo"
-                          id="extraInfo"
-                          defaultValue={Projects.effort}
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="feedback">
-                          <h5>Write Your Feedback for the Project</h5>
-                        </Label>
-                        <Input
-                          type="textarea"
-                          name="feedback"
-                          id="feedback"
-                          defaultValue={Projects.feedback}
-                          onChange={this.onChange}
-                        />
-                      </FormGroup>
-                      <FormGroup row>
-                        <Label for="category" sm={2}>
-                          <h5>Select Category</h5>
-                        </Label>
-                        <Col sm={10}>
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Description</h5>
                           <Input
-                            type="select"
-                            name="category"
-                            id="category"
+                            type="text"
+                            name="description"
+                            id="description"
+                            defaultValue={Projects.description}
+                            placeholder="Enter Project Description"
                             onChange={this.onChange}
-                          >
-                            <option value="NA">NA</option>
-                            <option value="Admin Support">Admin Support</option>
-                            <option value="Customer Service">
-                              Customer Service
-                            </option>
-                            <option value="Sales & Marketing">
-                              Sales & Marketing
-                            </option>
-                            <option value="Accounting & Consulting">
-                              Accounting & Consulting
-                            </option>
-                            <option value="Legal">Legal</option>
-                            <option value="Translation">Translation</option>
-                            <option value="Writing">Writing</option>
-                            <option value="Design & Creative">
-                              Design & Creative
-                            </option>
-                            <option value="Engineering & Architecture">
-                              Engineering & Architecture
-                            </option>
-                            <option value="Data Science & Analytics">
-                              Data Science & Analytics
-                            </option>
-                            <option value="IT & Networking">
-                              IT & Networking
-                            </option>
-                            <option value="Web, Mobile & Software Dev">
-                              Web, Mobile & Software Dev
-                            </option>
-                          </Input>
-                        </Col>
-                      </FormGroup>
-                      <FormGroup row>
-                        <Label for="state" sm={2}>
-                          <h5>Select Project Current State</h5>
-                        </Label>
-                        <Col sm={10}>
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Required Skills</h5>
                           <Input
-                            type="select"
-                            name="state"
-                            id="state"
-                            defaultValue={Projects.state}
-                            onChange={this.onChange2}
-                          >
-                            <option value="Pending">Pending</option>
-                            <option value="Posted">Posted</option>
-                            <option value="Under Review">Under Review</option>
-                            <option value="WIP">WIP</option>
-                            <option value="Finished">Finished</option>
-                          </Input>
-                        </Col>
-                      </FormGroup>
-                      <FormGroup row>
-                        <Label for="state" sm={2}>
-                          <h5> Need a Consultant?</h5>
-                        </Label>
-                        <Col sm={10}>
-                          <Input
-                            type="select"
-                            name="Consultant"
-                            id="Consultant"
-                            defaultValue={Projects.Consultant}
+                            type="text"
+                            name="skills"
+                            id="skills"
+                            defaultValue={Projects.skills}
+                            placeholder="Enter Project Required Skills"
                             onChange={this.onChange}
-                          >
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                            <option value="NA">NA</option>
-                          </Input>
-                        </Col>
-                      </FormGroup>
-                      <FormGroup row>
-                        <Label for="state" sm={2}>
-                          <h5>Assign Consultant</h5>
-                        </Label>
-                        <Col sm={10}>
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Required Effort</h5>
                           <Input
-                            type="select"
-                            name="consultancy"
-                            id="consultancy"
-                            defaultValue={Projects.consultancy}
+                            type="text"
+                            name="effort"
+                            id="effort"
+                            defaultValue={Projects.effort}
+                            placeholder="Enter Project Required Effort"
                             onChange={this.onChange}
-                          >
-                            {Consultancys.map(({ Name }) => (
-                              <option value={Name}>{Name}</option>
-                            ))}
-                          </Input>
-                        </Col>
-                      </FormGroup>
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Duration</h5>
+                          <Input
+                            type="text"
+                            name="duration"
+                            id="duration"
+                            defaultValue={Projects.duration}
+                            placeholder="Enter Project Duration"
+                            onChange={this.onChange}
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Required Commitment</h5>
+                          <Input
+                            type="text"
+                            name="commitment"
+                            id="commitment"
+                            defaultValue={Projects.commitment}
+                            placeholder="Enter Project Required Commitment"
+                            onChange={this.onChange}
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Required Compensation</h5>
+                          <Input
+                            type="text"
+                            name="compensation"
+                            id="compensation"
+                            defaultValue={Projects.compensation}
+                            placeholder="Enter Project Compensation"
+                            onChange={this.onChange}
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <h5>Project Required Experience</h5>
+                          <Input
+                            type="text"
+                            name="experience"
+                            id="experience"
+                            defaultValue={Projects.experience}
+                            placeholder="Enter Project Required Experience"
+                            onChange={this.onChange}
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup>
+                          <Label for="extraInfo">
+                            <h5>Enter Any Extra Data</h5>
+                          </Label>
+                          <Input
+                            type="textarea"
+                            name="extraInfo"
+                            id="extraInfo"
+                            defaultValue={Projects.effort}
+                            onChange={this.onChange}
+                          />
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.partner) ? (
+                        <FormGroup row>
+                          <Label for="category" sm={2}>
+                            <h5>Select Category</h5>
+                          </Label>
+                          <Col sm={10}>
+                            <Input
+                              type="select"
+                              name="category"
+                              id="category"
+                              onChange={this.onChange}
+                            >
+                              <option value="NA">NA</option>
+                              <option value="Admin Support">
+                                Admin Support
+                              </option>
+                              <option value="Customer Service">
+                                Customer Service
+                              </option>
+                              <option value="Sales & Marketing">
+                                Sales & Marketing
+                              </option>
+                              <option value="Accounting & Consulting">
+                                Accounting & Consulting
+                              </option>
+                              <option value="Legal">Legal</option>
+                              <option value="Translation">Translation</option>
+                              <option value="Writing">Writing</option>
+                              <option value="Design & Creative">
+                                Design & Creative
+                              </option>
+                              <option value="Engineering & Architecture">
+                                Engineering & Architecture
+                              </option>
+                              <option value="Data Science & Analytics">
+                                Data Science & Analytics
+                              </option>
+                              <option value="IT & Networking">
+                                IT & Networking
+                              </option>
+                              <option value="Web, Mobile & Software Dev">
+                                Web, Mobile & Software Dev
+                              </option>
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated && this.props.admin ? (
+                        <FormGroup row>
+                          <Label for="state" sm={2}>
+                            <h5>Select Project Current State</h5>
+                          </Label>
+                          <Col sm={10}>
+                            <Input
+                              type="select"
+                              name="state"
+                              id="state"
+                              defaultValue={Projects.state}
+                              onChange={this.onChange2}
+                            >
+                              <option value="Pending">Pending</option>
+                              <option value="Posted">Posted</option>
+                              <option value="Under Review">Under Review</option>
+                              <option value="WIP">WIP</option>
+                              <option value="Finished">Finished</option>
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated &&
+                      (this.props.admin || this.props.member) ? (
+                        <FormGroup row>
+                          <Label for="state" sm={2}>
+                            <h5> Need a Consultant?</h5>
+                          </Label>
+                          <Col sm={10}>
+                            <Input
+                              type="select"
+                              name="Consultant"
+                              id="Consultant"
+                              defaultValue={Projects.Consultant}
+                              onChange={this.onChange}
+                            >
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                              <option value="NA">NA</option>
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      ) : null}
+                      {this.props.isAuthenticated && this.props.admin ? (
+                        <FormGroup row>
+                          <Label for="state" sm={2}>
+                            <h5>Assign Consultant</h5>
+                          </Label>
+                          <Col sm={10}>
+                            <Input
+                              type="select"
+                              name="consultancy"
+                              id="consultancy"
+                              defaultValue={Projects.consultancy}
+                              onChange={this.onChange}
+                            >
+                              {Consultancys.map(({ Name }) => (
+                                <option value={Name}>{Name}</option>
+                              ))}
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      ) : null}
                       <FormGroup row>
                         <Label for="state" sm={2}>
                           <h5>
@@ -360,16 +380,7 @@ class Project extends Component {
                 </Card>
               </CSSTransition>
             </TransitionGroup>
-          ) : (
-            <h4 className="mb-3 ml-4">
-              Please{"  "}
-              <Badge color="light">
-                <LoginModal />
-              </Badge>
-              {"  "}
-              to manage{"  "}
-            </h4>
-          )}
+          ) : null}
         </Container>
       </div>
     );
@@ -377,8 +388,11 @@ class Project extends Component {
 }
 const mapStateToProps = state => ({
   Project: state.Project,
-  Consultancy: state.Consultancy,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  admin: state.auth.admin,
+  partner: state.auth.partner,
+  member: state.auth.member,
+  Consultancy: state.Consultancy
 });
 
 export default connect(
