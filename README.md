@@ -22,8 +22,8 @@ npm run client
 ```
 ```
 # Admin Profiles
-1. Email    : Mohamedteiby@gmail.com
-   Password : Mohamedse2019
+1. Email    : HaidySaleh@gmail.com
+   Password : 123123
 
 
 # Consultancy Profiles
