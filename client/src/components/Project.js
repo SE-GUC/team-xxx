@@ -3,6 +3,7 @@ import { getProject, memberapply } from "../actions/ProjectActions";
 //import { loadAdmin } from "../actions/authActions";
 import React, { Component } from "react";
 import LoginModal from "./auth/LoginModal";
+import { addNotification } from "../actions/MemberActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -43,6 +44,9 @@ class Project extends Component {
     const { member } = this.props.auth;
     const memb = { applicants: `${member.Name}` };
     this.props.memberapply(memb, this.props.match.params.id);
+    const id = member._id;
+    const Notifications = { Notifications: `you applied for a project` };
+    this.props.addNotification(id, Notifications);
   };
 
   render() {
@@ -172,6 +176,12 @@ class Project extends Component {
                       </h4>
                       {Projects.extraInfo}{" "}
                     </CardText>
+                    <CardText>
+                      <h4 style={{ fontWeight: "bold", fontSize: 20 }}>
+                        Project Feedback
+                      </h4>
+                      {Projects.feedback}{" "}
+                    </CardText>
                   </CardBody>
                   <CardFooter className="text-muted">
                     <CardText>
@@ -213,5 +223,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProject, memberapply }
+  { getProject, memberapply, addNotification }
 )(Project);
