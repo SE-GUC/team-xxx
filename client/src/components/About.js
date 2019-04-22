@@ -18,9 +18,9 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Breadcrumb,
-  BreadcrumbItem,
-  ModalFooter
+  ModalFooter,
+  NavLink,
+  Badge
 } from "reactstrap";
 
 class About extends React.Component {
@@ -37,25 +37,23 @@ class About extends React.Component {
     this.popUp = this.popUp.bind(this);
     this.popUp2 = this.popUp2.bind(this);
     this.popUp3 = this.popUp3.bind(this);
-
   }
 
   popUp() {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-  };
+  }
   popUp2() {
     this.setState(prevState => ({
       modal2: !prevState.modal2
     }));
-  };
+  }
   popUp3() {
     this.setState(prevState => ({
       modal3: !prevState.modal3
     }));
-  };
-  
+  }
 
   projectTour = () => {
     this.props.history.push("/Projects/");
@@ -63,15 +61,19 @@ class About extends React.Component {
   lifecoachesTour = () => {
     this.props.history.push("/LifeCoach/");
   };
-  githubTour = () => {
-    this.props.history.push("https://github.com/SE-GUC/team-xxx");
-  };
 
   render() {
+    const opts = {
+      height: "450",
+      width: "720",
+      playerVars: {
+        autoplay: 0
+      }
+    };
     return (
       <Container>
         <Jumbotron>
-          <h1 className="display-3">About Us!</h1>
+          <h1 className="display-3">Lirten Hub</h1>
           <p className="lead">
             We are simply Freelancers Website trying to reach each and everyone
             with the easiest way.
@@ -81,11 +83,9 @@ class About extends React.Component {
             You can take all the classes you want at anytime, the more courses
             you take the more experience you will have!
           </p>
-          <p className="lead" />
         </Jumbotron>
-
         <Carousel2 />
-
+        <br />
         <CardDeck>
           <Card
             body
@@ -131,16 +131,31 @@ class About extends React.Component {
               <CardText style={{ color: "black" }}>
                 You can check all the project through the below button.
               </CardText>
-              <Button onClick={this.githubTour}>Check it out!</Button>
+              <NavLink href="https://github.com/SE-GUC/team-xxx">
+                <Badge color="light"> Github</Badge>
+              </NavLink>
             </CardBody>
           </Card>
         </CardDeck>
-
-        <Card body inverse style={{ backgroundColor: "white" }}>
+        <br />{" "}
+        <Col xs="8" sm="4">
+          {" "}
+        </Col>
+        <Row>
+          <Col sm="10" md={{ size: 6, offset: 2 }}>
+            {" "}
+            <YouTube
+              videoId="pQc8gRcmZRY"
+              opts={opts}
+              onReady={this._onReady}
+            />
+          </Col>
+        </Row>
+        <br />
+        <Card body inverse style={{ backgroundColor: "White" }}>
           <CardTitle style={{ color: "grey" }}>
             <h5 className="display-4"> The Vision</h5>
           </CardTitle>
-
           <CardBody style={{ color: "grey" }}>
             Technology is reforming the way work gets done so radically that all
             business domains are changing. All aspects of the professional work
@@ -149,7 +164,6 @@ class About extends React.Component {
             ability to innovate, are competing and defeating major enterprises.
             Hence, itʼs no surprise this is called the disrup- tive era.
           </CardBody>
-
           <CardBody style={{ color: "grey" }}>
             A considerable number of enterprises are just selling their
             establishment and the facade of a strong grip. Theyʼre charging
@@ -264,7 +278,6 @@ class About extends React.Component {
             </CardBody>
           </Collapse>
         </Card>
-
         <Jumbotron style={{ backgroundColor: "#e5e8e8", borderColor: "#333" }}>
           <Row sm={{ size: 6, offset: 4 }}>
             <Col sm={{ size: 6, offset: 4 }}>
@@ -282,7 +295,7 @@ class About extends React.Component {
               <ButtonGroup>
                 <Button color="link" onClick={this.popUp}>
                   {this.props.buttonLabel}
-                 Contact Us
+                  Contact Us
                 </Button>
                 <Modal
                   isOpen={this.state.modal}
@@ -290,19 +303,15 @@ class About extends React.Component {
                   className={this.props.className}
                 >
                   <ModalHeader popUp={this.popUp}>Contact Us</ModalHeader>
-                  <ModalBody>
-                    SCRUM MASTER: 012981717291
-                  </ModalBody>
-                  <ModalBody>
-                    HOTLINE: 16575
-                  </ModalBody>
+                  <ModalBody>SCRUM MASTER: 012981717291</ModalBody>
+                  <ModalBody>HOTLINE: 16575</ModalBody>
                   <ModalFooter>
                     <Button color="secondary" onClick={this.popUp}>
                       Cancel
                     </Button>
                   </ModalFooter>
                 </Modal>
-                
+
                 <Button color="link" onClick={this.popUp2}>
                   {this.props.buttonLabel}
                   Location
@@ -313,20 +322,16 @@ class About extends React.Component {
                   className={this.props.className}
                 >
                   <ModalHeader popUp2={this.popUp2}>Contact Us</ModalHeader>
-                  <ModalBody>
-                  Downtown Mall in Espresso Perfetto 
-                  </ModalBody>
-                  <ModalBody>
-                  Vintage CoWorking Space
-                  </ModalBody>
+                  <ModalBody>Downtown Mall in Espresso Perfetto</ModalBody>
+                  <ModalBody>Vintage CoWorking Space</ModalBody>
                   <ModalFooter>
-                  <Button color="secondary" onClick={this.popUp2}>
+                    <Button color="secondary" onClick={this.popUp2}>
                       Cancel
                     </Button>
                   </ModalFooter>
                 </Modal>
 
-                    <Button color="link" onClick={this.popUp3}>
+                <Button color="link" onClick={this.popUp3}>
                   {this.props.buttonLabel}
                   Privacy & Policy
                 </Button>
@@ -335,13 +340,13 @@ class About extends React.Component {
                   popUp3={this.popUp3}
                   className={this.props.className}
                 >
-                  <ModalHeader popUp3={this.popUp3}>Privacy & Policy</ModalHeader>
-                  <ModalBody>
-                  Hopa La 
-                  </ModalBody>
-                  
+                  <ModalHeader popUp3={this.popUp3}>
+                    Privacy & Policy
+                  </ModalHeader>
+                  <ModalBody>Hopa La</ModalBody>
+
                   <ModalFooter>
-                  <Button color="secondary" onClick={this.popUp3}>
+                    <Button color="secondary" onClick={this.popUp3}>
                       Cancel
                     </Button>
                   </ModalFooter>
