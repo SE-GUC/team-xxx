@@ -101,6 +101,9 @@ const ProjectSchema = new Schema({
   },
   detailedplan: {
     type: String
+  },
+  feedback: {
+    type: String
   }
 });
 ProjectSchema.index({ "$**": "text" });

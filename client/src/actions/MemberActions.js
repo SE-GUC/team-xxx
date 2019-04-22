@@ -4,7 +4,8 @@ import {
   DELETE_MEMBERS,
   MEMBERS_LOADING,
   GET_MEMBERS_LIFECOACH,
-  GET_MEMBER
+  GET_MEMBER,
+  ADD_NOTIFICATION
 } from "./types";
 
 export const getMembers = () => dispatch => {
@@ -42,6 +43,16 @@ export const deleteMember = id => (dispatch, getState) => {
     })
   );
 };
+export const addNotification = (id, Notifications) => (dispatch, getState) => {
+  dispatch(setMembersLoading());
+  axios.post(`/api/members/Notifications/${id}`, Notifications).then(res =>
+    dispatch({
+      type: ADD_NOTIFICATION,
+      payload: res.data
+    })
+  );
+};
+
 export const setMembersLoading = () => {
   return {
     type: MEMBERS_LOADING

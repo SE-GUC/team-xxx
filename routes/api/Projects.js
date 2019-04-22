@@ -3,8 +3,47 @@ const router = express.Router();
 const Joi = require("joi");
 const validator = require("../../validations/ProjectValidation");
 const auth = require("../../middleware/auth");
+const mongoose = require("mongoose").set("debug", true);
+const crypto = require("crypto");
+const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
+const config = require("config");
+const path = require("path");
+const db = config.get("mongoURI");
 // Project Model
 const Project = require("../../models/Project");
+
+var conn = mongoose.connection;
+Grid.mongo = mongoose.mongo;
+
+let gfs;
+conn.once("open", () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
+
+const storage = new GridFsStorage({
+  url: db,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: "uploads"
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+
+const upload = multer({ storage });
 
 // @route   GET api/Projects
 // @desc    Get All Projects
@@ -18,14 +57,38 @@ router.get("/", auth, (req, res) => {
 // @route   POST api/Projects
 // @desc    Create An Project
 // @access  Public
-router.post("/", auth, async (req, res) => {
+router.post("/", auth, upload.single("detailplan"), async (req, res) => {
+  console.log(req.file);
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message });
-    const newProject = await Project.create(req.body);
+    const newProject = await Project.create({
+      Title: req.body.Title,
+      description: req.body.description,
+      candidates: req.body.candidates,
+      effort: req.body.effort,
+      duration: req.body.duration,
+      commitment: req.body.commitment,
+      experience: req.body.experience,
+      compensation: req.body.compensation,
+      partner: req.body.partner,
+      Consultant: req.body.Consultant,
+      consultancy: req.body.consultancy,
+      consultantRandom: req.body.consultantRandom,
+      consultancyAcceptance: req.body.consultancyAcceptance,
+      skills: req.body.skills,
+      category: req.body.category,
+      state: req.body.state,
+      applicants: req.body.applicants,
+      assigned: req.body.assigned,
+      extraInfo: req.body.extraInfo,
+      memberWork: req.body.memberWork,
+      OrientaionForTheTask: req.body.OrientaionForTheTask
+      // detailedplan: req.file.filename
+    });
     res.json({ msg: "Project was created successfully", data: newProject });
   } catch (error) {
     console.log(error);
@@ -329,6 +392,51 @@ router.post("/search/:query", (req, res) => {
   )
     .sort({ score: { $meta: "textScore" } })
     .then(Projects => res.json(Projects));
+});
+
+router.get("/fileinfo/:id", (req, res) => {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      const name = doc.detailedplan;
+      gfs.files.findOne({ filename: name }, (err, file) => {
+        // Check if file
+        if (!file || file.length === 0) {
+          return res.status(404).json({
+            err: "No file exists"
+          });
+        }
+        // File exists
+        return res.json(file);
+      });
+    })
+    .catch(err => next(err));
+});
+
+// @route GET /file/:filename
+// @desc Display File
+router.get("/file/:id", (req, res) => {
+  Project.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      const name = doc.detailedplan;
+      gfs.files.findOne({ filename: name }, (err, file) => {
+        // Check if file
+        if (!file || file.length === 0) {
+          return res.status(404).json({
+            err: "No file exists"
+          });
+        }
+        // Read output to browser
+        const readstream = gfs.createReadStream(file.filename);
+        readstream.pipe(res);
+      });
+    })
+    .catch(err => next(err));
 });
 
 module.exports = router;

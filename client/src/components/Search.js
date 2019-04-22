@@ -10,7 +10,6 @@ import {
   Col,
   Button,
   Badge,
-  CardTitle,
   CardText,
   FormGroup,
   Label,

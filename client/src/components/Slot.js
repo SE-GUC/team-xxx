@@ -29,6 +29,9 @@ class Slot extends Component {
     editSlot: PropTypes.func.isRequired,
     Slot: PropTypes.object.isRequired,
     Member: PropTypes.object.isRequired,
+    Consultancy: PropTypes.object.isRequired,
+    Admin: PropTypes.object.isRequired,
+    Partner: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool
   };
@@ -42,15 +45,16 @@ class Slot extends Component {
   }
 
   suggest = () => {
-    this.forceUpdate(
-      this.props.editSlot(
-        { Location: this.state.Location },
-        this.props.match.params.id
-      )
+    this.props.editSlot(
+      { Location: this.state.Location },
+      this.props.match.params.id
     );
+
     this.toggle();
   };
-
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -63,17 +67,55 @@ class Slot extends Component {
     this.props.history.push("/EditSlot/" + this.props.match.params.id);
   };
   bookslot = () => {
-    const { member } = this.props.auth;
-    this.forceUpdate(
-      this.props.editSlot(
-        {
-          status: "Booked",
-          BookingCon: "Pending",
-          applicant: `${member.Name}`
-        },
-        this.props.match.params.id
-      )
-    );
+    const { member, consultancy, admin, partner } = this.props.auth;
+    if (member != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${member.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (admin != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${admin.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (consultancy != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${consultancy.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
+    if (partner != null) {
+      this.forceUpdate(
+        this.props.editSlot(
+          {
+            status: "Booked",
+            BookingCon: "Pending",
+            applicant: `${partner.Name}`
+          },
+          this.props.match.params.id
+        )
+      );
+    }
   };
   confirmslot = () => {
     this.forceUpdate(
@@ -90,11 +132,8 @@ class Slot extends Component {
         <br />
         <Container>
           <Row>
-            <Col sm={{ size: 10, order: 6, offset: 7 }}>
+            <Col sm={{ size: 10, order: 6, offset: 5 }}>
               {" "}
-              <Button color="primary" onClick={this.toggle}>
-                Suggest Location
-              </Button>{" "}
               <Button color="primary">Decline Booking</Button>{" "}
               <Button
                 color="primary"
@@ -210,7 +249,6 @@ class Slot extends Component {
               to manage{"  "}
             </h4>
           )}
-          }
         </Container>
         <br />
         <br />
@@ -221,6 +259,9 @@ class Slot extends Component {
 const mapStateToProps = state => ({
   Slot: state.Slot,
   Member: state.Slot,
+  Consultancy: state.Slot,
+  Admin: state.Slot,
+  Partner: state.Slot,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
