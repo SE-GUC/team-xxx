@@ -1,20 +1,14 @@
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getMember } from "../actions/MemberActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
   Card,
-  Button,
   CardHeader,
   CardBody,
   CardText,
   Row,
   Col,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Container
 } from "reactstrap";
 
@@ -43,13 +37,7 @@ class Profile extends Component {
   // }
 
   render() {
-    const {
-      isAuthenticated,
-      admin,
-      partner,
-      member,
-      consultancy
-    } = this.props.auth;
+    const { admin, partner, member, consultancy } = this.props.auth;
 
     return (
       <div>
