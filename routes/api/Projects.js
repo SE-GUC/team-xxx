@@ -3,14 +3,7 @@ const router = express.Router();
 const Joi = require("joi");
 const validator = require("../../validations/ProjectValidation");
 const auth = require("../../middleware/auth");
-const mongoose = require("mongoose").set("debug", true);
-const crypto = require("crypto");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
-const Grid = require("gridfs-stream");
-const config = require("config");
-const path = require("path");
-const db = config.get("mongoURI");
+
 // Project Model
 const Project = require("../../models/Project");
 
